@@ -1,0 +1,33 @@
+---
+name: postgresql
+description: Decide whether an SDIN application needs PostgreSQL and implement its relational persistence, migrations, authorization, or pgvector RAG storage. Use when changing app data; do not invent a business app or schema for this platform repository.
+---
+
+# PostgreSQL in SDIN applications
+
+## Decide before implementing
+
+Identify the actual user journey, durability, concurrency, relationships and data volume. Compare no database, existing app persistence and PostgreSQL. Select the lightest option that preserves required durability and access guarantees. Browser or process memory is appropriate only when its lifetime and loss behavior meet the requirement. `PostgreSQL: not used` is a valid decision; document the reason, simpler alternative and revisit trigger in the app README's Structuring decisions section.
+
+## Platform contract
+
+- Read `td/core-platform/README.md`, `podman-compose.yml`, `templates/bootstrap.sh` and the target app. This repo provides a platform, not an implemented business application.
+- Reuse `postgres.internal:5432` on `core-network`, with one app database and user. Bootstrap writes `secret/<app>/postgres`; retrieve credentials server-side at boot. Never expose a DSN/password in frontend code, images or logs, or run app requests as the platform superuser.
+- The repository's current bootstrap provisions PostgreSQL and S3 unconditionally. If a service is not needed, adapt only the consuming app's copied bootstrap and compose/client configuration to skip it. Do not assume USE_POSTGRES or USE_OBJECTSTORE flags exist upstream.
+- App-level database separation does not implement end-user authorization. Resolve identity server-side and constrain every record operation by its owner/tenant policy. Client IDs never grant access. The workshop's root credentials and plain transport are development configuration.
+
+## Design and implementation
+
+1. Complete the decision gate; identify data ownership, relational constraints, retention, deletion and recovery. Add migrations with explicit deploy compatibility and a reviewed recovery plan; never run DDL in ordinary requests.
+2. Use bound query parameters. Dynamic identifiers/order clauses need a server-owned allowlist. Bound pagination, query duration and connection-pool size; select needed columns and justify indexes with actual access paths.
+3. Enforce owner/tenant conditions on reads, writes and deletes, and database constraints for critical invariants. Use conditional updates/transactions to protect concurrent operations. Keep responses and logs free of credentials and unnecessary personal data.
+4. Use SQL transactions for database changes. For reliable delivery to S3/Valkey, persist operation state or an outbox, give side effects durable idempotency keys and reconcile partial failure.
+5. For an explicitly requested RAG feature, first store original documents in private S3. Enable pgvector in the app's existing DB only then; persist source/version metadata, chunks and embeddings generated via `task:embed`. Check model dimensions/version and rebuild deliberately on changes. Apply document/tenant ACL and active-version filters in retrieval before any chunk enters a prompt.
+
+Read [integration patterns](references/integration-patterns.md) for data placement, access and deletion guidance. Load the S3 and Valkey skills only when those dependencies are selected.
+
+## Acceptance evidence
+
+- Verify allowed and denied access with two users/tenants, unauthenticated requests, role changes and deleted records. Verify injection-shaped values remain values; test competing writes against the actual invariant.
+- Verify migrations on an existing dataset, bounded list behavior and retry after a committed side effect. For RAG, verify private-document retrieval, version replacement and deletion of derived chunks/vectors.
+- Record decisions, sensitive-data retention, critical paths and performance evidence in the app README. State which checks ran and which require the live platform; never claim integration success from a static inspection.

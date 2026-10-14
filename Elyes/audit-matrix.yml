@@ -1,0 +1,37 @@
+version: 1
+# Review plan, not an executable checker. For an unused service, record N/A
+# with its reason and revisit trigger; never fabricate a successful check.
+scope: [postgresql, seaweedfs-s3, valkey]
+rules:
+  R-0-01: {category: service-need-and-minimum-design, audit: design-review, status: required}
+  R-1-01: {category: postgres-isolation, audit: static, status: required}
+  R-1-02: {category: data-placement, audit: design-review, status: required}
+  R-1-03: {category: schema-evolution, audit: static-and-review, status: required}
+  R-1-04: {category: sql-safety, audit: static-and-tests, status: required}
+  R-1-05: {category: bounded-work, audit: review-and-measurement, status: required}
+  R-1-06: {category: secret-handling, audit: static-and-secret-scan, status: required}
+  R-1-07: {category: user-authorization, audit: integration-tests-and-review, status: required}
+  R-1-08: {category: negative-access-tests, audit: integration-tests, status: required}
+  R-1-09: {category: data-minimization-erasure, audit: review-and-tests, status: required}
+  R-2-01: {category: s3-isolation, audit: static, status: required}
+  R-2-02: {category: data-placement, audit: design-review, status: required}
+  R-2-03: {category: s3-public-access, audit: static-and-review, status: required}
+  R-2-04: {category: s3-connectivity, audit: static, status: required}
+  R-2-05: {category: object-lifecycle, audit: review, status: required}
+  R-2-06: {category: secret-handling, audit: static-and-secret-scan, status: required}
+  R-2-07: {category: object-authorization, audit: integration-tests-and-review, status: required}
+  R-2-08: {category: upload-validation-limits, audit: integration-tests-and-review, status: required}
+  R-2-09: {category: object-cleanup-recovery, audit: integration-tests-and-review, status: required}
+  R-3-01: {category: valkey-namespacing, audit: static-and-tests, status: required}
+  R-3-02: {category: source-of-truth, audit: review, status: required}
+  R-3-03: {category: bounded-state, audit: static-and-tests, status: required}
+  R-3-04: {category: stream-delivery, audit: review-and-tests, status: required}
+  R-3-05: {category: durable-orchestration, audit: review, status: required}
+  R-3-06: {category: platform-reuse, audit: static, status: required}
+  R-3-07: {category: cache-queue-authorization, audit: integration-tests-and-review, status: required}
+  R-3-08: {category: abuse-and-outage-bounds, audit: integration-tests-and-review, status: required}
+  R-3-09: {category: rag-corpus-placement, audit: architecture-review, status: required}
+  R-4-01: {category: cross-service-consistency, audit: review-and-tests, status: required}
+  R-4-02: {category: documentation, audit: static-and-review, status: required}
+  R-4-03: {category: user-journey-review, audit: review, status: required}
+  R-4-04: {category: explicit-service-decisions, audit: readme-review, status: required}
