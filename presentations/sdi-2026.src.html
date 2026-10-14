@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainability Driven Innovation 2026 — eXalt</title>
+  <style>{{CORE_CSS}}</style>
+  <style>.sci-letter{font-size:88px;font-weight:800;line-height:1;color:var(--bleu-exalt,#5853FF)}.codeblock{white-space:pre-wrap;font-size:22px;line-height:1.55;color:var(--encre);margin:0}</style>
+</head>
+<body>
+<div class="presentation">
+
+  <!-- 1. title -->
+  <section class="slide aurora" id="slide-1" data-layout="title">
+    <img class="motif br soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo lg" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="cover-text">
+      <div class="eyebrow">EPITA · Cours SDI</div>
+      <h1 class="display">Sustainability Driven <span class="hl">Innovation</span></h1>
+      <p class="lead">Du SD² au harness engineering : l'architecture sobre à l'ère des agents</p>
+      <div class="cover-meta">
+        <span class="pill jaune">EPITA</span>
+        <span class="pill outline">[à compléter : date]</span>
+      </div>
+      <p class="tagline">pulse, make, learn</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 2. team -->
+  <section class="slide" id="slide-2" data-layout="team">
+    <div class="team-band"></div>
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Les intervenants</div>
+      <h2 class="h-lg">Qui <span class="hl">sommes-nous</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="team">
+        <div class="card member"><div class="portrait"><img class="avatar" src="{{AVATAR:1}}" alt="Avatar illustré"></div><div class="title">Julien Guisset</div><div class="role">Associé eXalt · DG eXalt IT</div>
+          <div class="lines"><div class="line"><img class="icon" src="{{ICON:graduation}}" alt="">EPITA 2002</div><div class="line"><img class="icon" src="{{ICON:mail}}" alt="">[à compléter]</div></div></div>
+        <div class="card member"><div class="portrait"><img class="avatar" src="{{AVATAR:2}}" alt="Avatar illustré"></div><div class="title">Victor Coatalem</div><div class="role">DevRel Engineer eXalt IT</div>
+          <div class="lines"><div class="line"><img class="icon" src="{{ICON:graduation}}" alt="">EPITA 2022</div><div class="line"><img class="icon" src="{{ICON:mail}}" alt="">[à compléter]</div></div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 3. stack — le fil rouge -->
+  <section class="slide" id="slide-3" data-layout="stack">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le fil rouge · la pyramide de l'évitement</div>
+      <h2 class="h-lg">Le meilleur calcul : <span class="hl">aucun calcul</span></h2>
+    </div>
+    <div class="content">
+      <div class="stack-layers">
+        <div class="layers">
+          <div class="layer key"><div class="layer-name">1 · Ne pas faire<small>Le levier le plus fort</small></div><div class="layer-items"><span class="chip"><img class="icon" src="{{INFRA_DARK:filter}}" alt="">KISS</span><span class="chip"><img class="icon" src="{{INFRA_DARK:target}}" alt="">MVP</span><span class="chip"><img class="icon" src="{{INFRA_DARK:trash}}" alt="">Feature retirée</span></div></div>
+          <div class="layer"><div class="layer-name">2 · Faire une fois<small>Build plutôt que runtime</small></div><div class="layer-items"><span class="chip"><img class="icon" src="{{INFRA:file}}" alt="">Site statique</span><span class="chip"><img class="icon" src="{{INFRA:stack-2}}" alt="">Cache</span><span class="chip"><img class="icon" src="{{INFRA:cloud-network}}" alt="">CDN</span></div></div>
+          <div class="layer"><div class="layer-name">3 · Au bon moment<small>Différer, lisser</small></div><div class="layer-items"><span class="chip"><img class="icon" src="{{INFRA:list-details}}" alt="">File d'attente</span><span class="chip"><img class="icon" src="{{INFRA:clock}}" alt="">Réponse 202</span><span class="chip"><img class="icon" src="{{INFRA:leaf}}" alt="">Heures bas carbone</span></div></div>
+          <div class="layer"><div class="layer-name">4 · À la bonne taille<small>Mutualiser, éteindre</small></div><div class="layer-items"><span class="chip"><img class="icon" src="{{INFRA:server-2}}" alt="">Plateforme partagée</span><span class="chip"><img class="icon" src="{{INFRA:container-off}}" alt="">Extinction à vide</span><span class="chip"><img class="icon" src="{{INFRA:gauge}}" alt="">Taille juste</span></div></div>
+          <div class="layer"><div class="layer-name">5 · Efficacement<small>Le dernier levier</small></div><div class="layer-items"><span class="chip"><img class="icon" src="{{INFRA:code}}" alt="">Code optimisé</span><span class="chip"><img class="icon" src="{{INFRA:cpu}}" alt="">Hot path mesuré</span></div></div>
+        </div>
+        <div class="side"><img class="icon" src="{{INFRA:chart-arcs}}" alt="">Mesurer<img class="icon" src="{{INFRA:robot}}" alt="">Harnacher<img class="icon" src="{{INFRA:checklist}}" alt="">Gouverner</div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 4. agenda -->
+  <section class="slide" id="slide-4" data-layout="agenda">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Sommaire</div>
+      <h2 class="h-lg">Au <span class="hl">programme</span></h2>
+    </div>
+    <div class="content" style="right:360px">
+      <div class="agenda">
+        <div class="agenda-item current"><span class="num">01</span><div><div class="title-sm">Pourquoi</div><div class="small">Enjeux, ACV, éthique du produit</div></div><img class="icon sm" src="{{ICON_DARK:leaf}}" alt=""></div>
+        <div class="agenda-item"><span class="num">02</span><div><div class="title-sm">Mesurer</div><div class="small">Ressources, SCI, outils</div></div><img class="icon sm" src="{{ICON:growth-chart}}" alt=""></div>
+        <div class="agenda-item"><span class="num">03</span><div><div class="title-sm">Architecturer</div><div class="small">La pyramide en patterns</div></div><img class="icon sm" src="{{ICON:layers}}" alt=""></div>
+        <div class="agenda-item"><span class="num">04</span><div><div class="title-sm">Harnacher</div><div class="small">Le harness engineering par NewCore</div></div><img class="icon sm" src="{{ICON:ai-head}}" alt=""></div>
+        <div class="agenda-item"><span class="num">05</span><div><div class="title-sm">Le TD</div><div class="small">Votre plateforme, votre harnais</div></div><img class="icon sm" src="{{ICON:graduation}}" alt=""></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 5. section — Acte 1 -->
+  <section class="slide aurora" id="slide-5" data-layout="section">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:720px">
+      <div class="section-num">01</div>
+      <div class="eyebrow" style="margin-top:28px">Acte 1</div>
+      <h2 class="display" style="font-size:60px">Pourquoi <span class="hl">la sobriété</span></h2>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 6. table — références -->
+  <section class="slide" id="slide-6" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Références et inspirations</div>
+      <h2 class="h-lg">Ceux qui nous <span class="hl">inspirent</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Personne</th><th>Profil</th><th>Repère</th></tr></thead>
+          <tbody>
+            <tr><td>Jean-Marc Jancovici</td><td>Ingénieur, Carbone 4, The Shift Project</td><td>Transition vers une économie bas carbone</td></tr>
+            <tr><td>Étienne Klein</td><td>Physicien et philosophe des sciences</td><td>Sauvons le progrès (2017)</td></tr>
+            <tr><td>Philippe Bihouix</td><td>Ingénieur, AREP</td><td>L'âge des low-tech (2014)</td></tr>
+            <tr><td>Gaël Giraud</td><td>Économiste, jésuite</td><td>Économiste en chef de l'AFD (2015-2019)</td></tr>
+            <tr><td>Aurélien Barrau</td><td>Astrophysicien, docteur en philosophie</td><td>Relativité générale, engagement écologiste</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Recevoir les idées des autres, construire sa pensée, transmettre · références 2026 : [à compléter]</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 7. two-columns — infuser -->
+  <section class="slide" id="slide-7" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">La posture</div>
+      <h2 class="h-lg">Infuser plutôt <span class="hl">qu'imposer</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">La radicalité et les postures dogmatiques sont inefficaces : le combat est inégal si on choisit l'affrontement direct.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li>Nos <strong>routines et ancrages culturels</strong> nous freinent</li>
+            <li><strong>Former par la pratique</strong> et par le concret</li>
+            <li><strong>Bâtir des communautés</strong> qui donnent envie de s'engager</li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:users}}" alt=""></div><div><div class="title-sm">La génération G</div><div class="small">Good, Green or Greta ?</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:teamwork}}" alt=""></div><div><div class="title-sm">Avoir un impact</div><div class="small">À l'échelle d'eXalt, puis de l'écosystème digital</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:graduation}}" alt=""></div><div><div class="title-sm">Ce cours</div><div class="small">Une pratique d'ingénieur, pas un sermon</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 8. kpi — progression -->
+  <section class="slide aurora" id="slide-8" data-layout="kpi">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le constat</div>
+      <h2 class="h-lg">Une progression <span class="hl">qui s'emballe</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="kpis" style="width:100%">
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:growth-chart}}" alt=""><div class="kpi-value">+9 %/an</div><div class="label" style="color:var(--on-dark-variant)">Empreinte du numérique</div><div class="small">chiffre du cours 2023, à actualiser</div></div>
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:leaf}}" alt=""><div class="kpi-value">…</div><div class="label" style="color:var(--on-dark-variant)">Empreinte en 2026</div><div class="small">[à compléter] · ADEME / Arcep</div></div>
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:servers}}" alt=""><div class="kpi-value">…</div><div class="label" style="color:var(--on-dark-variant)">Data centers et IA</div><div class="small">[à compléter] · AIE</div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 9. compare — l'éléphant -->
+  <section class="slide" id="slide-9" data-layout="compare">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">L'éléphant dans la pièce</div>
+      <h2 class="h-lg">Quand le produit <span class="hl">modifie l'usage</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="compare">
+        <div class="side before"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON:history}}" alt=""><div class="title">2023 : le streaming</div></div>
+          <ul class="dots"><li>Un engagement <strong>Net Zero + Nature</strong></li><li>Mais des heures passées à l'écran</li><li>La course à la HD, des écrans renouvelés</li><li>Contre le « 1 to many » de la TNT</li></ul></div>
+        <div class="arrow" aria-hidden="true"><span></span></div>
+        <div class="side after"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON_DARK:ai-head}}" alt=""><div class="title">2026 : l'IA générative</div></div>
+          <ul class="dots"><li>Une <strong>inférence</strong> à chaque requête</li><li>Des modèles toujours plus gros</li><li>Des promesses d'efficacité à vérifier</li><li>Quel usage modifie-t-elle ?</li></ul></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 10. two-columns — Jevons -->
+  <section class="slide" id="slide-10" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Effet rebond</div>
+      <h2 class="h-lg">Jevons, <span class="hl">édition 2026</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">Quand une ressource devient plus efficace, on en consomme davantage. L'IA générative en est l'exemple du moment.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li><strong>Inférence moins chère</strong>, usages démultipliés</li>
+            <li>Des fonctionnalités IA <strong>ajoutées partout</strong></li>
+            <li>L'efficacité gagnée est <strong>reperdue en volume</strong></li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:ai-chip}}" alt=""></div><div><div class="title-sm">Inférence</div><div class="small">Moins chère, donc partout</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:users}}" alt=""></div><div><div class="title-sm">Usages</div><div class="small">Plus de requêtes, plus de calcul</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:shield}}" alt=""></div><div><div class="title-sm">Le garde-fou</div><div class="small">« Faut-il vraiment un LLM ? »</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 11. table — ACV ampoule -->
+  <section class="slide" id="slide-11" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Analyse de cycle de vie</div>
+      <h2 class="h-lg">L'ACV <span class="hl">en une slide</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Notion de l'ACV</th><th>Ampoule à incandescence</th><th>Ampoule fluorescente</th></tr></thead>
+          <tbody>
+            <tr><td>Fonction</td><td colspan="2">Éclairer une pièce la nuit</td></tr>
+            <tr><td>Unité fonctionnelle (commune)</td><td colspan="2">600 lumens, 8 h par nuit pendant 2 ans, soit 5 840 h</td></tr>
+            <tr><td>Le produit</td><td>Durée de vie 1 000 h · 60 W · 35 g</td><td>Durée de vie 6 000 h · 11 W · 160 g</td></tr>
+            <tr><td>Flux de référence</td><td>6 ampoules : 350 kWh et 210 g</td><td>1 ampoule : 64 kWh et 160 g</td></tr>
+            <tr><td>Paramètres clés</td><td colspan="2">Électricité consommée (flux actif) · matières premières (flux passif)</td></tr>
+            <tr><td>Verdict</td><td><span class="status ko">Écartée</span></td><td><span class="status ok">Plus performante</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">On compare deux produits sur la même unité fonctionnelle, pas ampoule contre ampoule · exemple du cours 2023</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 12. chapters — Ethical Canvas -->
+  <section class="slide dark" id="slide-12" data-layout="chapters">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Décider d'une feature</div>
+      <h2 class="h-lg">SD² <span class="hl">Ethical Canvas</span></h2>
+    </div>
+    <div class="content">
+      <div class="chapters">
+        <div class="chapter"><div class="top"><span class="num">01</span><img class="icon" src="{{ICON_DARK:target}}" alt=""></div><div><div class="title">Value proposition</div><div class="small">Répond-on au WHY ?</div></div></div>
+        <div class="chapter"><div class="top"><span class="num">02</span><img class="icon" src="{{ICON_DARK:search}}" alt=""></div><div><div class="title">Utilitariste</div><div class="small">Amplifie-t-on le problème ?</div></div></div>
+        <div class="chapter"><div class="top"><span class="num">03</span><img class="icon" src="{{ICON_DARK:bell}}" alt=""></div><div><div class="title">Jevons</div><div class="small">Quel mésusage possible ?</div></div></div>
+        <div class="chapter"><div class="top"><span class="num">04</span><img class="icon" src="{{ICON_DARK:leaf}}" alt=""></div><div><div class="title">Vertu</div><div class="small">Est-ce du greenwashing ?</div></div></div>
+        <div class="chapter"><div class="top"><span class="num">05</span><img class="icon" src="{{ICON_DARK:shield}}" alt=""></div><div><div class="title">Dire non</div><div class="small">Pourrait-on renoncer ?</div></div></div>
+        <div class="chapter"><div class="top"><span class="num">06</span><img class="icon" src="{{ICON_DARK:ai-head}}" alt=""></div><div><div class="title">Nouveau : l'IA</div><div class="small">Faut-il vraiment un LLM ?</div></div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 13. two-columns — MVP -->
+  <section class="slide" id="slide-13" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Concevoir le produit</div>
+      <h2 class="h-lg">Moins de features, <span class="hl">moins d'empreinte</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">Le MVP rationalise : il répond à un problème utilisateur précis et limite le fonctionnel au strict nécessaire.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li><strong>Itératif</strong> par construction</li>
+            <li>Usages analysés, <strong>KPI calculés</strong></li>
+            <li>Une feature inutilisée <strong>se décommissionne</strong></li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:target}}" alt=""></div><div><div class="title-sm">Niveau 1 de la pyramide</div><div class="small">Ne pas faire</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:growth-chart}}" alt=""></div><div><div class="title-sm">Mesurer l'usage</div><div class="small">Analytics sans cookie : départ, succès, échec</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:teamwork}}" alt=""></div><div><div class="title-sm">Économie circulaire</div><div class="small">Open source, innersource, mutualisation</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 14. section — Acte 2 -->
+  <section class="slide aurora" id="slide-14" data-layout="section">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:720px">
+      <div class="section-num">02</div>
+      <div class="eyebrow" style="margin-top:28px">Acte 2</div>
+      <h2 class="display" style="font-size:60px">Mesurer <span class="hl">avant d'agir</span></h2>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 15. bento — compute/storage/network -->
+  <section class="slide" id="slide-15" data-layout="bento">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Piqûre de rappel d'infra · FinOps = GreenOps</div>
+      <h2 class="h-lg">Trois ressources, <span class="hl">trois factures</span></h2>
+    </div>
+    <div class="content">
+      <div class="grid-3 fill">
+        <div class="card col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON:chip}}" alt=""></div>
+          <div class="title">Compute</div>
+          <p class="small">Exécuter des services et des charges de travail.</p>
+          <ul class="dots"><li>(X CPU + Y Go RAM) × temps</li><li>Facturé à l'uptime</li><li>Le premier gisement de gaspillage</li></ul>
+          <div class="card-foot"><span class="pill">/ uptime</span></div>
+        </div>
+        <div class="card bleu col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON_DARK:database}}" alt=""></div>
+          <div class="title">Storage</div>
+          <p class="small">Conserver la donnée de manière persistante.</p>
+          <ul class="dots"><li>Volume stocké (Go)</li><li>Requêtes × température</li><li>Cycle de vie des données</li></ul>
+          <div class="card-foot"><span class="pill jaune">/ volume, / requêtes</span></div>
+        </div>
+        <div class="card tint col" style="padding:30px">
+          <div class="icon-tile" style="background:#fff"><img class="icon" src="{{ICON:cloud-network}}" alt=""></div>
+          <div class="title">Network</div>
+          <p class="small">Gérer la connectivité et la sécurité.</p>
+          <ul class="dots"><li>Go transférés</li><li>Intra-AZ, inter-AZ, hors cloud</li><li>Le CDN comme levier</li></ul>
+          <div class="card-foot"><span class="pill" style="background:#fff">/ volume in-out</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 16. libre — sapin de Noël -->
+  <section class="slide" id="slide-16" data-layout="libre">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Exemple · e-commerce B2B de sapins de Noël</div>
+      <h2 class="h-lg">Le trafic n'est pas <span class="hl">la capacité</span></h2>
+    </div>
+    <div class="content">
+      <div class="col fill" style="gap:18px">
+        <div class="card" style="padding:14px 22px;display:flex;justify-content:center;flex:1;min-height:0">
+          <img src="{{IMG:img/sapin-trafic.jpeg}}" alt="Courbe de trafic : plate de septembre à octobre, un pic en décembre, puis une chute brutale" style="height:100%;width:auto;max-width:100%;object-fit:contain">
+        </div>
+        <div class="grid-3">
+          <div class="card tint"><div class="title-sm">Le cas</div><div class="small">NGINX et Shopify sur EC2, PostgreSQL sur RDS ; des acheteurs qui affluent avant les fêtes</div></div>
+          <div class="card"><div class="title-sm">L'idéal</div><div class="small">Une capacité qui suit le trafic : ECS, auto-scaling, CloudWatch, ELB</div></div>
+          <div class="card bleu"><div class="title-sm">La vraie vie</div><div class="small">Une configuration fixe (EC2 + ALB), taillée pour le pic : tout l'écart avec le trafic est gaspillé</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 17. kpi — htop -->
+  <section class="slide aurora" id="slide-17" data-layout="kpi">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Bonus : htop sur l'EC2</div>
+      <h2 class="h-lg">Le gaspillage <span class="hl">pris sur le fait</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="kpis" style="width:100%">
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:chip}}" alt=""><div class="kpi-value">2,0 %</div><div class="label" style="color:var(--on-dark-variant)">Premier vCPU</div><div class="small">par temps calme</div></div>
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:chip}}" alt=""><div class="kpi-value">1,3 %</div><div class="label" style="color:var(--on-dark-variant)">Second vCPU</div><div class="small">la même instance</div></div>
+        <div class="kpi"><img class="icon" src="{{ICON_DARK:servers}}" alt=""><div class="kpi-value">2 vCPU · 8 Go</div><div class="label" style="color:var(--on-dark-variant)">Pour « npm run start »</div><div class="small">des VM en sous-régime</div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+  <!-- 18. libre — SCI -->
+  <section class="slide" id="slide-18" data-layout="libre">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Green Software Foundation · ISO/IEC 21031</div>
+      <h2 class="h-lg">Mesurer le logiciel : <span class="hl">la SCI</span></h2>
+    </div>
+    <div class="content">
+      <div class="col fill" style="gap:22px">
+        <div class="card bleu" style="padding:30px 36px;display:flex;align-items:center;gap:28px">
+          <img class="icon" src="{{ICON_DARK:leaf}}" alt="">
+          <div><div class="title" style="font-size:40px">SCI = ((E × I) + M) par R</div><div class="small">Software Carbon Intensity : l'empreinte rapportée à une unité d'usage, pas un total</div></div>
+        </div>
+        <div class="grid-4" style="flex:1">
+          <div class="card col" style="gap:14px"><div class="sci-letter">E</div><div class="lead">L'énergie consommée par le logiciel (kWh)</div></div>
+          <div class="card col" style="gap:14px"><div class="sci-letter">I</div><div class="lead">L'intensité carbone de l'électricité (gCO₂e/kWh)</div></div>
+          <div class="card col" style="gap:14px"><div class="sci-letter">M</div><div class="lead">Les émissions de fabrication du matériel, au prorata</div></div>
+          <div class="card tint col" style="gap:14px"><div class="sci-letter">R</div><div class="lead">L'unité fonctionnelle : une requête, un utilisateur… on retrouve l'ACV</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 19. table — outils -->
+  <section class="slide" id="slide-19" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Mesurer · trois familles · « approcher » = la méthode du TD</div>
+      <h2 class="h-lg">La boîte <span class="hl">à outils</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Outil</th><th>Famille</th><th>Ce qu'il fournit</th><th>SCI</th><th>Limite</th></tr></thead>
+          <tbody>
+            <tr><td>Boavizta</td><td>Estimer</td><td>L'empreinte de fabrication du matériel</td><td>M</td><td>Des moyennes, non mesurées</td></tr>
+            <tr><td>Cloud Carbon Footprint</td><td>Estimer</td><td>Les émissions cloud, via la facture</td><td>E, M</td><td>Maintenance à vérifier</td></tr>
+            <tr><td>Scaphandre</td><td>Mesurer</td><td>L'énergie par processus (RAPL)</td><td>E</td><td>Matériel physique requis</td></tr>
+            <tr><td>Kepler</td><td>Mesurer</td><td>L'énergie par pod Kubernetes</td><td>E</td><td>Estimée par modèle en VM</td></tr>
+            <tr><td>podman stats</td><td>Approcher</td><td>Le CPU et la mémoire par conteneur</td><td>E (indirect)</td><td>Pas d'énergie directe</td></tr>
+            <tr><td>k6</td><td>Approcher</td><td>Une charge identique et reproductible</td><td>R</td><td>Une charge simulée</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Le terme I (intensité carbone) vient d'une source de mix électrique : RTE eCO2mix, Electricity Maps</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 20. bento — réglementation -->
+  <section class="slide" id="slide-20" data-layout="bento">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le cadre réglementaire</div>
+      <h2 class="h-lg">Un cadre <span class="hl">qui se resserre</span></h2>
+    </div>
+    <div class="content">
+      <div class="grid-3 fill">
+        <div class="card col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON:institution}}" alt=""></div>
+          <div class="title">REEN</div>
+          <p class="small">La loi française visant à réduire l'empreinte environnementale du numérique.</p>
+          <ul class="dots"><li>Sobriété numérique dans les formations</li><li>Collectivités et opérateurs concernés</li><li>Obligations clés : [à compléter]</li></ul>
+          <div class="card-foot"><span class="pill">France</span></div>
+        </div>
+        <div class="card bleu col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON_DARK:leaf}}" alt=""></div>
+          <div class="title">RGESN</div>
+          <p class="small">Le référentiel général d'écoconception de services numériques.</p>
+          <ul class="dots"><li>Des critères d'écoconception vérifiables</li><li>Porté par Arcep, Arcom et ADEME</li><li>Version en vigueur : [à vérifier]</li></ul>
+          <div class="card-foot"><span class="pill jaune">Référentiel</span></div>
+        </div>
+        <div class="card tint col" style="padding:30px">
+          <div class="icon-tile" style="background:#fff"><img class="icon" src="{{ICON:globe-euro}}" alt=""></div>
+          <div class="title">CSRD</div>
+          <p class="small">La directive européenne de reporting de durabilité.</p>
+          <ul class="dots"><li>Le reporting environnemental des entreprises</li><li>Le numérique entre dans le bilan</li><li>Périmètre en révision : [à vérifier]</li></ul>
+          <div class="card-foot"><span class="pill" style="background:#fff">Europe</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 21. section — pause -->
+  <section class="slide aurora" id="slide-21" data-layout="section">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:720px">
+      <div class="section-num">10'</div>
+      <div class="eyebrow" style="margin-top:28px">Pause</div>
+      <h2 class="display" style="font-size:60px">Et ensuite, <span class="hl">on parle tech</span></h2>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 22. section — Acte 3 -->
+  <section class="slide aurora" id="slide-22" data-layout="section">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:720px">
+      <div class="section-num">03</div>
+      <div class="eyebrow" style="margin-top:28px">Acte 3</div>
+      <h2 class="display" style="font-size:60px">Architecturer <span class="hl">sobre</span></h2>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 23. quote — verbatim du cours 2023 -->
+  <section class="slide" id="slide-23" data-layout="quote">
+    <img class="motif left soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="abs" style="left:200px;right:160px;top:50%;transform:translateY(-50%)">
+      <span class="quote-mark" aria-hidden="true">“</span>
+      <p class="quote-text">Pour faire du SD², il faut être <span class="hl">bon en archi</span>.</p>
+      <div class="quote-author">
+        <img class="avatar" src="{{AVATAR:1}}" alt="Portrait illustré des auteurs du cours">
+        <div><div class="title-sm">Julien Guisset et Victor Coatalem</div><div class="small">Support du cours SDI, EPITA 2023</div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 24. two-columns — double justification -->
+  <section class="slide" id="slide-24" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le principe</div>
+      <h2 class="h-lg">Un bon pattern <span class="hl">se justifie deux fois</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">La sobriété n'est pas une contrainte ajoutée : c'est une propriété des bonnes architectures, qu'on n'avait pas l'habitude de nommer.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li><strong>D'abord</strong> : simplicité, sécurité, résilience, coût</li>
+            <li><strong>Ensuite</strong> : le calcul évité, mesurable</li>
+            <li>Une règle qui n'a pas les deux est <strong>suspecte</strong></li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:shield}}" alt=""></div><div><div class="title-sm">Qualité d'architecture</div><div class="small">Le pattern se défend sans l'écologie</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:leaf}}" alt=""></div><div><div class="title-sm">Calcul évité</div><div class="small">Et il fait économiser du compute</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:thumbs-up}}" alt=""></div><div><div class="title-sm">Vérifiable</div><div class="small">Une machine sait le contrôler</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 25. libre — WordPress -->
+  <section class="slide" id="slide-25" data-layout="libre">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Étude de cas · le leader des CMS</div>
+      <h2 class="h-lg">Éteindre <span class="hl">tous les WordPress</span></h2>
+    </div>
+    <div class="content">
+      <div class="col fill" style="gap:18px">
+        <div class="card" style="padding:10px 22px;display:flex;justify-content:center;flex:1;min-height:0">
+          <img src="{{IMG:img/wordpress-aws.png}}" alt="Architecture de référence WordPress sur AWS : CloudFront, ALB, instances en auto-scaling sur deux zones, Aurora, Memcached, EFS et NAT gateways" style="height:100%;width:auto;max-width:100%;object-fit:contain">
+        </div>
+        <div class="grid-4">
+          <div class="card"><div class="title-sm">Le runtime</div><div class="small">Le site est généré à chaque requête : le compute doit suivre la demande</div></div>
+          <div class="card"><div class="title-sm">La surface d'attaque</div><div class="small">XSS, injection SQL, DDoS, plugins vulnérables</div></div>
+          <div class="card"><div class="title-sm">La complexité</div><div class="small">Une infrastructure lourde et gourmande en compute</div></div>
+          <div class="card bleu"><div class="title-sm">Pour quel résultat ?</div><div class="small">Du texte à 99 % statique, un article tous les deux mois, 24 h/24</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 26. table — ACV appliquée au blog -->
+  <section class="slide" id="slide-26" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Retour à la vision produit</div>
+      <h2 class="h-lg">L'ACV appliquée <span class="hl">au blog</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Fonction</th><th>Unité fonctionnelle</th><th>WordPress</th><th>Cible JamStack</th><th>Paramètres clés</th></tr></thead>
+          <tbody>
+            <tr><td>Distribuer le site</td><td>24/7, SLA 99,99 %</td><td>EC2 t3.large, 8 760 h/an</td><td>Site statique : S3 + CloudFront</td><td>SEO, coût</td></tr>
+            <tr><td>Publier un article</td><td>~4 h/semaine, 3 blogueurs</td><td>EC2 t3.large, 8 760 h/an</td><td>CMS headless à la demande : 208 h/an</td><td>Disponibilité, coût</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Le back-office démarre en 2 minutes (Lambda, EventBridge) : séparer le monolithe en deux briques suffit · cours 2023</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 27. pipeline — JamStack -->
+  <section class="slide dark" id="slide-27" data-layout="pipeline">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">La JamStack</div>
+      <h2 class="h-lg">Build plutôt que <span class="hl">runtime</span></h2>
+    </div>
+    <div class="content">
+      <div class="pipeline">
+        <div class="stages">
+          <div class="p-stage"><div class="p-num">01</div><img class="icon" src="{{INFRA_DARK:file}}" alt=""><div class="p-title">Contenu</div><div class="p-tool">Markdown, CMS headless</div><ul><li>Fichiers .md, .json</li><li>API au build-time</li></ul></div>
+          <div class="p-stage"><div class="p-num">02</div><img class="icon" src="{{INFRA_DARK:brand-git}}" alt=""><div class="p-title">Dépôt</div><div class="p-tool"><span class="tech-tile"><img src="{{TECH:gitlab}}" alt="GitLab"></span>GitLab</div><ul><li>Code et contenu versionnés</li><li>Merge request = preview</li></ul></div>
+          <div class="p-stage key"><div class="p-num">03</div><img class="icon" src="{{INFRA_DARK:settings}}" alt=""><div class="p-title">Build</div><div class="p-tool">Hugo, Next.js, Gatsby</div><ul><li>Une fois par publication</li><li>Thème + données</li></ul></div>
+          <div class="p-stage"><div class="p-num">04</div><img class="icon" src="{{INFRA_DARK:stack}}" alt=""><div class="p-title">Artefacts</div><div class="p-tool">HTML, CSS, JS</div><ul><li>Fichiers statiques</li><li>Prêts à servir</li></ul></div>
+          <div class="p-stage"><div class="p-num">05</div><img class="icon" src="{{INFRA_DARK:cloud-network}}" alt=""><div class="p-title">Diffusion</div><div class="p-tool">Stockage + CDN</div><ul><li>Aucun compute au runtime</li><li>Cache au plus près</li></ul></div>
+        </div>
+        <div class="rail"><b>Transverse</b><img class="icon" src="{{INFRA_DARK:bolt}}" alt="">APIs serverless (formulaires, recherche)<img class="icon" src="{{INFRA_DARK:shield}}" alt="">Surface d'attaque minimale<img class="icon" src="{{INFRA_DARK:leaf}}" alt="">Coût et empreinte réduits</div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 28. compare — faire une fois -->
+  <section class="slide" id="slide-28" data-layout="compare">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveau 2 · faire une fois</div>
+      <h2 class="h-lg">Calculer une fois, <span class="hl">servir N fois</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="compare">
+        <div class="side before"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON:gears}}" alt=""><div class="title">Au runtime</div></div>
+          <ul class="dots"><li>Chaque requête <strong>refait le rendu</strong></li><li>Le compute suit le trafic</li><li>Les pics dimensionnent l'infra</li></ul></div>
+        <div class="arrow" aria-hidden="true"><span></span></div>
+        <div class="side after"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON_DARK:layers}}" alt=""><div class="title">Au build et en cache</div></div>
+          <ul class="dots"><li>Un rendu <strong>par publication</strong></li><li>Assets sur object storage + CDN</li><li>Un cache avec TTL explicite</li><li>Le trafic ne touche plus le compute</li></ul></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 29. journey — 202 + file -->
+  <section class="slide dark" id="slide-29" data-layout="journey">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveaux 3 et 4 · au bon moment, à la bonne taille</div>
+      <h2 class="h-lg">Répondre vite, <span class="hl">traiter au calme</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="journey">
+        <div class="stage"><div class="n">Étape 1</div><div class="title-sm">Requête</div><div class="small">Un POST reçu par l'API</div></div>
+        <div class="stage win"><div class="n">Étape 2</div><div class="title-sm">Réponse 202</div><div class="small">En moins de 100 ms</div></div>
+        <div class="stage"><div class="n">Étape 3</div><div class="title-sm">File</div><div class="small">Valkey Stream, groupe de consommateurs</div></div>
+        <div class="stage"><div class="n">Étape 4</div><div class="title-sm">Workers</div><div class="small">Dimensionnés sur le débit moyen</div></div>
+        <div class="stage"><div class="n">Étape 5</div><div class="title-sm">Polling</div><div class="small">GET /jobs/:id jusqu'au résultat</div></div>
+        <div class="stage win"><div class="n">Étape 6</div><div class="title-sm">Extinction</div><div class="small">Sans état, donc éteignable à vide</div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 30. compare — attendre sans consommer -->
+  <section class="slide" id="slide-30" data-layout="compare">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveau 3 · au bon moment · attendre</div>
+      <h2 class="h-lg">Attendre <span class="hl">sans consommer</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="compare">
+        <div class="side before"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON:hourglass}}" alt=""><div class="title">Un processus qui attend</div></div>
+          <ul class="dots"><li>Une boucle qui dort et <strong>repolle</strong></li><li>Allumé pendant des heures</li><li>Perdu au redémarrage</li></ul></div>
+        <div class="arrow" aria-hidden="true"><span></span></div>
+        <div class="side after"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON_DARK:clock-forward}}" alt=""><div class="title">Un timer durable</div></div>
+          <ul class="dots"><li>Temporal persiste l'état dans Postgres</li><li><strong>Rien ne tourne</strong> pendant l'attente</li><li>Reprise exacte après un déploiement</li><li>Compensation et validation humaine</li></ul></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 31. architecture — mutualisation -->
+  <section class="slide dark" id="slide-31" data-layout="architecture">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveau 4 · à la bonne taille · mutualiser</div>
+      <h2 class="h-lg">Une plateforme <span class="hl">pour N apps</span></h2>
+    </div>
+    <div class="content">
+      <div class="arch" data-engine="auto" style="flex:1" data-links="appa>net; appb>net; appc>net; net>pg; net>kv; net>bao; net>s3; net>llm; net>tmp">
+        <div class="zone"><span class="zone-label">Applications</span>
+          <div class="node" data-id="appa"><img class="icon" src="{{INFRA_DARK:file}}" alt=""><div class="name">App A</div><div class="sub">Frontend, API</div></div>
+          <div class="node" data-id="appb"><img class="icon" src="{{INFRA_DARK:server}}" alt=""><div class="name">App B</div><div class="sub">API, workers</div></div>
+          <div class="node" data-id="appc"><img class="icon" src="{{INFRA_DARK:robot}}" alt=""><div class="name">App C</div><div class="sub">Agentique</div></div>
+        </div>
+        <div class="zone trust"><span class="zone-label">Plateforme partagée</span>
+          <div class="node key" data-id="net"><img class="icon" src="{{INFRA_DARK:network}}" alt=""><div class="name">core-network</div><div class="sub">DNS .internal</div></div>
+        </div>
+        <div class="zone"><span class="zone-label">Services mutualisés</span>
+          <div class="node" data-id="pg"><span class="tech-tile"><img src="{{TECH:postgresql}}" alt="PostgreSQL"></span><div class="name">Postgres</div><div class="sub">Une base par app</div></div>
+          <div class="node" data-id="kv"><img class="icon" src="{{INFRA_DARK:stack-2}}" alt=""><div class="name">Valkey</div><div class="sub">Clés préfixées</div></div>
+          <div class="node" data-id="bao"><img class="icon" src="{{INFRA_DARK:key}}" alt=""><div class="name">OpenBao</div><div class="sub">Secrets par app</div></div>
+          <div class="node" data-id="s3"><img class="icon" src="{{INFRA_DARK:cloud}}" alt=""><div class="name">Object storage</div><div class="sub">Un bucket par app</div></div>
+          <div class="node" data-id="llm"><img class="icon" src="{{INFRA_DARK:brain}}" alt=""><div class="name">Passerelle LLM</div><div class="sub">Budget par app</div></div>
+          <div class="node" data-id="tmp"><img class="icon" src="{{INFRA_DARK:hourglass}}" alt=""><div class="name">Temporal</div><div class="sub">Un namespace par app</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 32. two-columns — IA sous budget -->
+  <section class="slide" id="slide-32" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveau 4 · l'IA à la bonne taille</div>
+      <h2 class="h-lg">L'IA sous <span class="hl">budget de calcul</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">Les apps n'appellent jamais un fournisseur en direct : une passerelle choisit le modèle et compte les tokens.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li>Des <strong>alias de modèles</strong> : task:cheap par défaut</li>
+            <li>Un <strong>budget par app</strong> : 50 000 tokens / 60 s, au-delà 429</li>
+            <li>Le RAG dans le <strong>Postgres existant</strong> (pgvector)</li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:cloud-network}}" alt=""></div><div><div class="title-sm">Passerelle LLM</div><div class="small">llm.internal, une clé virtuelle par app</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:ai-chip}}" alt=""></div><div><div class="title-sm">Le plus petit modèle suffisant</div><div class="small">6 alias : cheap, quality, vision, reasoning, image, embed</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:database}}" alt=""></div><div><div class="title-sm">Pas de base vectorielle de plus</div><div class="small">L'extension pgvector, activée à la demande</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 33. bento — optimiser ce qu'on a mesuré -->
+  <section class="slide" id="slide-33" data-layout="bento">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Niveau 5 · efficacement</div>
+      <h2 class="h-lg">Optimiser <span class="hl">ce qu'on a mesuré</span></h2>
+    </div>
+    <div class="content">
+      <div class="grid-3 fill">
+        <div class="card col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON:gears}}" alt=""></div>
+          <div class="title">TS + Bun par défaut</div>
+          <p class="small">Un langage, un runtime, de bout en bout.</p>
+          <ul class="dots"><li>Démarrage rapide</li><li>Types partagés du front au worker</li><li>Images Alpine single-stage</li></ul>
+          <div class="card-foot"><span class="pill">Défaut</span></div>
+        </div>
+        <div class="card bleu col" style="padding:30px">
+          <div class="icon-tile"><img class="icon" src="{{ICON_DARK:chip}}" alt=""></div>
+          <div class="title">Rust sur dérogation</div>
+          <p class="small">Seulement si le SLO casse, mesure à l'appui.</p>
+          <ul class="dots"><li>Un hot path mesuré</li><li>Une dérogation datée</li><li>Jamais par esthétique</li></ul>
+          <div class="card-foot"><span class="pill jaune">Exception</span></div>
+        </div>
+        <div class="card tint col" style="padding:30px">
+          <div class="icon-tile" style="background:#fff"><img class="icon" src="{{ICON:growth-chart}}" alt=""></div>
+          <div class="title">Un SLO mesuré</div>
+          <p class="small">p99 serveur : 100 ms visés, coupure à 350 ms.</p>
+          <ul class="dots"><li>duration_ms par route</li><li>Au-delà : 202 et polling</li><li>Mesuré dans les logs</li></ul>
+          <div class="card-foot"><span class="pill" style="background:#fff">Preuve</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 34. table — récapitulatif 1/2 -->
+  <section class="slide" id="slide-34" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le modèle de votre livrable de TD</div>
+      <h2 class="h-lg">Bon pattern, <span class="hl">calcul évité</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Pattern</th><th>Pourquoi c'est un bon pattern</th><th>Calcul évité</th></tr></thead>
+          <tbody>
+            <tr><td>KISS d'abord</td><td>Lisibilité, moins de pannes</td><td>Toute l'infra superflue</td></tr>
+            <tr><td>Frontend statique + CDN</td><td>Surface d'attaque minimale, SEO</td><td>Le rendu à chaque requête</td></tr>
+            <tr><td>Réponse 202 + file</td><td>Résilience, SLO tenu</td><td>Le dimensionnement pour le pic</td></tr>
+            <tr><td>Timers durables</td><td>Reprise après panne, compensation</td><td>Les processus qui attendent</td></tr>
+            <tr><td>Plateforme mutualisée</td><td>Un socle à sécuriser et opérer</td><td>N services sous-utilisés</td></tr>
+            <tr><td>Passerelle LLM + alias</td><td>Secrets centralisés, fournisseur commutable</td><td>Le plus gros modèle par défaut</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Une ligne par règle de votre plateforme : pourquoi c'est un bon pattern, et le calcul évité mesuré</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 35. section — Acte 4 -->
+  <section class="slide aurora" id="slide-35" data-layout="section">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:720px">
+      <div class="section-num">04</div>
+      <div class="eyebrow" style="margin-top:28px">Acte 4 · harness engineering</div>
+      <h2 class="display" style="font-size:60px">Harnacher <span class="hl">les agents</span></h2>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 36. two-columns — quand l'agent écrit le code -->
+  <section class="slide" id="slide-36" data-layout="two-columns">
+    <img class="motif br soft" src="{{MOTIF_FILIGRANE}}" alt="">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Harness engineering</div>
+      <h2 class="h-lg">Quand l'agent <span class="hl">écrit le code</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="col" style="gap:22px;padding-top:6px">
+          <p class="lead">La qualité de l'architecture dépend désormais de la qualité du harnais : le premier lecteur des règles CCoE est une machine.</p>
+          <div class="rule"></div>
+          <ul class="dots">
+            <li>Sans cadre, l'agent <strong>sur-architecture</strong></li>
+            <li>Il duplique, ajoute de l'infra, <strong>invente</strong></li>
+            <li>Le harnais rend <strong>le bon chemin le plus court</strong></li>
+          </ul>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:ai-head}}" alt=""></div><div><div class="title-sm">L'agent de code</div><div class="small">Claude Code, Mistral Vibe, Cursor…</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:shield}}" alt=""></div><div><div class="title-sm">Le harnais</div><div class="small">Règles, templates, contrôles</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:servers}}" alt=""></div><div><div class="title-sm">La plateforme</div><div class="small">Le socle que l'agent consomme</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 37. architecture — anatomie d'un harnais -->
+  <section class="slide dark" id="slide-37" data-layout="architecture">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Ce qu'est un harnais · l'exemple NewCore</div>
+      <h2 class="h-lg">Anatomie <span class="hl">d'un harnais</span></h2>
+    </div>
+    <div class="content">
+      <div class="arch" data-engine="auto" style="flex:1" data-links="need>agent; instr>agent; doct>agent; tpl>agent; agent>app; app>chk:contrôle; chk>doct:corriger la source">
+        <div class="zone"><span class="zone-label">Besoin</span>
+          <div class="node" data-id="need"><img class="icon" src="{{INFRA_DARK:user}}" alt=""><div class="name">Demande</div><div class="sub">Le prompt</div></div>
+        </div>
+        <div class="zone trust"><span class="zone-label">Harnais</span>
+          <div class="node" data-id="instr"><img class="icon" src="{{INFRA_DARK:file}}" alt=""><div class="name">Instructions</div><div class="sub">CLAUDE.md, AGENTS.md</div></div>
+          <div class="node" data-id="doct"><img class="icon" src="{{INFRA_DARK:book}}" alt=""><div class="name">Doctrine</div><div class="sub">CCOE-RULES.md</div></div>
+          <div class="node" data-id="tpl"><img class="icon" src="{{INFRA_DARK:template}}" alt=""><div class="name">Templates</div><div class="sub">bootstrap.sh, CI</div></div>
+        </div>
+        <div class="zone"><span class="zone-label">Agent</span>
+          <div class="node key" data-id="agent"><img class="icon" src="{{INFRA_DARK:robot}}" alt=""><div class="name">Agent de code</div><div class="sub">Génère et modifie</div></div>
+        </div>
+        <div class="zone"><span class="zone-label">Production</span>
+          <div class="node" data-id="app"><img class="icon" src="{{INFRA_DARK:container}}" alt=""><div class="name">App générée</div><div class="sub">Sur NewCore (11 services)</div></div>
+          <div class="node" data-id="chk"><img class="icon" src="{{INFRA_DARK:checklist}}" alt=""><div class="name">Contrôles</div><div class="sub">check.py, gates CI</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 38. compare — KISS pour les agents -->
+  <section class="slide" id="slide-38" data-layout="compare">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">§0 de CCOE-RULES = la règle KISS · la demande : « build me a Space Invaders »</div>
+      <h2 class="h-lg">KISS, <span class="hl">écrit pour les agents</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center">
+      <div class="compare">
+        <div class="side before"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON:ai-head}}" alt=""><div class="title">Sans la règle KISS</div></div>
+          <ul class="dots"><li>La boucle de jeu dans un <strong>worker</strong></li><li>Une file Valkey à drainer</li><li>API, Postgres, object storage</li><li>Du découplage « par principe »</li></ul></div>
+        <div class="arrow" aria-hidden="true"><span></span></div>
+        <div class="side after"><div class="row center" style="gap:14px"><img class="icon sm" src="{{ICON_DARK:target}}" alt=""><div class="title">Avec la règle KISS</div></div>
+          <ul class="dots"><li>Un <strong>frontend statique</strong>, point final</li><li>Vérifier que le problème existe</li><li>Plus simple que la stack ne le permet</li><li>Grandir quand le besoin émerge</li></ul></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 39. libre — des règles que la machine tient -->
+  <section class="slide" id="slide-39" data-layout="libre">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Doctrine</div>
+      <h2 class="h-lg">Des règles <span class="hl">qu'une machine vérifie</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="card tint col" style="padding:28px;gap:14px;justify-content:center">
+          <div class="label" style="color:var(--bleu-fonce)">Extrait de CCOE-RULES.md (§5.6)</div>
+          <p class="codeblock">- **MUST** — The personas passed to ./idp/seed-test-users.sh are the app's own spec personas … &lt;!-- R-5.6-07 --&gt;</p>
+          <div class="lead">R-5.6-07 : la section 5.6, règle n°7 · un identifiant qui ne bouge plus</div>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:key}}" alt=""></div><div><div class="title-sm">Un identifiant stable</div><div class="small">check.py stamp attribue R-x.y-nn ; les audits le citent</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:thumbs-up}}" alt=""></div><div><div class="title-sm">Une matrice d'audit</div><div class="small">44 catégories : chaque section MUST est auditée ou exemptée, le silence est interdit</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:shield}}" alt=""></div><div><div class="title-sm">Interdire d'inventer</div><div class="small">Sans RAG : « N/A, do not invent one ». Ce qui n'est pas inventé ne tourne jamais</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 40. table — une source par fait -->
+  <section class="slide" id="slide-40" data-layout="table">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">CLAUDE.md de NewCore</div>
+      <h2 class="h-lg">Une source <span class="hl">par fait</span></h2>
+    </div>
+    <div class="content">
+      <div class="table-wrap fill">
+        <table class="exalt">
+          <thead><tr><th>Le fait</th><th>Sa source propriétaire</th></tr></thead>
+          <tbody>
+            <tr><td>Services, ports, alias DNS, images</td><td>core-platform/podman-compose.yml</td></tr>
+            <tr><td>Le résolveur bao des bootstraps</td><td>core-platform/lib/secrets.sh</td></tr>
+            <tr><td>Les sections du README d'app</td><td>core-platform/templates/README.app.md</td></tr>
+            <tr><td>Les règles MUST / SHOULD</td><td>app-builder-guidances/CCOE-RULES.md</td></tr>
+            <tr><td>Les catégories d'audit</td><td>app-builder-guidances/audit-matrix.yml</td></tr>
+            <tr><td>Les types d'artefacts</td><td>skillchain/contracts/artifacts.yml</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">doctrine/check.py liste les copies qui divergent · on corrige la source, jamais le contrôle</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 41. pipeline — le chemin balisé -->
+  <section class="slide dark" id="slide-41" data-layout="pipeline">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Templates · le pipeline d'une app</div>
+      <h2 class="h-lg">Le chemin <span class="hl">balisé</span></h2>
+    </div>
+    <div class="content">
+      <div class="pipeline">
+        <div class="stages">
+          <div class="p-stage"><div class="p-num">01</div><img class="icon" src="{{INFRA_DARK:terminal}}" alt=""><div class="p-title">Provision</div><div class="p-tool">bootstrap.sh</div><ul><li>Base, bucket, secrets</li><li>Idempotent</li></ul></div>
+          <div class="p-stage key"><div class="p-num">02</div><img class="icon" src="{{INFRA_DARK:checklist}}" alt=""><div class="p-title">Gates</div><div class="p-tool">biome, tsc, bun test</div><ul><li>Audit, gitleaks</li><li>Bloquants avant build</li></ul></div>
+          <div class="p-stage"><div class="p-num">03</div><img class="icon" src="{{INFRA_DARK:settings}}" alt=""><div class="p-title">Build</div><div class="p-tool"><span class="tech-tile"><img src="{{TECH:bun}}" alt="Bun"></span>Bun</div><ul><li>Explicite en CI</li><li>Pas de multistage</li></ul></div>
+          <div class="p-stage"><div class="p-num">04</div><img class="icon" src="{{INFRA_DARK:container}}" alt=""><div class="p-title">Image</div><div class="p-tool"><span class="tech-tile"><img src="{{TECH:podman}}" alt="Podman"></span>Podman</div><ul><li>Single-stage Alpine</li><li>Registry local</li></ul></div>
+          <div class="p-stage"><div class="p-num">05</div><img class="icon" src="{{INFRA_DARK:rocket}}" alt=""><div class="p-title">Deploy</div><div class="p-tool">podman compose</div><ul><li>Une variable APP</li><li>Une plage de ports</li></ul></div>
+          <div class="p-stage"><div class="p-num">06</div><img class="icon" src="{{INFRA_DARK:browser-check}}" alt=""><div class="p-title">Verify</div><div class="p-tool">/ready</div><ul><li>Chaque service exposé</li><li>60 s au plus</li></ul></div>
+        </div>
+        <div class="rail"><b>Transverse</b><img class="icon" src="{{INFRA_DARK:clock-play}}" alt="">ACTION = start, stop, purge<img class="icon" src="{{INFRA_DARK:trash}}" alt="">La purge couvre tous les secrets de l'app</div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 42. libre — dire pourquoi, là où on modifie -->
+  <section class="slide" id="slide-42" data-layout="libre">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Documenter au point de chute</div>
+      <h2 class="h-lg">Dire pourquoi, <span class="hl">là où on modifie</span></h2>
+    </div>
+    <div class="content">
+      <div class="split">
+        <div class="card tint col" style="padding:28px;gap:14px;justify-content:center">
+          <div class="label" style="color:var(--bleu-fonce)">Extrait condensé de core-platform/podman-compose.yml</div>
+          <p class="codeblock"># WITHOUT this, the whole audience would collapse into ONE session. This line is load-bearing.
+CLIENT_IP_HEADER: x-forwarded-for
+
+# REDIS_URL is deliberately NOT set: the shared Valkey buys us nothing at workshop volume.</p>
+        </div>
+        <div class="col" style="gap:16px">
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:shield}}" alt=""></div><div><div class="title-sm">La ligne qui doit rester</div><div class="small">Un agent qui « nettoie » la config ne supprime pas une ligne dont il lit le rôle</div></div></div>
+          <div class="card row center accent-left"><div class="icon-tile"><img class="icon" src="{{ICON:leaf}}" alt=""></div><div><div class="title-sm">L'absence documentée</div><div class="small">« Deliberately NOT set » : l'agent n'ajoute pas une dépendance, ni le calcul qui va avec</div></div></div>
+          <div class="card row center"><div class="icon-tile"><img class="icon" src="{{ICON:search}}" alt=""></div><div><div class="title-sm">Au point de chute</div><div class="small">Dans le fichier que l'agent modifie, pas dans un wiki qu'il ne lira pas</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 43. case-study — le harnais dérive aussi -->
+  <section class="slide" id="slide-43" data-layout="case-study">
+    <div class="media" aria-hidden="true"><img class="motif" src="{{MOTIF_BLANC}}" alt="" style="left:-90px;bottom:-110px;height:460px;opacity:.55"></div>
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="media-content">
+      <div class="eyebrow">Retour d'expérience NewCore</div>
+      <h2 class="h-md" style="margin-bottom:22px">Le harnais <span class="hl">dérive aussi</span></h2>
+      <div class="grid-2" style="gap:16px">
+        <div class="card tint" style="grid-column:span 2"><div class="label" style="color:var(--bleu-fonce);margin-bottom:6px">Contexte</div><div class="small">Le contrôle automatique était vert : on croyait la doctrine tenue</div></div>
+        <div class="card tint"><div class="label" style="color:var(--bleu-fonce);margin-bottom:6px">Trouvaille 1</div><div class="small">Une règle de contrôle mal écrite ne détectait plus rien, sans aucune erreur visible</div></div>
+        <div class="card tint"><div class="label" style="color:var(--bleu-fonce);margin-bottom:6px">Trouvaille 2</div><div class="small">Un template que rien ne vérifiait avait gardé un nom d'avant la migration : sa purge laissait des secrets derrière elle</div></div>
+        <div class="card bleu" style="grid-column:span 2;display:flex;align-items:center;gap:20px">
+          <img class="icon" src="{{ICON_DARK:shield}}" alt="">
+          <div><div class="title-sm">Leçon</div><div class="small">Un contrôle vert ne prouve que ce qu'il vérifie : tester aussi le harnais, une règle doit savoir échouer</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer" style="left:calc(44% + 40px)"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 44. timeline — le TD -->
+  <section class="slide" id="slide-44" data-layout="timeline">
+    <img class="logo" src="{{LOGO}}" alt="eXalt">
+    <div class="header">
+      <div class="eyebrow">Le TD · votre plateforme, vos règles, votre harnais</div>
+      <h2 class="h-lg">Quatre jalons <span class="hl">vers votre NewCore</span></h2>
+    </div>
+    <div class="content" style="display:flex;align-items:center;padding-bottom:40px">
+      <div class="timeline" style="width:100%">
+        <div class="step"><div class="dot"><img class="icon" src="{{ICON:ai-head}}" alt=""></div><div class="when">Séance 1</div><div class="title-sm">Sans harnais</div><div class="small">L'agent seul, mesuré</div></div>
+        <div class="step todo"><div class="dot"><img class="icon" src="{{ICON:file-doc}}" alt=""></div><div class="when">Maison 1</div><div class="title-sm">La doctrine</div><div class="small">Des règles lisibles par un agent</div></div>
+        <div class="step todo"><div class="dot"><img class="icon" src="{{ICON:shield}}" alt=""></div><div class="when">Séance 2 + maison 2</div><div class="title-sm">Les garde-fous</div><div class="small">Plateforme, checker, CI</div></div>
+        <div class="step todo"><div class="dot"><img class="icon" src="{{ICON:trophy}}" alt=""></div><div class="when">Séance 3</div><div class="title-sm">La restitution</div><div class="small">Sans et avec harnais, mesuré</div></div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+  <!-- 45. closing -->
+  <section class="slide aurora" id="slide-45" data-layout="closing">
+    <img class="motif hero soft" src="{{MOTIF_BLANC}}" alt="">
+    <img class="logo" src="{{LOGO_BLANC}}" alt="eXalt">
+    <div class="abs" style="left:var(--safe-x);top:50%;transform:translateY(-50%);width:680px">
+      <div class="eyebrow">À vous</div>
+      <h2 class="display" style="margin-bottom:22px">Votre plateforme, <span class="hl">votre harnais</span></h2>
+      <p class="lead" style="margin-bottom:34px">« Est-ce que l'on pourrait dire non ? » La question du SD² Ethical Canvas, retournée vers vos architectures.</p>
+      <div class="contact">
+        <div class="contact-line"><div class="icon-tile"><img class="icon" src="{{ICON_DARK:mail}}" alt=""></div>[à compléter]</div>
+        <div class="contact-line"><div class="icon-tile"><img class="icon" src="{{ICON_DARK:chat}}" alt=""></div>Questions</div>
+      </div>
+      <p class="tagline">pulse, make, learn</p>
+    </div>
+    <div class="slide-footer"><span class="brand">eXalt · pulse, make, learn</span><span class="page-num"></span></div>
+  </section>
+
+</div>
+
+<div class="progress-bar" aria-hidden="true"></div>
+<div class="controls" role="navigation" aria-label="Navigation des slides">
+  <button class="btn-prev" aria-label="Slide précédente"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg></button>
+  <span class="slide-counter" aria-live="polite">1 / 45</span>
+  <button class="btn-next" aria-label="Slide suivante"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+</div>
+<button class="fullscreen-btn" aria-label="Plein écran"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
+
+<script>{{CORE_JS}}</script>
+</body>
+</html>
