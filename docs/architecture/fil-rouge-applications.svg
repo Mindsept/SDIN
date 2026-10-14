@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="2020" viewBox="0 0 2100 2020" role="img" aria-labelledby="title desc" xml:lang="fr">
+<title id="title">SDIN — Fil rouge et services par type d’application</title><desc id="desc">Exemple proposé de portail documentaire avec IA, non implémenté dans ce dépôt : connexion OIDC, dépôt de document, indexation asynchrone, recherche augmentée, validation humaine optionnelle et mesure d’usage optionnelle. Une matrice associe cinq profils d’applications aux services utiles.</desc>
+<defs>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#087F80"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3668A3"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#C4473F"/></marker>
+<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596C73"/></marker>
+<marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#936425"/></marker>
+</defs>
+<rect x="0" y="0" width="2100" height="2020" rx="0" fill="#F5F3ED" stroke="none" stroke-width="1.5"/>
+<text x="64" y="55" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start" letter-spacing="3">SDIN / DU BESOIN AU SERVICE</text>
+<text x="64" y="118" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" fill="#16343F" text-anchor="start">Fil rouge : un portail documentaire avec IA</text>
+<text x="64" y="161" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" fill="#596C73" text-anchor="start">« Je dépose un document, je pose une question, puis je fais valider la publication. »</text>
+<rect x="1686" y="39" width="350" height="30" rx="15" fill="#F8E8E3" stroke="none" stroke-width="1.5"/>
+<text x="1861.0" y="60" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="600" fill="#C4473F" text-anchor="middle">EXEMPLE À IMPLÉMENTER</text>
+<text x="64" y="207" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Architecture possible à partir des briques du dépôt. Les étapes 5 et 6 sont des options métier.</text>
+<path d="M 668 405 H 748" fill="none" stroke="#C4473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)"/>
+<path d="M 1352 405 H 1432" fill="none" stroke="#C4473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)"/>
+<path d="M 1734 560 V 610 H 366 V 660" fill="none" stroke="#C4473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)"/>
+<rect x="880" y="593" width="350" height="30" rx="15" fill="#F5F3ED" stroke="none" stroke-width="1.5"/>
+<text x="1055.0" y="614" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" fill="#C4473F" text-anchor="middle">DU DOCUMENT À LA RÉPONSE</text>
+<path d="M 668 815 H 748" fill="none" stroke="#C4473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)" stroke-dasharray="8 7"/>
+<path d="M 1352 815 H 1432" fill="none" stroke="#C4473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)" stroke-dasharray="8 7"/>
+<rect x="64" y="250" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="99" cy="289" r="21" fill="#C4473F"/>
+<text x="99" y="296" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">1</text>
+<text x="134" y="297" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Se connecter</text>
+<text x="89" y="340" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">NAVIGATEUR + API → CASDOOR</text>
+<text x="89" y="382" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Casdoor présente la page de connexion.</text>
+<text x="89" y="416" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Le retour OIDC arrive sur l’API de l’app.</text>
+<text x="89" y="450" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">L’API établit la session utilisateur.</text>
+<rect x="83" y="508" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="98" y="533" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">Casdoor · configuration OIDC dans OpenBao</text>
+<rect x="748" y="250" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="783" cy="289" r="21" fill="#C4473F"/>
+<text x="783" y="296" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">2</text>
+<text x="818" y="297" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Déposer un document</text>
+<text x="773" y="340" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">NAVIGATEUR → API → S3 + POSTGRES</text>
+<text x="773" y="382" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">L’API place le fichier privé dans S3.</text>
+<text x="773" y="416" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Elle stocke droits, statut et métadonnées</text>
+<text x="773" y="450" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">dans la base PostgreSQL de l’application.</text>
+<rect x="767" y="508" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="782" y="533" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">SeaweedFS / S3 · PostgreSQL</text>
+<rect x="1432" y="250" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="1467" cy="289" r="21" fill="#C4473F"/>
+<text x="1467" y="296" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">3</text>
+<text x="1502" y="297" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Indexer en arrière-plan</text>
+<text x="1457" y="340" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">API → VALKEY → WORKER</text>
+<text x="1457" y="382" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Le worker lit S3 et découpe le texte.</text>
+<text x="1457" y="416" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">APISIX relaie les embeddings ; pgvector</text>
+<text x="1457" y="450" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">conserve les vecteurs. API : 202 + suivi.</text>
+<rect x="1451" y="508" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="1466" y="533" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">Valkey · S3 · APISIX · PostgreSQL / pgvector</text>
+<rect x="64" y="660" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="99" cy="699" r="21" fill="#C4473F"/>
+<text x="99" y="706" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">4</text>
+<text x="134" y="707" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Répondre avec les sources</text>
+<text x="89" y="750" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">NAVIGATEUR → API → PGVECTOR + APISIX</text>
+<text x="89" y="792" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">L’API vectorise la question via APISIX.</text>
+<text x="89" y="826" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">pgvector retrouve les passages utiles.</text>
+<text x="89" y="860" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Le LLM les reçoit pour rédiger la réponse.</text>
+<rect x="83" y="918" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="98" y="943" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">APISIX : task:embed puis task:cheap / quality</text>
+<rect x="748" y="660" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="783" cy="699" r="21" fill="#C4473F"/>
+<text x="783" y="706" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">5</text>
+<text x="818" y="707" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Faire valider · option</text>
+<text x="773" y="750" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">API + WORKER DE WORKFLOWS → TEMPORAL</text>
+<text x="773" y="792" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">L’API démarre le workflow de publication.</text>
+<text x="773" y="826" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Temporal attend la validation humaine ;</text>
+<text x="773" y="860" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">le worker reprend les étapes du workflow.</text>
+<rect x="767" y="918" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="782" y="943" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">Temporal · état durable dans PostgreSQL</text>
+<rect x="1432" y="660" width="604" height="310" rx="20" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<circle cx="1467" cy="699" r="21" fill="#C4473F"/>
+<text x="1467" y="706" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">6</text>
+<text x="1502" y="707" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#16343F" text-anchor="start">Mesurer l’usage · option</text>
+<text x="1457" y="750" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="start">NAVIGATEUR → API DE L’APP → UMAMI</text>
+<text x="1457" y="792" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Pages vues et événements utiles :</text>
+<text x="1457" y="826" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">document déposé, réponse consultée…</text>
+<text x="1457" y="860" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Le tracker passe par /api/v1/_a/*.</text>
+<rect x="1451" y="918" width="566" height="36" rx="10" fill="#F5EAE3" stroke="none" stroke-width="1.5"/>
+<text x="1466" y="943" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#16343F" text-anchor="start">Umami · suivi au fil du parcours</text>
+<rect x="64" y="1004" width="1972" height="130" rx="18" fill="#16343F" stroke="none" stroke-width="1.5"/>
+<text x="88" y="1041" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#AADAD4" text-anchor="start" letter-spacing="1">CE QUI SOUTIENT TOUT LE PARCOURS</text>
+<text x="88" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="start">OpenBao</text>
+<text x="238" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#DAE5E5" text-anchor="start">secrets lus au démarrage</text>
+<text x="630" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="start">Registry</text>
+<text x="765" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#DAE5E5" text-anchor="start">images à déployer</text>
+<text x="1100" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="start">Dozzle</text>
+<text x="1210" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#DAE5E5" text-anchor="start">logs techniques</text>
+<text x="1570" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="start">Temporal UI</text>
+<text x="1747" y="1077" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#DAE5E5" text-anchor="start">suivi des runs</text>
+<text x="88" y="1111" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#DAE5E5" text-anchor="start">Frontend statique + API + worker : composants propres à l’application, à développer à partir des templates.</text>
+<text x="64" y="1203" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#16343F" text-anchor="start">Quelle application consomme quoi ?</text>
+<text x="64" y="1240" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Exemples de choix d’architecture. Choisir les services utiles ; une app n’a pas besoin de toute la plateforme.</text>
+<circle cx="1185" cy="1191" r="7" fill="#087F80"/>
+<text x="1202" y="1198" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">utile au profil décrit</text>
+<circle cx="1512" cy="1191" r="7" fill="#F5F3ED"/>
+<circle cx="1512" cy="1191" r="7" fill="none" stroke="#936425" stroke-width="2"/>
+<text x="1529" y="1198" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">selon la fonctionnalité</text>
+<text x="1895" y="1198" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">— sans besoin</text>
+<rect x="64" y="1267" width="1972" height="68" rx="13" fill="#16343F" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="white" text-anchor="start">PROFIL D’APPLICATION</text>
+<text x="725" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">Postgres</text>
+<text x="920" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">S3</text>
+<text x="1115" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">Valkey</text>
+<text x="1310" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">APISIX</text>
+<text x="1505" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">Temporal</text>
+<text x="1700" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">Casdoor</text>
+<text x="1895" y="1309" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="white" text-anchor="middle">Umami</text>
+<rect x="64" y="1335" width="1972" height="88" rx="0" fill="white" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1371" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#16343F" text-anchor="start">Site vitrine / jeu solo</text>
+<text x="87" y="1400" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Frontend ; relais API si analytics</text>
+<text x="725" y="1386" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<circle cx="920" cy="1379" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<text x="1115" y="1386" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<text x="1310" y="1386" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<text x="1505" y="1386" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<text x="1700" y="1386" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<circle cx="1895" cy="1379" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<rect x="64" y="1423" width="1972" height="88" rx="0" fill="#EDEFE9" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1459" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#16343F" text-anchor="start">Portail CRUD connecté</text>
+<text x="87" y="1488" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Frontend + API</text>
+<circle cx="725" cy="1467" r="9" fill="#087F80"/>
+<circle cx="920" cy="1467" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1115" cy="1467" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<text x="1310" y="1474" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<text x="1505" y="1474" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#899697" text-anchor="middle">—</text>
+<circle cx="1700" cy="1467" r="9" fill="#087F80"/>
+<circle cx="1895" cy="1467" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<rect x="64" y="1511" width="1972" height="88" rx="0" fill="white" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1547" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#16343F" text-anchor="start">Import / traitement par lots</text>
+<text x="87" y="1576" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">API + worker</text>
+<circle cx="725" cy="1555" r="9" fill="#087F80"/>
+<circle cx="920" cy="1555" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1115" cy="1555" r="9" fill="#087F80"/>
+<circle cx="1310" cy="1555" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1505" cy="1555" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1700" cy="1555" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1895" cy="1555" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<rect x="64" y="1599" width="1972" height="88" rx="0" fill="#EDEFE9" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1635" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#16343F" text-anchor="start">Assistant documentaire IA</text>
+<text x="87" y="1664" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Frontend + API + worker</text>
+<circle cx="725" cy="1643" r="9" fill="#087F80"/>
+<circle cx="920" cy="1643" r="9" fill="#087F80"/>
+<circle cx="1115" cy="1643" r="9" fill="#087F80"/>
+<circle cx="1310" cy="1643" r="9" fill="#087F80"/>
+<circle cx="1505" cy="1643" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1700" cy="1643" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1895" cy="1643" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<rect x="64" y="1687" width="1972" height="88" rx="0" fill="white" stroke="none" stroke-width="1.5"/>
+<text x="87" y="1723" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#16343F" text-anchor="start">Dossier à validation humaine</text>
+<text x="87" y="1752" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Frontend + API + worker de workflows</text>
+<circle cx="725" cy="1731" r="9" fill="#087F80"/>
+<circle cx="920" cy="1731" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1115" cy="1731" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1310" cy="1731" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<circle cx="1505" cy="1731" r="9" fill="#087F80"/>
+<circle cx="1700" cy="1731" r="9" fill="#087F80"/>
+<circle cx="1895" cy="1731" r="9" fill="none" stroke="#936425" stroke-width="2.3"/>
+<text x="64" y="1815" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">OpenBao : dès que le backend utilise des secrets. Registry et Dozzle accompagnent le déploiement des apps.</text>
+<text x="64" y="1851" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Valkey = tâches indépendantes. Temporal = étapes durables, attentes et reprises ; il peut être utilisé sans Valkey.</text>
+<text x="64" y="1887" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">RAG à construire : activer vector, écrire le découpage et la recherche. task:embed utilise OpenAI dans les deux variantes.</text>
+<text x="64" y="1923" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Le budget embeddings par app ne s’applique pas en mode Anthropic dans la configuration actuelle. Aucun test live ici.</text>
+<path d="M 64 1948 H 2036" fill="none" stroke="#D6DEDC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1981" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Sources : templates/ · README.md · analytics/site-create.sh · apisix/routes.*.yaml · presentations/sdi-2026.src.html</text>
+<text x="2036" y="1981" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="end">Analyse statique · 14/10/2026</text>
+</svg>

@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1990" viewBox="0 0 2100 1990" role="img" aria-labelledby="title desc" xml:lang="fr">
+<title id="title">SDIN — Carte des 11 services et de leurs consommateurs</title><desc id="desc">Analyse statique de sdi-harness-main. Onze services de plateforme sont reliés à leurs consommateurs applicatifs ou opérateurs. Les applications sont des gabarits à développer. Les dépendances de persistance et d’exploitation sont représentées en bas.</desc>
+<defs>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#087F80"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3668A3"/></marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#C4473F"/></marker>
+<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596C73"/></marker>
+<marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#936425"/></marker>
+</defs>
+<rect x="0" y="0" width="2100" height="1990" rx="0" fill="#F5F3ED" stroke="none" stroke-width="1.5"/>
+<text x="64" y="55" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#087F80" text-anchor="start" letter-spacing="3">SDIN / SDI HARNESS</text>
+<text x="64" y="118" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" fill="#16343F" text-anchor="start">11 services pour construire vos applications</text>
+<text x="64" y="161" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" fill="#596C73" text-anchor="start">Une plateforme partagée de développement. Les applications métier restent à implémenter.</text>
+<rect x="1765" y="39" width="271" height="30" rx="15" fill="#E8F3F0" stroke="none" stroke-width="1.5"/>
+<text x="1900.5" y="60" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="600" fill="#087F80" text-anchor="middle">ANALYSE DU DÉPÔT</text>
+<text x="2036" y="93" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="600" fill="#596C73" text-anchor="end">01 / CARTE DES SERVICES</text>
+<rect x="64" y="205" width="472" height="126" rx="18" fill="#FAFAF6" stroke="#D6DEDC" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="86" y="238" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#16343F" text-anchor="start">Frontend</text>
+<text x="86" y="269" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Interface TypeScript / Vite</text>
+<text x="86" y="302" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">Servie par nginx ; JS dans le navigateur.</text>
+<rect x="564" y="205" width="472" height="126" rx="18" fill="#FAFAF6" stroke="#D6DEDC" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="586" y="238" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#16343F" text-anchor="start">API métier</text>
+<text x="586" y="269" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Backend TypeScript / Bun</text>
+<text x="586" y="302" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">Accès aux données et aux services.</text>
+<rect x="1064" y="205" width="472" height="126" rx="18" fill="#FAFAF6" stroke="#D6DEDC" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="1086" y="238" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#16343F" text-anchor="start">Worker</text>
+<text x="1086" y="269" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Traitements en arrière-plan</text>
+<text x="1086" y="302" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">Consomme les jobs ; logique à écrire.</text>
+<rect x="1564" y="205" width="472" height="126" rx="18" fill="#FAFAF6" stroke="#D6DEDC" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="1586" y="238" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#16343F" text-anchor="start">CI &amp; opérateurs</text>
+<text x="1586" y="269" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Déploiement et exploitation</text>
+<text x="1586" y="302" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#596C73" text-anchor="start">Images, logs et suivi des workflows.</text>
+<text x="64" y="365" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#596C73" text-anchor="start">Lecture : les branches indiquent les consommateurs possibles, selon le besoin. Chaque carte = un service fourni.</text>
+<text x="64" y="415" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#087F80" text-anchor="start">01  ACCÈS &amp; CONTEXTE</text>
+<rect x="64" y="460" width="274" height="180" rx="18" fill="#EBEFEB" stroke="none" stroke-width="1.5"/>
+<text x="84" y="498" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">API, workers, scripts</text>
+<text x="84" y="530" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">+ navigateur pour</text>
+<text x="84" y="562" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">la connexion OIDC</text>
+<text x="84" y="594" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Analytics via l’API</text>
+<path d="M 338 547 H 376 V 433 H 1778.0" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 678.0 433 V 450" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<path d="M 1228.0 433 V 450" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<path d="M 1778.0 433 V 450" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<g>
+<title>td/core-platform/podman-compose.yml:83-118 ; templates/podman-compose.yml:37-43</title>
+<rect x="420" y="450" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="420" y="469" width="5" height="39" rx="2" fill="#087F80" stroke="none" stroke-width="1.5"/>
+<text x="444" y="493" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">OpenBao</text>
+<text x="913" y="491" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#087F80" text-anchor="end">01</text>
+<text x="444" y="530" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Secrets et configuration de chaque app.</text>
+<text x="444" y="559" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Lecture par API / workers au démarrage.</text>
+<text x="444" y="588" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Scripts : provisionnement et injection.</text>
+<path d="M 444 600 H 912" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="444" y="627" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#087F80" text-anchor="start">openbao.internal:8200</text>
+<text x="444" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 8200 · secrets en mémoire en mode dev</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:308-351 ; idp/onboard-oidc.sh:92-101</title>
+<rect x="970" y="450" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="970" y="469" width="5" height="39" rx="2" fill="#087F80" stroke="none" stroke-width="1.5"/>
+<text x="994" y="493" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Casdoor</text>
+<text x="1463" y="491" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#087F80" text-anchor="end">02</text>
+<text x="994" y="530" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Connexion OIDC, utilisateurs et groupes.</text>
+<text x="994" y="559" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Navigateur + API : parcours de connexion.</text>
+<text x="994" y="588" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Un client OIDC par application.</text>
+<path d="M 994 600 H 1462" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="994" y="627" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#087F80" text-anchor="start">idp.internal:8000</text>
+<text x="994" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9300 · données dans PostgreSQL</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:374-434 ; analytics/site-create.sh:63-74</title>
+<rect x="1520" y="450" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="1520" y="469" width="5" height="39" rx="2" fill="#087F80" stroke="none" stroke-width="1.5"/>
+<text x="1544" y="493" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Umami</text>
+<text x="2013" y="491" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#087F80" text-anchor="end">03</text>
+<text x="1544" y="530" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Pages vues et événements produit.</text>
+<text x="1544" y="559" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Navigateur → API de l’app → Umami.</text>
+<text x="1544" y="588" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Un site de suivi par application.</text>
+<path d="M 1544 600 H 2012" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1544" y="627" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#087F80" text-anchor="start">analytics.internal:3000</text>
+<text x="1544" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9400 · données dans PostgreSQL</text>
+</g>
+<text x="64" y="705" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#3668A3" text-anchor="start">02  DONNÉES &amp; TÂCHES</text>
+<rect x="64" y="750" width="274" height="180" rx="18" fill="#EBEFEB" stroke="none" stroke-width="1.5"/>
+<text x="84" y="788" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">API + workers</text>
+<text x="84" y="820" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Données privées</text>
+<text x="84" y="852" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Fichiers et médias</text>
+<text x="84" y="884" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Jobs indépendants</text>
+<path d="M 338 837 H 376 V 723 H 1778.0" fill="none" stroke="#3668A3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 678.0 723 V 740" fill="none" stroke="#3668A3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<path d="M 1228.0 723 V 740" fill="none" stroke="#3668A3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<path d="M 1778.0 723 V 740" fill="none" stroke="#3668A3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<g>
+<title>td/core-platform/podman-compose.yml:156-187</title>
+<rect x="420" y="740" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="420" y="759" width="5" height="39" rx="2" fill="#3668A3" stroke="none" stroke-width="1.5"/>
+<text x="444" y="783" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">PostgreSQL + pgvector</text>
+<text x="913" y="781" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#3668A3" text-anchor="end">04</text>
+<text x="444" y="820" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Données métier et requêtes SQL.</text>
+<text x="444" y="849" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Une base + un utilisateur par app.</text>
+<text x="444" y="878" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Vecteurs pour RAG : activation à prévoir.</text>
+<path d="M 444 890 H 912" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="444" y="917" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#3668A3" text-anchor="start">postgres.internal:5432</text>
+<text x="444" y="941" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 5432 · stockage persistant</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:64-81 ; README.md:18-35,277-285</title>
+<rect x="970" y="740" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="970" y="759" width="5" height="39" rx="2" fill="#3668A3" stroke="none" stroke-width="1.5"/>
+<text x="994" y="783" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Valkey</text>
+<text x="1463" y="781" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#3668A3" text-anchor="end">05</text>
+<text x="994" y="820" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Cache, état partagé et pub/sub.</text>
+<text x="994" y="849" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Streams : distribuer les jobs aux workers.</text>
+<text x="994" y="878" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Clés préfixées par le nom de l’app.</text>
+<path d="M 994 890 H 1462" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="994" y="917" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#3668A3" text-anchor="start">valkey.internal:6379</text>
+<text x="994" y="941" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 6379 · alias redis.internal · AOF</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:189-228 ; templates/bootstrap.sh:221-266</title>
+<rect x="1520" y="740" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="1520" y="759" width="5" height="39" rx="2" fill="#3668A3" stroke="none" stroke-width="1.5"/>
+<text x="1544" y="783" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">SeaweedFS / S3</text>
+<text x="2013" y="781" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#3668A3" text-anchor="end">06</text>
+<text x="1544" y="820" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Documents, médias et assets.</text>
+<text x="1544" y="849" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Un bucket + une clé limitée par app.</text>
+<text x="1544" y="878" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Accès navigateur si autorisé par l’app.</text>
+<path d="M 1544 890 H 2012" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1544" y="917" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#3668A3" text-anchor="start">host.containers.internal:9000</text>
+<text x="1544" y="941" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9000 API / 9001 explorateur</text>
+</g>
+<text x="64" y="995" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#C4473F" text-anchor="start">03  IA &amp; PROCESSUS LONGS</text>
+<rect x="64" y="1040" width="274" height="180" rx="18" fill="#EBEFEB" stroke="none" stroke-width="1.5"/>
+<text x="84" y="1078" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">API + workers</text>
+<text x="84" y="1110" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Appels IA via APISIX</text>
+<text x="84" y="1142" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Workflows via Temporal</text>
+<text x="84" y="1174" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">UI : opérateurs seuls</text>
+<path d="M 338 1127 H 376 V 1013 H 1228.0" fill="none" stroke="#C4473F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 678.0 1013 V 1030" fill="none" stroke="#C4473F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)"/>
+<path d="M 1228.0 1013 V 1030" fill="none" stroke="#C4473F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-red)"/>
+<g>
+<title>td/core-platform/podman-compose.yml:230-264 ; apisix/routes.*.yaml ; limites de budgets dans routes.anthropic.yaml:140-148</title>
+<rect x="420" y="1030" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="420" y="1049" width="5" height="39" rx="2" fill="#C4473F" stroke="none" stroke-width="1.5"/>
+<text x="444" y="1073" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">APISIX · passerelle LLM</text>
+<text x="913" y="1071" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="end">07</text>
+<text x="444" y="1110" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">API compatible OpenAI ; alias task:*.</text>
+<text x="444" y="1139" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Clé virtuelle par app ; budgets configurés.</text>
+<text x="444" y="1168" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">→ OpenAI / Anthropic, services externes.</text>
+<path d="M 444 1180 H 912" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="444" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#C4473F" text-anchor="start">llm.internal:9080/v1</text>
+<text x="444" y="1231" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9080 · routes IA uniquement</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:266-305 ; README.md:277-297</title>
+<rect x="970" y="1030" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="970" y="1049" width="5" height="39" rx="2" fill="#C4473F" stroke="none" stroke-width="1.5"/>
+<text x="994" y="1073" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Temporal</text>
+<text x="1463" y="1071" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="end">08</text>
+<text x="994" y="1110" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Orchestration durable de plusieurs étapes.</text>
+<text x="994" y="1139" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Attentes, reprises, essais et compensation.</text>
+<text x="994" y="1168" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Un namespace par app ; SDK côté backend.</text>
+<path d="M 994 1180 H 1462" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="994" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#C4473F" text-anchor="start">temporal.internal:7233</text>
+<text x="994" y="1231" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 7233 · état dans PostgreSQL</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:354-372</title>
+<rect x="1520" y="1030" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="1520" y="1049" width="5" height="39" rx="2" fill="#C4473F" stroke="none" stroke-width="1.5"/>
+<text x="1544" y="1073" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Temporal UI</text>
+<text x="2013" y="1071" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C4473F" text-anchor="end">09</text>
+<text x="1544" y="1110" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Console destinée aux opérateurs.</text>
+<text x="1544" y="1139" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Historique, entrées/sorties et erreurs.</text>
+<text x="1544" y="1168" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Se connecte au serveur Temporal.</text>
+<path d="M 1544 1180 H 2012" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1544" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#C4473F" text-anchor="start">temporal-ui.internal:8080</text>
+<text x="1544" y="1231" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9233 · consommateur de Temporal</text>
+</g>
+<text x="64" y="1285" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#936425" text-anchor="start">04  LIVRER &amp; EXPLOITER</text>
+<rect x="64" y="1330" width="274" height="180" rx="18" fill="#EBEFEB" stroke="none" stroke-width="1.5"/>
+<text x="84" y="1368" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Pipeline local</text>
+<text x="84" y="1400" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Build et déploiement</text>
+<text x="84" y="1432" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Opérateurs</text>
+<text x="84" y="1464" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Diagnostic des logs</text>
+<path d="M 338 1417 H 376 V 1303 H 1228.0" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 678.0 1303 V 1320" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
+<path d="M 1228.0 1303 V 1320" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
+<g>
+<title>td/core-platform/podman-compose.yml:136-154 ; templates/gitlab-ci.yml ; templates/podman-compose.yml:62-89</title>
+<rect x="420" y="1320" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="420" y="1339" width="5" height="39" rx="2" fill="#936425" stroke="none" stroke-width="1.5"/>
+<text x="444" y="1363" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Registry OCI</text>
+<text x="913" y="1361" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#936425" text-anchor="end">10</text>
+<text x="444" y="1400" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Conserve les images des applications.</text>
+<text x="444" y="1429" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Le pipeline publie ; Podman les récupère.</text>
+<text x="444" y="1458" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Frontend, API et workers sont versionnés.</text>
+<path d="M 444 1470 H 912" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="444" y="1497" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#936425" text-anchor="start">registry.internal:5000</text>
+<text x="444" y="1521" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : localhost:5000/&lt;app&gt;/&lt;service&gt;:&lt;tag&gt;</text>
+</g>
+<g>
+<title>td/core-platform/podman-compose.yml:120-134 ; templates/podman-compose.yml:78</title>
+<rect x="970" y="1320" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<rect x="970" y="1339" width="5" height="39" rx="2" fill="#936425" stroke="none" stroke-width="1.5"/>
+<text x="994" y="1363" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Dozzle</text>
+<text x="1463" y="1361" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#936425" text-anchor="end">11</text>
+<text x="994" y="1400" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Affiche les logs stdout / stderr.</text>
+<text x="994" y="1429" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Lit les conteneurs via le socket Podman.</text>
+<text x="994" y="1458" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Diagnostic technique par les opérateurs.</text>
+<path d="M 994 1470 H 1462" fill="none" stroke="#D6DEDC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="994" y="1497" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#936425" text-anchor="start">dozzle.internal:8080</text>
+<text x="994" y="1521" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="start">Hôte : 9999 · logs, sans métriques ni traces</text>
+</g>
+<rect x="1520" y="1320" width="516" height="218" rx="18" fill="#E9EDE6" stroke="none" stroke-width="1.5"/>
+<text x="1544" y="1363" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#16343F" text-anchor="start">Le contrat de chaque application</text>
+<text x="1544" y="1400" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Secrets • base SQL • bucket S3</text>
+<text x="1544" y="1433" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Préfixe Valkey • client OIDC</text>
+<text x="1544" y="1466" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#596C73" text-anchor="start">Namespace Temporal • site Umami</text>
+<text x="1544" y="1515" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#16343F" text-anchor="start">À provisionner selon les fonctionnalités utiles.</text>
+<rect x="64" y="1580" width="1972" height="261" rx="20" fill="#E7EDEB" stroke="none" stroke-width="1.5"/>
+<text x="90" y="1622" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#087F80" text-anchor="start" letter-spacing="1">DÉPENDANCES RÉELLES ENTRE LES BRIQUES</text>
+<rect x="90" y="1650" width="212" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="196" y="1681" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Temporal</text>
+<path d="M 196 1698 V 1724 H 456" fill="none" stroke="#087F80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="350" y="1650" width="212" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="456" y="1681" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Casdoor</text>
+<path d="M 456 1698 V 1724 H 456" fill="none" stroke="#087F80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="610" y="1650" width="212" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="716" y="1681" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Umami</text>
+<path d="M 716 1698 V 1724 H 456" fill="none" stroke="#087F80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 456 1724 V 1750" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<rect x="305" y="1750" width="302" height="54" rx="12" fill="#16343F" stroke="none" stroke-width="1.5"/>
+<text x="456" y="1785" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="600" fill="white" text-anchor="middle">PostgreSQL partagé</text>
+<text x="90" y="1822" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Bases séparées pour Temporal, Casdoor, Umami et chaque app.</text>
+<rect x="940" y="1650" width="255" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="1067.5" y="1681" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Temporal UI</text>
+<rect x="1370" y="1650" width="255" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="1497.5" y="1681" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Temporal</text>
+<rect x="940" y="1754" width="255" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="1067.5" y="1785" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Conteneurs</text>
+<rect x="1320" y="1754" width="285" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="1462.5" y="1785" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Socket Podman</text>
+<rect x="1730" y="1754" width="245" height="48" rx="10" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
+<text x="1852.5" y="1785" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#16343F" text-anchor="middle">Dozzle</text>
+<path d="M 1195 1674 H 1370" fill="none" stroke="#087F80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<text x="1280" y="1660" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="middle">gRPC</text>
+<path d="M 1195 1778 H 1320" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
+<text x="1257" y="1738" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="middle">logs</text>
+<path d="M 1605 1778 H 1730" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
+<text x="1668" y="1738" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#596C73" text-anchor="middle">lecture</text>
+<text x="940" y="1822" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Au déploiement : scripts + OpenBao → configuration APISIX / Casdoor / Umami.</text>
+<text x="64" y="1880" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#16343F" text-anchor="start">Réseau : core-network pour les conteneurs. S3 est modélisé comme externe et consommé par le port hôte.</text>
+<text x="64" y="1915" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#596C73" text-anchor="start">Le navigateur utilise les URL publiques de l’app / de l’IdP ; les adresses .internal servent aux backends.</text>
+<text x="64" y="1957" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="start">Sources : td/core-platform/podman-compose.yml · templates/ · scripts idp/, analytics/, apisix/ · README.md</text>
+<text x="2036" y="1957" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#596C73" text-anchor="end">Analyse statique · 14/10/2026</text>
+</svg>

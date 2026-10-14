@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Lecture de l’architecture SDI : services de la plateforme, applications possibles et parcours documentaire IA illustratif.">
+  <title>SDI — Services et applications possibles</title>
+  <style>
+    :root { --ink:#17293b; --muted:#536373; --paper:#f4f3ed; --card:#fff; --line:#dce1df; --accent:#bd4432; --soft:#e9efea; --blue:#204e69; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:16px; line-height:1.65; }
+    a { color:var(--blue); text-underline-offset:.2em; }
+    a:hover { color:var(--accent); }
+    a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; border-radius:2px; }
+    .skip { position:absolute; top:-5rem; left:1rem; z-index:2; padding:.65rem 1rem; background:var(--card); }
+    .skip:focus { top:1rem; }
+    .wrap { width:min(1320px,calc(100% - 64px)); margin:auto; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 0; border-bottom:1px solid var(--line); font-size:13px; }
+    .brand { font-weight:800; letter-spacing:.14em; }
+    .topbar nav { display:flex; flex-wrap:wrap; gap:10px 24px; }
+    .topbar nav a { text-decoration:none; }
+    header { padding:68px 0 40px; }
+    .eyebrow { margin:0 0 16px; color:var(--accent); text-transform:uppercase; font-size:12px; font-weight:800; letter-spacing:.14em; }
+    h1,h2,h3 { line-height:1.15; letter-spacing:-.035em; }
+    h1 { margin:0; font-size:clamp(36px,5vw,68px); max-width:1000px; font-weight:760; }
+    h1 span { color:var(--blue); }
+    .intro { max-width:870px; margin:24px 0 0; font-size:20px; line-height:1.55; color:var(--muted); }
+    .facts { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .fact { padding:7px 12px; border:1px solid var(--line); border-radius:6px; background:#ffffff80; font-size:13px; }
+    .fact strong { font-weight:750; }
+    .notice { margin:0 0 40px; padding:20px 24px; border-left:4px solid var(--accent); background:#f8eae3; }
+    .notice p { margin:0; }
+    main > section { scroll-margin-top:24px; margin-bottom:56px; }
+    .section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+    h2 { font-size:clamp(26px,3vw,36px); margin:0; }
+    .section-head p { margin:8px 0 0; color:var(--muted); max-width:760px; }
+    .number { color:var(--accent); font-size:13px; font-weight:800; letter-spacing:.08em; margin-bottom:9px; display:block; }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; flex-shrink:0; }
+    .button { display:inline-block; border:1px solid var(--ink); border-radius:6px; padding:9px 14px; text-decoration:none; font-size:13px; font-weight:650; background:var(--ink); color:#fff; }
+    .button.secondary { background:transparent; color:var(--ink); border-color:#bac6cb; }
+    .button:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+    figure { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:12px; background:var(--card); }
+    figure > a { display:block; }
+    figure img { display:block; width:100%; height:auto; }
+    figcaption { padding:14px 20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .card { padding:26px; border:1px solid var(--line); border-radius:10px; background:var(--card); }
+    h3 { font-size:21px; margin:0 0 12px; }
+    .card p { margin:0 0 12px; }
+    .card p:last-child { margin-bottom:0; }
+    .subtle { color:var(--muted); }
+    .tag { display:inline-block; margin-bottom:13px; padding:3px 8px; border-radius:4px; background:var(--soft); font-size:11px; font-weight:750; letter-spacing:.06em; text-transform:uppercase; }
+    .wide { grid-column:1 / -1; }
+    ul { padding-left:21px; margin:12px 0 0; }
+    li + li { margin-top:9px; }
+    code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.87em; overflow-wrap:anywhere; }
+    p { margin:0 0 16px; }
+    .profiles { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+    .profile { border-top:3px solid var(--blue); padding:19px 17px; background:var(--card); border-radius:0 0 8px 8px; }
+    .profile h3 { font-size:18px; margin:10px 0 12px; }
+    .profile p { font-size:14px; line-height:1.55; margin:0 0 12px; }
+    .profile small { color:var(--muted); font-size:12px; display:block; }
+    .profile .index { color:var(--accent); font-size:12px; font-weight:750; }
+    .boundary { margin-top:18px; padding:20px 24px; border-radius:8px; background:var(--soft); }
+    .boundary p { margin:0; }
+    .steps { counter-reset:step; padding:0; margin:0; list-style:none; }
+    .steps li { position:relative; padding:0 0 19px 39px; margin:0; }
+    .steps li:last-child { padding-bottom:0; }
+    .steps li::before { counter-increment:step; content:counter(step); position:absolute; top:0; left:0; width:25px; height:25px; border-radius:50%; background:var(--soft); color:var(--blue); font-size:13px; font-weight:800; text-align:center; line-height:25px; }
+    .table-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--card); }
+    table { border-collapse:collapse; width:100%; text-align:left; font-size:14px; }
+    th,td { padding:14px 20px; vertical-align:top; border-bottom:1px solid var(--line); }
+    th { background:var(--soft); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+    tr:last-child td { border-bottom:0; }
+    td:first-child { width:43%; }
+    td small { display:block; color:var(--muted); margin-top:3px; }
+    .method { margin:16px 0 0; font-size:13px; color:var(--muted); }
+    footer { padding:24px 0 36px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; color:var(--muted); font-size:12px; }
+    @media (max-width:1050px) { .profiles { grid-template-columns:repeat(3,minmax(0,1fr)); } .section-head { align-items:flex-start; flex-direction:column; gap:16px; } }
+    @media (max-width:700px) { .wrap { width:calc(100% - 32px); } header { padding-top:40px; } .topbar { align-items:flex-start; } .topbar nav { gap:8px 14px; justify-content:flex-end; } .intro { font-size:18px; } .grid,.profiles { grid-template-columns:1fr; } .card { padding:22px; } .wide { grid-column:auto; } .profile { padding:18px 20px; } main > section { margin-bottom:40px; } th,td { padding:12px; } footer { flex-direction:column; gap:4px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { body { background:#fff; } .wrap { width:100%; } .topbar nav,.actions,.skip { display:none; } header { padding-top:20px; } h1 { font-size:34px; } .profiles { grid-template-columns:repeat(2,minmax(0,1fr)); } .card,.profile,figure { break-inside:avoid; } a { color:inherit; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+  <div class="wrap">
+    <div class="topbar">
+      <span class="brand">SDI / ARCHITECTURE</span>
+      <nav aria-label="Navigation de la page">
+        <a href="#cartographie">Services</a>
+        <a href="#applications">Applications</a>
+        <a href="#fil-rouge">Fil rouge</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+    <header>
+      <p class="eyebrow">Lecture du repository · 14 octobre 2026</p>
+      <h1>Une plateforme partagée.<br><span>Plusieurs façons de s’en servir.</span></h1>
+      <p class="intro">Ce repository définit <strong>11 briques de plateforme</strong>, des scripts de provisionnement et des templates d’applications. Il fournit un socle de développement et d’atelier ; aucune application métier n’y est implémentée.</p>
+      <div class="facts" aria-label="Repères">
+        <span class="fact"><strong>11</strong> services définis</span>
+        <span class="fact"><strong>3</strong> composants d’app proposés</span>
+        <span class="fact"><strong>1</strong> réseau partagé : core-network</span>
+        <span class="fact"><strong>0</strong> app métier fournie</span>
+      </div>
+    </header>
+    <main id="contenu">
+      <aside class="notice" aria-label="Périmètre de l’analyse">
+        <p><strong>Comment lire ces documents :</strong> les services décrits viennent de la configuration et des scripts du dépôt. Les applications et le portail documentaire IA sont des exemples d’usage proposés. L’analyse porte sur les fichiers ; le fonctionnement des services n’a pas été testé en direct ici.</p>
+      </aside>
+
+      <section id="cartographie" aria-labelledby="titre-carte">
+        <div class="section-head">
+          <div>
+            <span class="number">01 / LA PLATEFORME</span>
+            <h2 id="titre-carte">Qui fournit quoi ?</h2>
+            <p>Les services partagés, leurs dépendances et les outils de déploiement et d’exploitation.</p>
+          </div>
+          <div class="actions">
+            <a class="button" href="cartographie-services.svg">Ouvrir le SVG</a>
+            <a class="button secondary" href="cartographie-services.svg" download>Télécharger</a>
+          </div>
+        </div>
+        <figure>
+          <a href="cartographie-services.svg" aria-label="Ouvrir la cartographie des services en grand">
+            <img src="cartographie-services.svg" alt="Cartographie des 11 services de la plateforme SDI, de leurs fonctions et de leurs dépendances. L’analyse détaillée figure sous les graphes.">
+          </a>
+          <figcaption>Carte des services définis dans le dépôt. Les SVG sont vectoriels : ouvrir le fichier pour zoomer sans perte de qualité.</figcaption>
+        </figure>
+        <div class="boundary">
+          <p><strong>APISIX est la passerelle LLM.</strong> Elle expose une API compatible OpenAI, des alias de modèles, une clé virtuelle par app et des budgets configurés. La configuration fournie ne l’utilise pas comme point d’entrée général du frontend ou de l’API métier.</p>
+        </div>
+      </section>
+
+      <section id="applications" aria-labelledby="titre-applications">
+        <div class="section-head">
+          <div>
+            <span class="number">02 / LES CONSOMMATEURS</span>
+            <h2 id="titre-applications">Choisir les services selon le besoin</h2>
+            <p>Ces cinq profils sont illustratifs. Le template propose frontend, API et worker, et demande de retirer les composants inutiles.</p>
+          </div>
+        </div>
+        <div class="profiles">
+          <article class="profile">
+            <span class="index">A</span>
+            <h3>Site statique ou jeu solo</h3>
+            <p><strong>Frontend seul.</strong> Aucun service métier de la plateforme n’est nécessaire par défaut.</p>
+            <small>Registry pour distribuer l’image ; Dozzle pour consulter les logs du conteneur. Ajouter un relais API si l’on choisit Umami.</small>
+          </article>
+          <article class="profile">
+            <span class="index">B</span>
+            <h3>Portail métier</h3>
+            <p><strong>Frontend + API.</strong> Postgres pour les données, Casdoor pour la connexion, OpenBao pour les secrets.</p>
+            <small>S3 si pièces jointes ; Umami si mesure des usages.</small>
+          </article>
+          <article class="profile">
+            <span class="index">C</span>
+            <h3>Traitement par lots</h3>
+            <p><strong>API + worker.</strong> Valkey Streams distribue les jobs ; Postgres conserve leur statut ; S3 héberge les fichiers.</p>
+            <small>Le frontend est facultatif. Le worker ne reçoit pas les requêtes utilisateur.</small>
+          </article>
+          <article class="profile">
+            <span class="index">D</span>
+            <h3>Assistant documentaire</h3>
+            <p><strong>Frontend + API + indexation.</strong> S3, Postgres/pgvector et APISIX pour retrouver et exploiter des documents.</p>
+            <small>Valkey si indexation asynchrone. Le RAG reste à implémenter dans l’app.</small>
+          </article>
+          <article class="profile">
+            <span class="index">E</span>
+            <h3>Dossier à valider</h3>
+            <p><strong>API + worker de workflows.</strong> Temporal coordonne les étapes, attentes longues, reprises et compensations.</p>
+            <small>Casdoor pour les acteurs ; Postgres et S3 selon les données du dossier.</small>
+          </article>
+        </div>
+        <div class="boundary">
+          <p><strong>Valkey et Temporal répondent à deux besoins distincts.</strong> Valkey Streams répartit des unités de travail indépendantes. Temporal conserve la progression d’un processus qui attend, réessaie ou reprend après interruption. Un besoin simple ne justifie pas automatiquement les deux.</p>
+        </div>
+      </section>
+
+      <section id="fil-rouge" aria-labelledby="titre-fil-rouge">
+        <div class="section-head">
+          <div>
+            <span class="number">03 / LE FIL ROUGE</span>
+            <h2 id="titre-fil-rouge">Du document déposé à la réponse IA</h2>
+            <p>Un portail documentaire possible, pour relier les briques à un parcours utilisateur concret.</p>
+          </div>
+          <div class="actions">
+            <a class="button" href="fil-rouge-applications.svg">Ouvrir le SVG</a>
+            <a class="button secondary" href="fil-rouge-applications.svg" download>Télécharger</a>
+          </div>
+        </div>
+        <figure>
+          <a href="fil-rouge-applications.svg" aria-label="Ouvrir le fil rouge des applications en grand">
+            <img src="fil-rouge-applications.svg" alt="Exemple de portail documentaire IA : connexion, dépôt, indexation asynchrone, recherche et réponse ; services consommés par chaque composant.">
+          </a>
+          <figcaption>Exemple d’architecture applicative à construire avec le socle disponible, et non fonctionnalité métier déjà livrée.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="titre-frontieres">
+        <div class="section-head">
+          <div>
+            <span class="number">04 / LES FRONTIÈRES À RESPECTER</span>
+            <h2 id="titre-frontieres">Le navigateur et le backend n’accèdent pas aux mêmes services</h2>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Le frontend affiche ; l’API sert le métier</h3>
+            <p>nginx sert les fichiers de la SPA. Son JavaScript s’exécute dans le navigateur, hors du réseau de conteneurs. Les noms <code>*.internal</code> sont destinés aux composants backend sur <code>core-network</code>.</p>
+            <p class="subtle">Le template transmet les accès OpenBao, Valkey, Postgres et S3 à l’API et au worker. Le port exposé du worker ne sert qu’à vérifier son état.</p>
+          </article>
+          <article class="card">
+            <h3>S3 est traité comme un service externe</h3>
+            <p>SeaweedFS fournit l’API S3 sans alias <code>s3.internal</code>. Un conteneur utilise <code>host.containers.internal:9000</code> ; le navigateur ou l’hôte utilise <code>localhost:9000</code>.</p>
+            <p class="subtle">Chaque app reçoit un bucket et une clé limitée à ce bucket. La lecture publique est optionnelle. Pour un document privé, l’app doit organiser l’accès ; le dépôt ne fournit pas ce parcours métier.</p>
+          </article>
+          <article class="card">
+            <h3>Connexion publique, analytics via l’API</h3>
+            <p>Casdoor fournit l’authentification OIDC avec un client par app et une URL de retour publique. Les secrets de configuration restent côté serveur.</p>
+            <p class="subtle">Pour Umami, le contrat prévoit les chemins de l’app <code>/api/v1/_a/t.js</code> et <code>/api/v1/_a/send</code>, relayés vers <code>analytics.internal:3000</code>. Le navigateur ne contacte pas directement l’hôte analytics.</p>
+          </article>
+          <article class="card">
+            <h3>Des capacités IA, pas un produit RAG livré</h3>
+            <p>L’image Postgres contient pgvector ; chaque app doit activer l’extension dans sa propre base. Le découpage des documents, l’indexation, la recherche et la construction du contexte restent à développer.</p>
+            <p class="subtle">Les routes du dépôt acheminent <code>task:embed</code> vers OpenAI, y compris en mode Anthropic. <code>task:image</code> n’est défini qu’en mode OpenAI. Les appels réels n’ont pas été vérifiés ici.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="titre-provision">
+        <div class="section-head">
+          <div>
+            <span class="number">05 / DE LA PLATEFORME À UNE APP</span>
+            <h2 id="titre-provision">Provisionner, puis implémenter</h2>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Prévu dans le dépôt</span>
+            <h3>Des ressources propres à chaque app</h3>
+            <ol class="steps">
+              <li><strong>Adapter les templates.</strong> Nom d’app, services conservés, plage de ports et pipeline ; images publiées dans le registry local.</li>
+              <li><strong>Exécuter le bootstrap de l’app.</strong> Il crée sa base Postgres, son utilisateur, son bucket S3 et ses accès stockés dans OpenBao. Les options LLM, Temporal et analytics sont désactivées par défaut.</li>
+              <li><strong>Activer les services choisis.</strong> <code>onboard-app.sh</code> configure LLM et Temporal et régénère la passerelle. Le client OIDC et les identités de test ont leurs scripts dédiés ; analytics a aussi un script de création de site.</li>
+              <li><strong>Développer les parcours métier.</strong> API, workers, modèle de données, permissions et interface ; les scripts d’onboarding ne les créent pas.</li>
+            </ol>
+          </article>
+          <article class="card">
+            <span class="tag">Limites constatées</span>
+            <h3>Un socle d’atelier à compléter</h3>
+            <ul>
+              <li><strong>Développement / démonstration.</strong> Services principalement sur une seule instance, communications sans TLS interne et plusieurs surfaces d’administration sans authentification dans la configuration de développement.</li>
+              <li><strong>OpenBao en mode dev.</strong> Les secrets sont en mémoire ; le provisionnement doit être rejoué lorsque cet état est perdu.</li>
+              <li><strong>Attention aux ports.</strong> La convention réserve <code>8000–8999</code> aux apps, mais OpenBao utilise déjà <code>8200</code>. Éviter le bloc applicatif <code>8200–8209</code>.</li>
+              <li><strong>Logs et quotas limités.</strong> Dozzle consulte les logs ; il ne fournit ni métriques ni traces. Le budget LLM est une limite par fenêtre de temps, pas un quota cumulatif persistant. En mode Anthropic, le budget embeddings par app ne s’applique pas ; la limite de route est partagée. La route images n’active pas explicitement le plugin de limitation de tokens.</li>
+              <li><strong>Contrat upstream à réaliser.</strong> Un conteneur dédié aux flux tiers est mentionné pour l’airgap ; aucun composant applicatif <code>upstream</code> n’est livré dans les templates.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="sources" aria-labelledby="titre-sources">
+        <div class="section-head">
+          <div>
+            <span class="number">06 / SOURCES LOCALES</span>
+            <h2 id="titre-sources">Les fichiers qui fondent cette lecture</h2>
+            <p>Les numéros de lignes permettent de retrouver les contrats et comportements dans l’état analysé du dépôt.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Fichier et lignes</th><th scope="col">Ce qu’il établit</th></tr></thead>
+            <tbody>
+              <tr><td><a href="../../td/core-platform/README.md">core-platform/README.md</a><small>Lignes 3–35, 41–53, 85–101</small></td><td>Plateforme agnostique, contrats par app, inventaire des 11 services et convention de ports ; OpenBao est publié sur 8200.</td></tr>
+              <tr><td><a href="../../td/core-platform/podman-compose.yml">core-platform/podman-compose.yml</a><small>Lignes 156–166 ; définitions des services dans l’ensemble du fichier</small></td><td>Configuration des conteneurs et dépendances effectives ; pgvector disponible, activation à la charge de chaque app.</td></tr>
+              <tr><td><a href="../../td/core-platform/templates/podman-compose.yml">templates/podman-compose.yml</a><small>Lignes 8–13, 37–58, 62–95</small></td><td>Frontend/API/worker adaptables, variables backend, endpoints S3 et rôle du port de santé du worker.</td></tr>
+              <tr><td><a href="../../td/core-platform/templates/nginx.conf">templates/nginx.conf</a><small>Lignes 9–18, 22–45</small></td><td>Frontend statique SPA, chemins des assets et politique de connexion à adapter à l’app.</td></tr>
+              <tr><td><a href="../../td/core-platform/templates/bootstrap.sh">templates/bootstrap.sh</a><small>Lignes 2–25, 200–218, 231–266, 269–321</small></td><td>DB, utilisateur, bucket, clés limitées et options LLM / Temporal / analytics.</td></tr>
+              <tr><td><a href="../../td/core-platform/templates/gitlab-ci.yml">templates/gitlab-ci.yml</a><small>Lignes 33–58, 70–76, 96–116</small></td><td>Pipeline d’app, options désactivées par défaut, build et publication des images.</td></tr>
+              <tr><td><a href="../../td/core-platform/onboard-app.sh">core-platform/onboard-app.sh</a><small>Lignes 9–22, 113–145</small></td><td>Onboarding LLM / Temporal et régénération de la passerelle ; DB et bucket laissés au bootstrap de l’app.</td></tr>
+              <tr><td><a href="../../td/core-platform/idp/onboard-oidc.sh">idp/onboard-oidc.sh</a><small>Lignes 26–28, 75–78, 92–101</small></td><td>Client OIDC par app, flux authorization code, callback et distinction des adresses publique/interne.</td></tr>
+              <tr><td><a href="../../td/core-platform/analytics/site-create.sh">analytics/site-create.sh</a><small>Lignes 64–74</small></td><td>Analytics relayé par les chemins de l’app, avec upstream interne Umami.</td></tr>
+              <tr><td><a href="../../td/core-platform/apisix/routes.anthropic.yaml">apisix/routes.anthropic.yaml</a><small>Lignes 135–148</small> <a href="../../td/core-platform/apisix/routes.openai.yaml">apisix/routes.openai.yaml</a><small>Lignes 146–201</small></td><td>Embeddings via OpenAI, limite du budget par app en mode Anthropic, route images et absence de validation live annoncée pour les embeddings.</td></tr>
+              <tr><td><a href="../../td/core-platform/README.md">core-platform/README.md</a><small>Lignes 251–297, 332–400, 427–439, 473–493</small></td><td>Modèle S3 externe, Valkey/Temporal, contrat LLM, portée de l’onboarding et limites de développement.</td></tr>
+              <tr><td><a href="../../presentations/sdi-2026.src.html">presentations/sdi-2026.src.html</a><small>Lignes 630–635, 701–712, 850–863</small></td><td>Pattern 202/file/worker/polling, RAG avec pgvector et exemple de frontend seul lorsque cela suffit.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">Méthode : lecture des fichiers versionnés, recoupement des commentaires, scripts et templates. Aucun déploiement, provisionnement ou appel fournisseur n’a été exécuté pour cette analyse. Les exemples applicatifs sont des propositions, distinctes des services définis.</p>
+      </section>
+    </main>
+    <footer>
+      <span>SDI · Cartographie de repository · 14 octobre 2026</span>
+      <span>HTML autonome · SVG vectoriels · Aucun script ni dépendance externe</span>
+    </footer>
+  </div>
+</body>
+</html>
