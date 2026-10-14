@@ -1,0 +1,5 @@
+{"timestamp":"2026-10-14T08:00:00.000Z","level":"info","app":"demandes","service":"api","event":"request_completed","request_id":"req-example-042","method":"POST","route":"/exports","status":202,"duration_ms":18,"job_id":"job-example-042"}
+{"timestamp":"2026-10-14T08:00:00.010Z","level":"info","app":"demandes","service":"worker","event":"job_state_changed","job_id":"job-example-042","state":"running","attempt":1}
+{"timestamp":"2026-10-14T08:00:00.200Z","level":"warn","app":"demandes","service":"worker","event":"job_retry_scheduled","job_id":"job-example-042","state":"retry_pending","attempt":1,"error_code":"UPSTREAM_TIMEOUT"}
+{"timestamp":"2026-10-14T08:00:01.000Z","level":"info","app":"demandes","service":"worker","event":"job_state_changed","job_id":"job-example-042","state":"running","attempt":2}
+{"timestamp":"2026-10-14T08:00:01.300Z","level":"info","app":"demandes","service":"worker","event":"job_state_changed","job_id":"job-example-042","state":"completed","attempt":2,"duration_ms":300}

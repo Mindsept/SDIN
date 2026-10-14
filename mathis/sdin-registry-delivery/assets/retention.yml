@@ -1,0 +1,23 @@
+# Inventaire à copier dans l'app ; aucune suppression automatique.
+status: example_not_executed
+app: catalogue
+namespace: catalogue/
+registry: localhost:5000
+owner: null
+inventory_at: null
+protected:
+  deployed_manifest_digests: [] # À compléter depuis les déploiements effectifs.
+  rollback_manifest_digests: [] # Inclure les composants nécessaires au retour.
+  additional_references: []
+retention:
+  rule: null # Durée ou nombre justifiés par le rythme de livraison et le rollback.
+  justification: null
+candidates: [] # Référence, digest et motif après comparaison aux protections.
+cleanup:
+  application_scope_authorized: false
+  shared_registry_gc_authorized: false
+  logical_deletion_plan: null
+  gc_version_and_procedure: null
+  write_coordination: null
+  dry_run_evidence: null
+validation_status: not_run

@@ -1,0 +1,38 @@
+# Exemple à copier et adapter dans l'app ; aucune mesure exécutée.
+status: example
+app: catalogue
+question: "À quelle étape du parcours panier–commande les visiteurs abandonnent-ils ?"
+patterns: [funnel, value_event]
+website_id: null # Renseigner depuis la configuration de l'app, jamais un token admin.
+navigation:
+  mode: null # automatic ou manual, après vérification du routage et des URLs.
+  normalize_variable_paths: true
+  exclude_sensitive_search_hash_referrer: true
+events:
+  - name: catalogue.cart_saved
+    trigger: "Réponse métier confirmant la sauvegarde du panier"
+    emitter: frontend_cart_success_handler
+    properties: {channel: [web, mobile_web]}
+  - name: catalogue.checkout_started
+    trigger: "Entrée effective dans le parcours de commande"
+    emitter: frontend_checkout_entry_handler
+    properties: {channel: [web, mobile_web]}
+  - name: catalogue.order_created
+    trigger: "Réponse métier confirmant la création de commande"
+    emitter: frontend_order_success_handler
+    properties: {channel: [web, mobile_web]}
+funnel:
+  steps: [catalogue.cart_saved, catalogue.checkout_started, catalogue.order_created]
+  population: "Parcours commençant par une sauvegarde de panier"
+  analysis_window: null # À justifier selon la question produit.
+sampling:
+  enabled: false
+  method_and_bias: null
+retention:
+  duration: null # À définir ; pas de durée arbitraire par défaut.
+  implementation: null # Mécanisme vérifié sur l'installation.
+  owner: null
+analysis_frequency: null
+excluded_data: [email, tokens, full_cart, personal_ids, signed_urls]
+failure_policy: "Abandonner la collecte ; laisser fonctionner le parcours métier"
+validation_status: not_run

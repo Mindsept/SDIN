@@ -1,0 +1,4 @@
+interface:
+  display_name: "Registry — livraison efficiente"
+  short_description: "Images traçables et builds réutilisables"
+  default_prompt: "Utilise $sdin-registry-delivery pour appliquer les patterns adaptés à mon application et fournir les preuves de qualité et d’efficience."

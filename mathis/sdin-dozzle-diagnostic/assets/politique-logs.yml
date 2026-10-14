@@ -1,0 +1,29 @@
+# Exemple documentaire ; ce fichier ne configure pas automatiquement le runtime.
+status: example
+app: demandes
+output: [stdout, stderr]
+format: json_lines
+logger: null # Réutiliser celui de l'app.
+normal_level: info
+common_fields: [timestamp, level, app, service, event]
+api_summary_fields: [request_id, method, route, status, duration_ms]
+worker_fields: [job_id, state, attempt]
+worker_policy: state_changes_and_meaningful_retries
+sensitive_data_excluded: [passwords, tokens, full_bodies, generated_documents]
+routine_health_success_logs: reduced
+health_errors: preserved
+sampling:
+  enabled: false
+  population_and_measurement_limits: null
+runtime:
+  driver: null
+  rotation_limit: null # Définir après vérification du driver et du débit.
+  retention: null
+  owner: null
+temporary_debug:
+  enabled: false
+  component_and_filter: null
+  expires_at: null
+  restore_method: null
+  owner: null
+validation_status: not_run

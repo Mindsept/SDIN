@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dozzle — diagnostic efficient"
+  short_description: "Logs corrélés et diagnostic ciblé"
+  default_prompt: "Utilise $sdin-dozzle-diagnostic pour appliquer les patterns adaptés à mon application et fournir les preuves de qualité et d’efficience."
