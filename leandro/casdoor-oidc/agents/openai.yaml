@@ -1,0 +1,4 @@
+interface:
+  display_name: "Casdoor — identité et accès"
+  short_description: "Connexion OIDC et autorisation métier côté serveur"
+  default_prompt: "Utilise $casdoor-oidc pour intégrer la connexion et les droits métier de ma demande à Casdoor."

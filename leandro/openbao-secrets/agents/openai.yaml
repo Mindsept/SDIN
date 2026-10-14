@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenBao — secrets applicatifs"
+  short_description: "Secrets, droits minimaux et rotation sur la plateforme"
+  default_prompt: "Utilise $openbao-secrets pour intégrer les secrets nécessaires à ma demande avec OpenBao."

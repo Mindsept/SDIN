@@ -1,0 +1,4 @@
+interface:
+  display_name: "APISIX — IA gouvernée"
+  short_description: "Intégrer les appels IA au gateway de la plateforme"
+  default_prompt: "Utilise $apisix-llm pour intégrer les besoins IA de ma demande à la plateforme via APISIX."
