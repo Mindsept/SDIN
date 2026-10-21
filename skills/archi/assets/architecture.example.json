@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "project": {
+    "name": "portail-dossiers",
+    "kind": "Case tracking portal with attachments and OIDC sign-in",
+    "context": "workshop",
+    "policy": "platform-compatible"
+  },
+  "requirements": {
+    "summary": "Staff create and view cases, upload attachments and track status changes.",
+    "drivers": [
+      "Team already proficient in Django",
+      "Consistent transactions across cases and their history",
+      "Low volume in the workshop",
+      "Complete CRUD responses within the applicable workshop latency budget; validate with representative data before claiming performance compliance"
+    ],
+    "constraints": [
+      "Consume the existing core-platform services",
+      "No direct browser access to the database or secrets",
+      "CRUD list/read/update: preserve the SDI server p99 target <=100 ms per method/route template; >100 to <=350 ms requires justification and >350 ms is outside the contract. A full response is required; job acceptance is not a substitute.",
+      "Measure API ingress to final response completion for the CRUD target, with correctness and failures reported separately. The workshop acceptance envelope below is illustrative, not a production observation SLO."
+    ],
+    "unknowns": [],
+    "assumptions": [
+      "Files are served after the API checks permissions",
+      "The paths in the plan refer to sources that have yet to be created",
+      "This fictional brief states no additional product latency SLO. Proposed test envelope: 10 requests/second for each critical CRUD route, up to 20 concurrent clients, 10,000 cases, paginated responses <=64 KiB, a 15-minute acceptance run with reported warm/cold conditions and sample count.",
+      "Proposed outcome criterion for valid test requests: no incorrect result, unhandled server error or timeout in the acceptance run; this is a test criterion, not a future 100% reliability guarantee.",
+      "SLO evidence status: proposed and unmeasured. Test the complete path with authorization, representative Postgres data, resource limits, and query/pool telemetry; define a separate upload-size/time contract before adding large-file workloads."
+    ]
+  },
+  "architecture": {
+    "style": "modular-monolith",
+    "rationale": "Choose a modular monolith because one team owns related CRUD use cases and atomic case/history changes. Keep CRUD synchronous because the brief requires the complete result and the proposed bounded query path is plausible within the course budget; validate it under the declared envelope. Reject microservices without independent ownership/scaling needs and reject a job as a replacement for a complete CRUD response. Reconsider only if evidence or product semantics changes.",
+    "compute_tradeoff": "A single synchronous API is sufficient for the expected volume. No queue, worker, durable workflow or LLM call is provisioned.",
+    "alternatives": [
+      {
+        "option": "Microservices per business entity",
+        "rejection_reason": "They would multiply processes and communications for a single team and tightly coupled transactions."
+      },
+      {
+        "option": "TypeScript API",
+        "rejection_reason": "Compatible with the platform, but Django experience and its ORM reduce delivery time here without an additional service."
+      },
+      {
+        "option": "Background jobs for ordinary CRUD responses",
+        "rejection_reason": "The operation requires a complete authoritative result. A quick 202 would change the contract; first optimize measured SQL/pool/payload costs if the synchronous path misses its target."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "web",
+      "role": "frontend",
+      "language": "TypeScript",
+      "framework": "React",
+      "runtime": "Browser; Vite assets served by nginx",
+      "source_root": "frontend",
+      "layers": {
+        "transport": [],
+        "application": [
+          "frontend/src"
+        ],
+        "domain": [],
+        "persistence": []
+      },
+      "rationale": "The browser displays cases and calls only the business API.",
+      "framework_rationale": "React enables reuse of the form components the team is familiar with; Vite builds the static assets.",
+      "data_access": "none",
+      "platform_services": []
+    },
+    {
+      "id": "backend",
+      "role": "api",
+      "language": "Python",
+      "framework": "Django",
+      "runtime": "Python / Gunicorn",
+      "source_root": "backend",
+      "layers": {
+        "transport": [
+          "backend/dossiers/http"
+        ],
+        "application": [
+          "backend/dossiers/use_cases"
+        ],
+        "domain": [
+          "backend/dossiers/domain"
+        ],
+        "persistence": [
+          "backend/dossiers/models",
+          "backend/dossiers/repositories"
+        ]
+      },
+      "rationale": "The API checks permissions, coordinates use cases and stores cases and their history in a SQL transaction.",
+      "framework_rationale": "Choose Django because the Python team already maintains its ORM, migrations and validation for transactional CRUD. Prefer it to FastAPI here because no independent async-heavy API or FastAPI-specific capability offsets assembling separate persistence/migration conventions. This is a functional/team decision, not a proven speed advantage. Verify the full CRUD SLO; reconsider the framework only if actual library/concurrency needs or a measured remaining runtime bottleneck change the comparison. Casdoor remains the OIDC provider.",
+      "data_access": "orm",
+      "platform_services": [
+        "postgres",
+        "openbao",
+        "casdoor",
+        "s3"
+      ]
+    }
+  ],
+  "platform": {
+    "services": [
+      "postgres",
+      "openbao",
+      "casdoor",
+      "s3",
+      "registry",
+      "dozzle"
+    ],
+    "app_port_base": 8300,
+    "vector_enabled": false
+  },
+  "operations": {
+    "shutdown_seconds": 7,
+    "health_endpoints": true
+  },
+  "waivers": []
+}

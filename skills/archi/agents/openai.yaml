@@ -1,0 +1,6 @@
+interface:
+  display_name: "SDI Architecture"
+  short_description: "Choose stacks and architecture from needs and response SLOs"
+  default_prompt: "Use $archi to clarify my project and response-time SLOs, explicitly compare languages, frameworks, and patterns, and propose a justified architecture compatible with SDI."
+policy:
+  allow_implicit_invocation: true
