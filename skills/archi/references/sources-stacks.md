@@ -8,9 +8,10 @@ The **capabilities** below come from maintainers. Contextual preferences, rules 
 
 | Repository source | What it establishes | What it does not establish |
 |---|---|---|
-| [`td/core-platform/README.md`](../../../td/core-platform/README.md) | Exposed services and contracts; the CCoE rules remain to be written | An immutable catalog of authorized languages |
+| [`td/core-platform/README.md`](../../../td/core-platform/README.md) | Exposed services and contracts; the base workshop assigns CCoE rule authoring to the teams | An immutable catalog of authorized languages |
+| [`Elyes/CCOE-RULES.md`](../../../Elyes/CCOE-RULES.md) | Existing local contributor policy for selected data/services and cross-service consistency | A complete instructor-approved language policy or approval of the `platform-compatible` profile |
 | [`templates/podman-compose.yml`](../../../td/core-platform/templates/podman-compose.yml) | TS/Vite frontend, TS/Bun API/worker structure; unused services must be removed | An obligation to systematically deploy all three services |
-| [`templates/gitlab-ci.yml`](../../../td/core-platform/templates/gitlab-ci.yml) | Bun gates and build; example of a Rust service under a critical-path waiver | Automatic validation of a Python/Java/Go service by those same gates |
+| [GitHub app workflow](../../../td/core-platform/templates/github-actions.yml) and [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh), updated October 21, 2026 | Isolated Bun checks and a separate manual trusted deployment path; toolchain setup and app adaptation required | Automatic validation of a Python/Java/Go service by those same gates, or access to the local platform from a hosted pull-request job |
 | [`templates/README.app.md`](../../../td/core-platform/templates/README.app.md) | Documented architectural decisions, libraries and waivers | Approval of a waiver simply because its section is filled in |
 | [`requirements.md`](../../../td/core-platform/requirements.md) | Workshop prerequisites and Bun tooling; optional Rust profile illustrated | Availability of every compiler, GPU and SDK on the current workstation |
 

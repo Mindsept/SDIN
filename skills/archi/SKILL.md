@@ -25,6 +25,33 @@ The platform is described in `td/core-platform/`. Locate this directory from the
 
 A request to compare a stack and its high-level architecture can remain a focused choice when the user asks for concise guidance. Apply the relevant conditions and SLO reasoning, but do not generate JSON or a full dossier unless that deliverable is requested or clearly part of the task. Unresolved security/data questions keep the affected design provisional; they do not automatically block an independently justified framework recommendation.
 
+## Reference routing
+
+Inspect the brief, prior answers, repository instructions, and existing implementation before selecting a route. Load only the relevant sections, then follow another reference only when its condition applies. Revisit this table when constraints, evidence, or scope change.
+
+For a **complete design**, read in stages: scoping and SLOs → architecture and stack → code/data boundaries and platform integration → quality, applicable waivers, and deliverables. For a **focused question**, take the matching route and stop once the choice and its decision-changing uncertainties are explained; do not require a full dossier.
+
+| Situation / trigger | Read first | Conditional follow-up | Expected decision |
+|---|---|---|---|
+| Brief is incomplete or a requirement could change the choice | [cadrage.md](references/cadrage.md): Method, First round, relevant Conditional branches | Use the matching route below once the missing constraint is known. | Questions that matter, known answers, and explicit assumptions or blockers. |
+| Response-time target, deadline, streaming, or sync versus jobs | [slo-strategy.md](references/slo-strategy.md): §§1–4 | Read architectures §5 for asynchronous processing; quality §4 when planning measurements. | Measurement boundary, feasible request strategy, and evidence still needed. |
+| Static app, rendering, monolith, services, workflows, offline, or migration | [architectures.md](references/architectures.md): §1 and the relevant pattern section | Read SLO strategy if the critical path changes; code structures for the selected internal boundaries. | Simplest suitable pattern, rejected alternative, and reconsideration condition. |
+| Language, runtime, or framework comparison | [langages-frameworks.md](references/langages-frameworks.md): §3 and the relevant ecosystem section | Read stack sources for current capabilities; data/ORM if persistence affects the choice; platform §5 for a non-canonical stack. | Chosen stack, nearest alternative, conditions met, and SLO/compute consequences. |
+| Controllers/services, dependency direction, or directory layout | [structures-code.md](references/structures-code.md): §§1–2 and the relevant §4 or §5 example | Read data/ORM for transaction or persistence ownership. | Concrete responsibilities, dependency direction, and a request path. |
+| ORM/SQL, migrations, transactions, queries, isolation, or RAG | [donnees-orm.md](references/donnees-orm.md): the matching topic section | Read platform for storage contracts; SLO strategy if query or pool budgets threaten the target. | Data access approach, ownership, consistency guarantees, and checks. |
+| Service integration, network/identity boundaries, secrets, ports, or onboarding | [plateforme.md](references/plateforme.md): §§1–4 and the relevant service constraints | Use DevOps for service comparisons or delivery mechanics; waivers only for an actual deviation. | Required services and consumer boundaries, plus provisioning prerequisites. |
+| PostgreSQL versus Valkey, Streams versus Temporal, GitHub Actions, delivery, or runtime controls | [DevOps skill](../devops_and_choice/SKILL.md): its matching reference route | Return to architecture/SLO sections only if the service or delivery choice changes application boundaries or feasibility. | Justified service or delivery choice and applicable controls. |
+| Security, API contracts, tests, performance evidence, recovery, or costs | [qualite-exploitation.md](references/qualite-exploitation.md): the matching risk section | Read SLO strategy to define a missing target; DevOps for CI or operational implementation. | Proportionate checks, evidence gaps, and operational requirements. |
+| A proposed choice deviates from an applicable rule | [derogations.md](references/derogations.md): §§1–3 | Read policy sources if the rule's authority is unclear; machine contract when recording a waiver in JSON. | Whether a waiver is needed and its evidence, owner, approval status, and expiry. |
+| Decide the response format or assemble the final design | [livrables.md](references/livrables.md): §§1–3 | Read machine contract only when producing or checking the JSON deliverable. | Output proportional to the request and an honest decision status. |
+| Create/check architecture JSON or interpret validator results | [contrat-machine.md](references/contrat-machine.md): Structure and types, Checked rules | Read waivers for a declared exception; deliverables if output scope is unresolved. | Valid declarations and clearly stated limits of validation. |
+| Verify versions, support, SDKs, or framework capabilities | [sources-stacks.md](references/sources-stacks.md): relevant ecosystem | Consult the linked official documentation; revisit the stack choice if the evidence changes it. | Current supporting evidence or explicitly deferred verification. |
+| Resolve the origin, scope, or maintenance of a cross-cutting policy | [sources-doctrine.md](references/sources-doctrine.md): Priority local sources, Updates | Inspect the cited repository source; use waivers only after establishing the applicable rule. | Separate repository fact, proposed policy, and project decision. |
+
+When consulting DevOps, pass the established facts, selected profile, SLOs, and unresolved question. Use its relevant references without restarting clarification or repeatedly handing the same decision back between skills.
+
+Recommendations are proposed project rules, dated and subject to revision; source references support decisions, not evidence of a running deployment.
+
 ## Decision process
 
 ### 1. Clarify the need before choosing
@@ -42,7 +69,7 @@ Name one of two profiles in the document:
 | `strict-typescript` | Follow the course's TS/Bun default and Vite frontend. Another language in a frontend, API, or worker requires an approved waiver. The presentation mentions Rust for a measured hot spot. Other cases must still be submitted to the course authority, without inventing its approval. |
 | `platform-compatible` | The broader policy proposed here: choose a language justified by the need and team, while preserving SDI contracts. Python, Java, and Go are not exceptions by nature. Adapting builds, tests, images, and SDKs is mandatory. |
 
-The repository specifies TS/Bun by default but does not provide the entire CCoE policy. **Do not infer the instructor's approval of the broader profile from this skill's mere presence.** If the policy has not been specified, ask; provisionally analyze under the strict profile and present alternatives. An explicit answer or instruction already given is sufficient: do not add a second permission round.
+The repository specifies TS/Bun by default. [Elyes/CCOE-RULES.md](../../Elyes/CCOE-RULES.md) supplies local contributor rules for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; apply them within their stated scope. Their presence does not establish a complete instructor-approved language policy or permission to use the broader profile. **Do not infer the instructor's approval of that profile from either skill or contributor policy alone.** If the policy has not been specified, ask; provisionally analyze under the strict profile and present alternatives. An explicit answer or instruction already given is sufficient: do not add a second permission round.
 
 ### 3. Turn response-time requirements into a strategy
 
@@ -74,13 +101,13 @@ Provide a concrete directory tree suited to the chosen framework, the direction 
 
 ### 7. Connect only the services that are useful
 
-Read [platform contracts](references/plateforme.md). Associate each service with a need; mark others "not applicable" with a reason. Separate browser, API, worker, script, and operator flows. Do not consume OpenBao or PostgreSQL from the frontend, treat S3 as an external endpoint, use APISIX for LLM access, and use the application's API to proxy Umami.
+Read [platform contracts](references/plateforme.md) and use [service selection and DevOps choices](../devops_and_choice/SKILL.md) for explicit comparisons such as PostgreSQL versus Valkey and Streams versus Temporal. Associate each service with a need; mark others "not applicable" with a reason. Separate browser, API, worker, script, and operator flows. Do not consume OpenBao or PostgreSQL from the frontend, treat S3 as an external endpoint, use APISIX for LLM access, and use the application's API to proxy Umami.
 
 Plan provisioning without executing it merely because of this analysis. The supplied bootstrap creates a database and bucket by default: adapt it before using it for an application that does not need them. `onboard-app.sh` enables LLM + Temporal; it is not a universal minimal onboarding procedure.
 
 ### 8. Check quality attributes and deviations
 
-Read [quality and operations](references/qualite-exploitation.md), then [waivers](references/derogations.md) if a deviation exists. Keep the review proportional to actual risks: business authorization, data, API contracts, asynchronous processing, capacity, performance, tests, and operations. Copying the workshop Compose setup does not make an application production-ready.
+Read [quality and operations](references/qualite-exploitation.md), apply the [DevOps skill](../devops_and_choice/SKILL.md) for GitHub Actions, delivery, and runtime controls, then read [waivers](references/derogations.md) if a deviation exists. Distinguish isolated pull-request checks from explicitly triggered operations on the trusted workshop runner; an architecture review does not trigger either deployment or purge. Keep the review proportional to actual risks: business authorization, data, API contracts, asynchronous processing, capacity, performance, tests, and operations. Copying the workshop Compose setup does not make an application production-ready.
 
 For a waiver, specify the rule, scope, evidence, alternatives, owner, actual approval, expiry, and exit plan. Do not self-approve or accept an expired waiver. Do not block an alternative allowed by the chosen profile merely because it differs from the template.
 
@@ -96,20 +123,3 @@ python3 /path/to/skills/archi/scripts/validate_architecture.py \
 ```
 
 Replace the date with the review date in the user's context. Add `--repo /path/to/app` **after** creating the declared paths. Do not create empty directories to obtain a passing check. A valid result certifies only the script's declarative constraints, not actual code separation, SDK compatibility, a decision-maker's approval, or production readiness.
-
-## Navigation by need
-
-| Question | Read |
-|---|---|
-| Incomplete brief: which questions should be asked? | [clarification](references/cadrage.md) |
-| Maximum response time, p99, deadlines, sync versus jobs, or streaming? | [SLO-driven strategy](references/slo-strategy.md) |
-| Monolith, workers, microservices, SSR, offline? | [architectures](references/architectures.md) |
-| Python, Java, Go, TS: which framework? | [languages and frameworks](references/langages-frameworks.md), [sources](references/sources-stacks.md) |
-| Controllers/services and framework directory layouts? | [code structures](references/structures-code.md) |
-| ORM, SQL, migrations, transactions, RAG? | [data and ORM](references/donnees-orm.md) |
-| Services, ports, identity, secrets, onboarding? | [platform](references/plateforme.md) |
-| SLOs, tests, security, CI, costs, and operations? | [quality and operations](references/qualite-exploitation.md) |
-| Deviation, evidence, authority, expiry? | [waivers](references/derogations.md) |
-| Document format and automated validation? | [deliverables](references/livrables.md), [machine-readable contract](references/contrat-machine.md) |
-
-Recommendations are proposed project rules, dated and subject to revision. Local and external evidence for the cross-cutting policy is collected in [policy sources](references/sources-doctrine.md). Load only the references needed for the case at hand.

@@ -1,6 +1,6 @@
 # Policy sources and maintenance
 
-Documentation revision: **October 14, 2026**. The selection rules are a proposed synthesis for this project; sources establish capabilities, constraints, and points requiring attention, not the professor's approval.
+Foundation documentation revision: **October 14, 2026**; GitHub lifecycle references updated **October 21, 2026**. The selection rules are a proposed synthesis for this project; sources establish capabilities, constraints, and points requiring attention, not the professor's approval.
 
 ## Priority local sources
 
@@ -8,9 +8,11 @@ Documentation revision: **October 14, 2026**. The selection rules are a proposed
 |---|---|
 | Services, images, ports, networking, and dependencies | [td/core-platform/podman-compose.yml](../../../td/core-platform/podman-compose.yml) |
 | App contracts, technology neutrality, onboarding, and workshop limits | [Platform README](../../../td/core-platform/README.md) |
+| Local contributor policy for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; not a complete instructor-approved language policy | [Elyes/CCOE-RULES.md](../../../Elyes/CCOE-RULES.md) |
 | Three proposed components and backend variables | [App compose](../../../td/core-platform/templates/podman-compose.yml) |
 | DB/S3 bootstrap and LLM/Temporal/analytics options | [App bootstrap](../../../td/core-platform/templates/bootstrap.sh) |
-| Actions, gates, and canonical TS/Bun build, Rust through a waiver | [App pipeline](../../../td/core-platform/templates/gitlab-ci.yml) |
+| Isolated checks, trusted manual runtime actions, and canonical TS/Bun build | [GitHub app workflow](../../../td/core-platform/templates/github-actions.yml), [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh), [non-secret settings](../../../td/core-platform/templates/app.env.example) |
+| Platform start/stop/purge and runner boundaries | [Core workflow](../../../.github/workflows/core-platform.yml), [core lifecycle](../../../td/core-platform/lifecycle.sh), [hosted repository checks](../../../.github/workflows/checks.yml) |
 | p99 target, calculation, and absence of an automatic SLO gate | [p99.ts](../../../td/core-platform/templates/p99.ts) |
 | Expected app README sections, personas, and data register | [README.app.md](../../../td/core-platform/templates/README.app.md) |
 | OIDC and public/internal addresses | [onboard-oidc.sh](../../../td/core-platform/idp/onboard-oidc.sh) |
@@ -18,7 +20,7 @@ Documentation revision: **October 14, 2026**. The selection rules are a proposed
 | LLM routes, budgets, and noted limits | [OpenAI routes](../../../td/core-platform/apisix/routes.openai.yaml), [Anthropic routes](../../../td/core-platform/apisix/routes.anthropic.yaml), [seed](../../../td/core-platform/apisix/seed-and-deploy.sh) |
 | Resource efficiency, static before runtime, KISS, TS/Bun by default, targeted Rust, p99 | [Source presentation](../../../presentations/sdi-2026.src.html), especially slides 27–33 and 38–40 |
 
-The README declares the 8000–8999 range free for apps, but compose exposes OpenBao on 8200: the effective contract takes precedence to avoid a collision. The complete CCoE rules mentioned in the course are not present in this repository; do not claim to have read or fully reproduced them.
+The README declares the 8000–8999 range free for apps, but compose exposes OpenBao on 8200: the effective contract takes precedence to avoid a collision. The base platform README assigns CCoE rule authoring to the application teams. `Elyes/CCOE-RULES.md` now provides a local contributor policy with explicit data/service requirements and applicability conditions. Cite and apply those rules within their scope; do not describe them as absent. The repository does not by itself confirm that this file is the complete instructor-approved CCoE policy or that the instructor has approved broader language choices. Keep that distinction explicit when selecting a profile or recording a waiver.
 
 ## Primary technical sources consulted
 
@@ -36,6 +38,8 @@ The README declares the 8000–8999 range free for apps, but compose exposes Ope
 | [Google Cloud — inference metrics](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/machine-learning/inference#inference_performance_metrics), [Grafana k6 — load models](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/) | Streaming timing boundaries and offered workload behavior | Separate first output from final results; validate under a stated load model |
 
 Detailed framework recommendations have their own [source register](sources-stacks.md). The [code structure](structures-code.md), [data and ORM](donnees-orm.md), and [SLO strategy](slo-strategy.md) references cite their own official sources. Selection matrices are engineering synthesis, not vendor rankings or measured performance guarantees.
+
+GitHub-specific sources checked on **October 21, 2026**: [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) for triggers, permissions, environments, and job conditions; [self-hosted runners](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners) for operator-managed runtime environments. Manual default-branch delivery and separation from untrusted pull requests are the repository's chosen controls, not automatic properties of every GitHub workflow.
 
 ## Updates
 
