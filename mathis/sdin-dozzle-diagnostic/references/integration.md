@@ -1,11 +1,11 @@
 # Intégration Dozzle au socle SDIN
 
-Le [Compose partagé](../../../core-platform/podman-compose.yml) déclare
+Le [Compose partagé](../../../td/core-platform/podman-compose.yml) déclare
 `dozzle.internal`, une interface sur le port hôte `9999`, et monte le socket
 Podman du socle. L'app n'ajoute pas un Dozzle par composant et ne monte pas ce
 socket dans ses propres conteneurs.
 
-Les [templates applicatifs](../../../core-platform/templates/podman-compose.yml)
+Les [templates applicatifs](../../../td/core-platform/templates/podman-compose.yml)
 prévoient des logs sur stdout/stderr. Vérifier que les conteneurs de l'app sont
 visibles depuis le runtime consulté : un processus lancé sur l'hôte hors du
 runtime ne devient pas automatiquement visible dans Dozzle.
@@ -52,5 +52,5 @@ pas un redémarrage. Vérifier ensuite le niveau effectif et le débit des trace
 ## Sources
 
 - [Dozzle](https://dozzle.dev/guide/what-is-dozzle).
-- [Mesure p99 du socle](../../../core-platform/templates/p99.ts).
-- [Slides, slide 2 et notes](../../../../presentations/sdin-skills-services.html#slide-2).
+- [Mesure p99 du socle](../../../td/core-platform/templates/p99.ts).
+- Présentation d'origine : `sdin-skills-services.html`, slide 2 et notes (non incluse dans ce dépôt).

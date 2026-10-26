@@ -1,7 +1,8 @@
 # Skills d'utilisation des services SDIN
 
-Ces trois skills traduisent les [slides d'utilisation](../../presentations/sdin-skills-services.html)
-en instructions utilisables par un agent. Le service est déjà retenu : ces dossiers
+Ces trois skills traduisent les usages des services en instructions utilisables
+par un agent. La présentation d'origine, `sdin-skills-services.html`, n'est pas
+incluse dans ce dépôt. Le service est déjà retenu : ces dossiers
 cadrent son utilisation, sans intégrer l'arbitrage entre services.
 
 | Skill | Point d'entrée | Livrables principaux |
@@ -26,7 +27,7 @@ de l'app ; ils ne constituent pas des KPI imposés pour choisir une architecture
 
 Les dossiers sont versionnés dans le TD ; ils ne sont pas installés dans le profil
 global de l'agent. Pour les utiliser depuis ce dépôt, demander par exemple :
-« Applique le skill `td/skills/sdin-umami-instrumentation/SKILL.md` à mon app. »
+« Applique le skill `mathis/sdin-umami-instrumentation/SKILL.md` à mon app. »
 Une fois installé dans un emplacement reconnu par l'agent, son nom `$sdin-umami-instrumentation`
 permet également de l'invoquer.
 

@@ -2,7 +2,7 @@
 
 ## Interfaces et limites actuelles
 
-Le [Compose](../../../core-platform/podman-compose.yml) fournit Distribution
+Le [Compose](../../../td/core-platform/podman-compose.yml) fournit Distribution
 `registry:2`, le port Linux `5000` et le volume partagé `registry-data`.
 Dans l'environnement Mac préparé pour ce TD, le port `15000` est transféré vers
 le port `5000` de la VM. Vérifier le contexte et les transferts effectivement actifs.
@@ -18,10 +18,10 @@ registre du TD est local ; ne pas extrapoler une configuration de production.
 
 ## Pipeline existant
 
-Le [modèle CI](../../../core-platform/templates/gitlab-ci.yml) comporte build
+Le [modèle CI](../../../td/core-platform/templates/gitlab-ci.yml) comporte build
 explicite, construction/push Podman puis déploiement. Les images sont single-stage.
 Le tag `dev` du modèle et les références par tag du
-[Compose applicatif](../../../core-platform/templates/podman-compose.yml) ne
+[Compose applicatif](../../../td/core-platform/templates/podman-compose.yml) ne
 mettent pas déjà en œuvre une convention de release immuable par digest.
 
 Adapter la CI et les références de l'app lorsque demandé : version de build unique,
@@ -76,4 +76,4 @@ ou en lecture seule lorsqu'exigé. Une demande de livraison n'autorise pas ce ne
 - [API Registry V2](https://distribution.github.io/distribution/spec/api/).
 - [Publication Podman 5.7](https://docs.podman.io/en/v5.7.0/markdown/podman-push.1.html).
 - [Garbage collection](https://distribution.github.io/distribution/about/garbage-collection/).
-- [Slides, slide 3 et notes](../../../../presentations/sdin-skills-services.html#slide-3).
+- Présentation d'origine : `sdin-skills-services.html`, slide 3 et notes (non incluse dans ce dépôt).

@@ -2,9 +2,9 @@
 
 ## Interfaces à réutiliser
 
-Le [Compose](../../../core-platform/podman-compose.yml) déclare Umami 3.3.1.
+Le [Compose](../../../td/core-platform/podman-compose.yml) déclare Umami 3.3.1.
 Vérifier la version effective avant d'utiliser une option issue de documentation
-plus récente. Le [provisionnement existant](../../../core-platform/analytics/site-create.sh)
+plus récente. Le [provisionnement existant](../../../td/core-platform/analytics/site-create.sh)
 crée ou réutilise le site nommé exactement comme l'app, puis écrit sa configuration
 dans `secret/<app>/analytics`.
 
@@ -16,7 +16,7 @@ dans `secret/<app>/analytics`.
 | `collect_url` | `/api/v1/_a/send` côté navigateur |
 | `upstream` | `http://analytics.internal:3000` côté serveur |
 
-Le [bootstrap de l'app](../../../core-platform/templates/bootstrap.sh) appelle
+Le [bootstrap de l'app](../../../td/core-platform/templates/bootstrap.sh) appelle
 ce provisionnement lorsque `ANALYTICS_SITE=1`. Réutiliser cette voie dans une
 intégration autorisée ; ne pas créer de nouveau site à chaque démarrage.
 
@@ -59,4 +59,4 @@ par une boucle de réessai non bornée.
 
 - [Fonctions du tracker](https://docs.umami.is/docs/tracker-functions).
 - [Configuration du tracker](https://docs.umami.is/docs/tracker-configuration).
-- [Slides, slide 1 et notes](../../../../presentations/sdin-skills-services.html#slide-1).
+- Présentation d'origine : `sdin-skills-services.html`, slide 1 et notes (non incluse dans ce dépôt).
