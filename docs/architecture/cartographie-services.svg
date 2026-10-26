@@ -187,7 +187,7 @@
 <path d="M 678.0 1303 V 1320" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
 <path d="M 1228.0 1303 V 1320" fill="none" stroke="#936425" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-gold)"/>
 <g>
-<title>td/core-platform/podman-compose.yml:136-154 ; templates/gitlab-ci.yml ; templates/podman-compose.yml:62-89</title>
+<title>td/core-platform/podman-compose.yml (registry) ; templates/github-actions.yml ; templates/app-lifecycle.sh ; templates/podman-compose.yml</title>
 <rect x="420" y="1320" width="516" height="218" rx="18" fill="white" stroke="#D6DEDC" stroke-width="1.5"/>
 <rect x="420" y="1339" width="5" height="39" rx="2" fill="#936425" stroke="none" stroke-width="1.5"/>
 <text x="444" y="1363" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#16343F" text-anchor="start">Registry OCI</text>
