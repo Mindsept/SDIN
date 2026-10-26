@@ -94,7 +94,7 @@ _bao_resolve() {
 
   echo "[secrets] ✗ no secrets CLI answers on $BAO_ADDR." >&2
   echo "          Tried: ${candidates[*]}" >&2
-  echo "          Start the core (gitlab-ci-local --force-shell-executor), or set" >&2
+  echo "          Start the core (./lifecycle.sh start in core-platform/), or set" >&2
   echo "          BAO_CONTAINER / BAO_ADDR if your stack is not the default one." >&2
   return 1
 }

@@ -152,7 +152,7 @@ Exécuter les tests des assets sans secrets ni réseau externe :
 
 ```bash
 # Depuis la racine du dépôt ; Node >= 22.18 avec support TypeScript natif.
-node --test skills/apisix-llm/assets/llm-client.test.ts
+node --test leandro/apisix-llm/assets/llm-client.test.ts
 ```
 
 Les doubles HTTP vérifient les invariants du client, pas le comportement d'une

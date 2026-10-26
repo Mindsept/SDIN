@@ -2,7 +2,7 @@
 # preflight.sh — checks that the machine satisfies the prerequisites.
 #
 # It covers three levels:
-#   - Platform     : podman (rootless), podman compose, node 20, gitlab-ci-local,
+#   - Platform     : podman (rootless), podman compose, flock,
 #                    python3, openssl, the ports, docker.io access.
 #                    See requirements.md.
 #                    NOTE: no secrets/S3/Temporal CLI is required on the host —
@@ -21,6 +21,7 @@
 #   ./preflight.sh
 
 set -u
+case "${1:-}" in ""|--platform-only) ;; *) echo "Usage: preflight.sh [--platform-only]" >&2; exit 2 ;; esac
 cd "$(dirname "$0")"
 
 FAIL=0
@@ -67,28 +68,12 @@ else
 fi
 
 # ---------------------------------------------------------------------------
-# Node.js ≥ 20  (required by gitlab-ci-local)
-# ---------------------------------------------------------------------------
-section "Node.js ≥ 20"
-if v=$(node --version 2>/dev/null); then
-  major=$(echo "$v" | sed 's/^v//' | cut -d. -f1)
-  if [ "${major:-0}" -ge 20 ]; then
-    ok "node $v"
-  else
-    err "node $v — required: >= 20 (install through NodeSource, see requirements.md)"
-  fi
+# flock serializes core/app mutations, including across repositories.
+section "flock (util-linux)"
+if command -v flock >/dev/null 2>&1; then
+  ok "flock is installed"
 else
-  err "node is absent (see requirements.md → gitlab-ci-local)"
-fi
-
-# ---------------------------------------------------------------------------
-# gitlab-ci-local
-# ---------------------------------------------------------------------------
-section "gitlab-ci-local"
-if v=$(gitlab-ci-local --version 2>/dev/null); then
-  ok "gitlab-ci-local $v"
-else
-  err "gitlab-ci-local is absent (sudo npm i -g gitlab-ci-local)"
+  err "flock is absent (install util-linux)"
 fi
 
 # ---------------------------------------------------------------------------
@@ -163,6 +148,11 @@ case "$code" in
   *)     err "registry-1.docker.io answers HTTP $code (unexpected)" ;;
 esac
 
+if [ "${1:-}" = "--platform-only" ]; then
+  [ "$FAIL" = "0" ] && echo "Platform prerequisites satisfied."
+  exit "$FAIL"
+fi
+
 banner "App-builder — the prerequisites for building the application services"
 
 # ---------------------------------------------------------------------------
@@ -222,7 +212,7 @@ fi
 echo
 if [ "$FAIL" = "0" ]; then
   printf "\033[32m✓ Every prerequisite is satisfied\033[0m — ready for:\n"
-  echo "    gitlab-ci-local --force-shell-executor"
+  echo "    ./lifecycle.sh start"
   exit 0
 else
   printf "\033[31m✗ At least one prerequisite is missing\033[0m — see requirements.md\n"

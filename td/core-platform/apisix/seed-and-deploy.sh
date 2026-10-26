@@ -4,7 +4,7 @@
 # secrets in the environment. The store is the SOURCE OF TRUTH; nothing in the
 # clear in the repository.
 #
-# Idempotent. Called by core-platform/.gitlab-ci.yml (the seed-llm-gateway job),
+# Idempotent. Called by core-platform/lifecycle.sh (gateway initialization),
 # also usable by hand:  ./apisix/seed-and-deploy.sh
 #
 # ═══ A SWITCHABLE PROVIDER ════════════════════════════════════

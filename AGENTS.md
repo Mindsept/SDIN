@@ -42,7 +42,7 @@ La [cartographie](docs/architecture/index.html) et la
 [présentation](presentations/sdi-2026.src.html) apportent le contexte.
 
 Distinguer proposition, inspection, contrôle local et test sur la plateforme.
-Vérifier l'existence des scripts cités avant exécution : les références GitHub
-Actions/lifecycle des skills transverses ne correspondent pas encore toutes à
-des fichiers livrés. Lire le cycle de vie réel dans le README du socle.
+Pour la CI et le cycle de vie, suivre le [guide GitHub](docs/github-migration.md)
+et les scripts réels du socle ou de l'application. Les contrôles sur push/MR
+sont isolés des opérations manuelles sur la plateforme partagée.
 Une demande d'analyse seule ne déclenche pas de provisioning ou de déploiement.

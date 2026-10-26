@@ -2,7 +2,7 @@
 # idp/seed-and-deploy.sh — provisions the identity provider (Casdoor) and
 # (re)starts its container with the secrets in the environment.
 #
-# Idempotent. Called by core-platform/.gitlab-ci.yml (the seed-idp job), also
+# Idempotent. Called by core-platform/lifecycle.sh (identity initialization), also
 # usable by hand:  ./idp/seed-and-deploy.sh
 #
 # ═══ WHAT IT DOES ═══════════════════════════════════════════════════════════

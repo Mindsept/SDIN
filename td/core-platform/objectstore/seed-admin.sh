@@ -2,7 +2,7 @@
 # objectstore/seed-admin.sh — closes the object store and publishes the platform
 # admin credentials into the secret store.
 #
-# Idempotent. Called by core-platform/.gitlab-ci.yml (the seed-object-store job),
+# Idempotent. Called by core-platform/lifecycle.sh (objectstore initialization),
 # also usable by hand:  ./objectstore/seed-admin.sh
 #
 # ═══ WHAT IT DOES, AND WHY IT MATTERS ══════════════════════════════════════

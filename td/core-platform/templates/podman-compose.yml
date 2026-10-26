@@ -6,27 +6,11 @@
 # the platform README.
 #
 # A CCoE-conformant structure (stack + repo structure):
-# the 3 canonical services `frontend` (TS+Vite) / `api` (TS+Bun) / `worker` (TS+Bun).
-# Remove the unused services. The ports come from the app's range, set in
-# `.gitlab-ci.yml` (FRONTEND_PORT / API_PORT / WORKER_HEALTH_PORT — see the
-# ports convention in README.md: 10 contiguous ports per app, canonical offsets);
-# the defaults below only serve a standalone `podman compose up`.
-#
-# ─────────────────────────────────────────────────────────────────────────
-# The single source of truth: the `APP` variable (on the `.gitlab-ci.yml` side).
-#
-# This file interpolates `${APP}` from the shell env. **DO NOT rename**
-# `${APP}` on copying — leave it as it is, only edit the line
-# `APP: myapp` in `.gitlab-ci.yml`.
-#
-# The pipeline:
-#   `.gitlab-ci.yml` defines `variables: APP: <app-name>`; gitlab-ci-local
-#   exports that variable into each job's shell env → the `${APP}` below is
-#   interpolated automatically by podman-compose.
-#
-# Standalone (with no CI):
-#   APP=myapp podman compose -p "$APP" up -d     # ports: the 8000-8009 defaults
-# ─────────────────────────────────────────────────────────────────────────
+# the canonical frontend / API / worker roles. Remove unused components and keep
+# SERVICES in app.env aligned with this file. app-lifecycle.sh exports app.env
+# settings; local and GitHub runs use the same values. Ports occupy one block
+# of ten within 8000–8999, excluding 8200–8209 (OpenBao).
+# APP is defined once in app.env; TAG comes from the Git commit or an override.
 
 name: ${APP}
 
@@ -60,7 +44,7 @@ x-common-env: &common-env
 services:
 
   frontend:
-    image: localhost:5000/${APP}/frontend:${TAG:-dev}
+    image: ${REGISTRY:-localhost:5000}/${APP}/frontend:${TAG:-dev}
     container_name: ${APP}-frontend
     restart: unless-stopped
     networks: [core-network]
@@ -68,7 +52,7 @@ services:
       - "${FRONTEND_PORT:-8000}:80"   # +0 — nginx:alpine serves on :80
 
   api:
-    image: localhost:5000/${APP}/api:${TAG:-dev}
+    image: ${REGISTRY:-localhost:5000}/${APP}/api:${TAG:-dev}
     container_name: ${APP}-api
     restart: unless-stopped
     networks: [core-network]
@@ -78,7 +62,7 @@ services:
     # Logs: everything on stdout/stderr — Dozzle aggregates them automatically.
 
   worker:
-    image: localhost:5000/${APP}/worker:${TAG:-dev}
+    image: ${REGISTRY:-localhost:5000}/${APP}/worker:${TAG:-dev}
     container_name: ${APP}-worker
     restart: unless-stopped
     networks: [core-network]

@@ -68,7 +68,9 @@ Les instructions, scripts du socle, templates et contrôles locaux sont présent
 Un scénario décrit ou un fichier de configuration ne prouve pas qu'un test
 d'intégration ou un déploiement a réussi.
 
-Le cycle de vie livré utilise [gitlab-ci-local](td/core-platform/README.md#the-lifecycle).
-Le dépôt ne contient actuellement aucun workflow GitHub Actions. Certaines
-références des skills transverses décrivent encore des fichiers GitHub/lifecycle
-absents : vérifier leur existence avant de suivre ces procédures.
+Le cycle de vie utilise les mêmes scripts locaux et GitHub Actions :
+[contrôles du dépôt](.github/workflows/checks.yml),
+[opérations manuelles du socle](.github/workflows/core-platform.yml),
+[modèle applicatif](td/core-platform/templates/github-actions.yml).
+Le [guide de migration et de configuration](docs/github-migration.md) précise
+les équivalences avec les anciens pipelines et les réglages GitHub à effectuer.
