@@ -49,16 +49,16 @@ Read [the machine-readable contract](contrat-machine.md) and adapt [the example]
 
 ```bash
 # From this repository's root; replace the date with the review date.
-python3 -B skills/archi/scripts/validate_architecture.py \
+python3 -B Skills/archi/scripts/validate_architecture.py \
   /path/to/app/docs/architecture/architecture.json --as-of YYYY-MM-DD
 
 # Once the implementation and its paths exist:
-python3 -B skills/archi/scripts/validate_architecture.py \
+python3 -B Skills/archi/scripts/validate_architecture.py \
   /path/to/app/docs/architecture/architecture.json \
   --as-of YYYY-MM-DD --repo /path/to/app
 
 # Check the validator when modifying the skill:
-python3 -B -m unittest discover -s skills/archi/scripts -p 'test_*.py'
+python3 -B -m unittest discover -s Skills/archi/scripts -p 'test_*.py'
 ```
 
 `--repo` must not point to the platform by default: it identifies the application whose paths are being checked. A hypothetical example must not pass this check without real files. The script is read-only and runs neither application code, builds, nor containers.
