@@ -2,7 +2,7 @@
 # temporal/seed-namespaces.sh — waits for the Temporal cluster and guarantees the
 # `default` namespace exists.
 #
-# Idempotent. Called by core-platform/.gitlab-ci.yml (the seed-temporal job).
+# Idempotent. Called by core-platform/lifecycle.sh (Temporal initialization).
 #
 # ═══ THE PLATFORM CREATES NO APP NAMESPACE ═════════════════════════════════
 # One namespace per app is the isolation contract: task

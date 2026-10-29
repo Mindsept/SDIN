@@ -59,4 +59,4 @@ par une boucle de réessai non bornée.
 
 - [Fonctions du tracker](https://docs.umami.is/docs/tracker-functions).
 - [Configuration du tracker](https://docs.umami.is/docs/tracker-configuration).
-- [Slides, slide 1 et notes](../../../presentations/sdin-skills-services.html#slide-1).
+- Présentation d'origine : `sdin-skills-services.html`, slide 1 et notes (non incluse dans ce dépôt).

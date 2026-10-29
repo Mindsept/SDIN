@@ -1,0 +1,64 @@
+# Copy to .github/workflows/app.yml in the consuming application.
+name: Application
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Application action
+        type: choice
+        options: [start, stop, purge]
+        default: start
+        required: true
+      confirm_purge:
+        description: For purge only, enter the APP name
+        type: string
+        default: ''
+permissions:
+  contents: read
+jobs:
+  checks:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: app-checks-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Read the exact Bun version from nonsecret app settings
+        id: tooling
+        run: |
+          version=$(sed -n 's/^BUN_VERSION=\([0-9][0-9.]*\)$/\1/p' app.env)
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: ${{ steps.tooling.outputs.version }}
+      - name: Isolated checks (no platform credentials or provisioning)
+        run: ./app-lifecycle.sh check
+  lifecycle:
+    if: github.event_name == 'workflow_dispatch' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: [self-hosted, linux, sdi-workshop]
+    environment: sdi-workshop
+    timeout-minutes: 30
+    concurrency:
+      group: sdi-platform
+      cancel-in-progress: false
+    steps:
+      # A trusted persistent operations checkout, never used by untrusted PR jobs.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          clean: false
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Run the same local lifecycle on the platform host
+        env:
+          ACTION: ${{ inputs.action }}
+          CONFIRM_PURGE: ${{ inputs.confirm_purge }}
+          TAG: ${{ github.sha }}
+        run: ./app-lifecycle.sh "$ACTION"

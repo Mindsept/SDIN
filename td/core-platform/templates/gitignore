@@ -10,8 +10,7 @@ build/
 target/
 **/*.rs.bk
 
-# The gitlab-ci-local runtime cache (per-job generated scripts)
-.gitlab-ci-local/
+# Release manifests live outside the checkout under $SDI_STATE_DIR.
 
 # Local logs
 *.log

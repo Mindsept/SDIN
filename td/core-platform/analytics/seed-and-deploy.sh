@@ -2,7 +2,7 @@
 # analytics/seed-and-deploy.sh — provisions the product-analytics service
 # (Umami) and (re)starts its container with the secrets in the environment.
 #
-# Idempotent. Called by core-platform/.gitlab-ci.yml (the seed-analytics job),
+# Idempotent. Called by core-platform/lifecycle.sh (analytics initialization),
 # also usable by hand:  ./analytics/seed-and-deploy.sh
 #
 # ═══ WHAT IT DOES ═══════════════════════════════════════════════════════════

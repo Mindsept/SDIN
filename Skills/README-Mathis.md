@@ -1,7 +1,8 @@
 # Skills d'utilisation des services SDIN
 
-Ces trois skills traduisent les [slides d'utilisation](../presentations/sdin-skills-services.html)
-en instructions utilisables par un agent. Le service est déjà retenu : ces dossiers
+Ces trois skills traduisent les usages des services en instructions utilisables
+par un agent. La présentation d'origine, `sdin-skills-services.html`, n'est pas
+incluse dans ce dépôt. Le service est déjà retenu : ces dossiers
 cadrent son utilisation, sans intégrer l'arbitrage entre services.
 
 | Skill | Point d'entrée | Livrables principaux |

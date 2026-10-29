@@ -7,10 +7,50 @@
 <!-- What, for whom, the scope — 3 lines. No marketing pitch. -->
 
 ## Getting started
-<!-- bootstrap, seed, the end-to-end demo:
-chmod +x bootstrap.sh && APP=<app-name> ./bootstrap.sh
-gitlab-ci-local --force-shell-executor        # ACTION=start|stop|purge
-bun run seed && bun run demo -->
+Copy and adapt the complete scaffold from SDIN:
+
+- `templates/github-actions.yml` → `.github/workflows/app.yml`
+- `templates/app-lifecycle.sh` → `app-lifecycle.sh`
+- `templates/app.env.example` → `app.env` (nonsecret, reviewed shell settings)
+- `templates/bootstrap.sh`, `templates/podman-compose.yml` and `templates/gitignore`
+- `ci/install-gitleaks.sh` → `ci/install-gitleaks.sh`
+- `templates/biome.json` → `biome.json`; selected component sources/Dockerfiles,
+  frontend nginx configuration and the appropriate platform libraries/assets.
+
+Use only selected components; align `SERVICES` and Compose. Declare exact Bun
+version in app.env. A root package.json with a pinned lint tool and `lint` script,
+plus committed lockfiles, is required. Every retained component declares
+`typecheck` and `test:unit`; frontend also declares `build`. Selected backends in
+`INTEGRATION_SERVICES` declare real `test:integration` against their app-scoped
+resources. Add optional migration script via `MIGRATE_SCRIPT`. These files are
+scaffolding, not a runnable application with placeholder tests.
+
+```bash
+chmod +x app-lifecycle.sh bootstrap.sh ci/install-gitleaks.sh
+./app-lifecycle.sh check       # isolated checks, no provisioning
+./app-lifecycle.sh start       # checks, provisioning, integration, images, start, readiness
+./app-lifecycle.sh stop        # keep data and secrets
+CONFIRM_PURGE=<app-name> ./app-lifecycle.sh purge
+```
+
+Set `PROVISION=0` only for already provisioned resources. The existing bootstrap
+creates PostgreSQL and S3 by default; adapt the copied app bootstrap when those
+services are not selected. Set `CORE_PLATFORM` if optional provisioning helpers
+need the platform checkout. App environment values are exported for bootstrap
+and Compose; never commit credentials in app.env. The runtime runner needs the
+exact BUN_VERSION, Podman rootless/Compose, flock and access to the existing core.
+GitHub-hosted PR checks do not deploy or access that core. Runtime actions are
+manual on the default branch and require configured trusted runner access and
+environment protections. Registry defaults to localhost:5000; publication and
+Compose share REGISTRY. GitHub uses its commit SHA as TAG; local start uses the
+Git commit unless TAG is explicitly supplied. Pushed digests/references are
+recorded under `$SDI_STATE_DIR/releases/<app>/<tag>`; tags alone are not immutable.
+A release record before failed readiness is not proof of a healthy deployment.
+
+Purge removes app runtime volumes and the listed APP_SECRETS, preserving the
+PostgreSQL database, S3 bucket and issued service credentials. It does not revoke
+those credentials or delete business data. No automatic rollback is supplied;
+record a compatible prior release and its recovery procedure below.
 
 ## Design vocabulary
 <!-- The core theme (the default) or a justified choice. The

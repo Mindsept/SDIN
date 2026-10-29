@@ -53,4 +53,4 @@ pas un redémarrage. Vérifier ensuite le niveau effectif et le débit des trace
 
 - [Dozzle](https://dozzle.dev/guide/what-is-dozzle).
 - [Mesure p99 du socle](../../../td/core-platform/templates/p99.ts).
-- [Slides, slide 2 et notes](../../../presentations/sdin-skills-services.html#slide-2).
+- Présentation d'origine : `sdin-skills-services.html`, slide 2 et notes (non incluse dans ce dépôt).

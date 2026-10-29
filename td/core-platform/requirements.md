@@ -1,6 +1,6 @@
 # Prerequisites — the Core Platform
 
-The strict minimum to install **before** running the `.gitlab-ci.yml` pipeline.
+The strict minimum to install **before** running `./lifecycle.sh start`.
 All the host configuration (the Podman socket, registries.conf, the network, …)
 is taken care of by the pipeline itself.
 
@@ -10,7 +10,7 @@ is taken care of by the pipeline itself.
 > ```
 > The script modifies nothing — it read-only checks the prerequisites below (plus the Bun app-builder toolchain)
 > and exits with an error if a prerequisite is missing. To be used before the very first
-> `gitlab-ci-local`.
+> `./lifecycle.sh start`.
 
 ## Required
 
@@ -54,31 +54,15 @@ sudo dnf install -y podman-compose      # RHEL/Fedora
 pip3 install --user podman-compose      # universal fallback
 ```
 
-### gitlab-ci-local (serverless execution of the pipeline)
+### flock (util-linux)
 
-[`gitlab-ci-local`](https://github.com/firecow/gitlab-ci-local) runs a
-`.gitlab-ci.yml` **with no GitLab Runner and no GitLab server** — just the
-file and a CLI binary.
-
-Installation (**Node.js ≥ 20 required** — the recent versions of
-`gitlab-ci-local` depend on packages that require Node 20):
+The lifecycle scripts serialize mutations of the shared host with one lock at
+`$SDI_STATE_DIR/lifecycle.lock` (default `$HOME/.local/state/sdi`). Install
+`util-linux` on Linux/WSL2. All app/core invocations must use the same rootless
+user and state directory. No GitLab server, runner or gitlab-ci-local is needed.
 
 ```bash
-# Check the Node version
-node --version    # has to be >= v20
-
-# If Node < 20 (Ubuntu 24.04 ships Node 18 by default) — install through NodeSource:
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
-
-# Install gitlab-ci-local (sudo, because it is a global install)
-sudo npm i -g gitlab-ci-local
-```
-
-The check:
-
-```bash
-gitlab-ci-local --version    # short alias: gcl --version
+flock --version
 ```
 
 ### python3 + openssl (seeding the LLM gateway, generating credentials)
@@ -176,3 +160,17 @@ the first `podman pull`.
 
 An executable implementation of every check in this document. Exit 0 if all is
 OK, 1 otherwise with the list of the missing items.
+
+## GitHub execution environments
+
+Repository checks run on isolated Ubuntu GitHub-hosted runners, with Python
+3.12.12 and Node 24.10.0 provisioned by the workflow. Workflow linting uses
+versioned actionlint through Go. They need neither Podman nor platform secrets.
+
+Manual runtime workflows require an already configured Linux runner labelled
+`self-hosted`, `linux`, `sdi-workshop`, running as the owner of the workshop's
+rootless Podman instance. Verify installed Podman/Compose, curl, python3,
+openssl, flock, the Podman user session and any selected app toolchain before
+registering it. Use `./preflight.sh --platform-only` for the core alone.
+GitHub labels and YAML do not configure runner access or environment protection;
+follow [the migration/setup guide](../../docs/github-migration.md).

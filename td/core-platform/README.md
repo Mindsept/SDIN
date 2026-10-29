@@ -27,7 +27,7 @@ by leaning on the services exposed here. No script in this folder names an app.
 | Object storage | S3 modelled as an external service, 1 bucket + 1 scoped key per app |
 | Durable orchestration | Temporal, 1 namespace per app |
 | Identity | Casdoor (OIDC), 1 self-service client per app |
-| Pipelines | `gitlab-ci-local` serverless, variable `ACTION` |
+| Pipelines | GitHub Actions plus local lifecycle scripts (`start`, `stop`, `purge`) |
 | Health checks | `/health` liveness + `/ready` readiness |
 | Graceful shutdown | SIGTERM, drain, exit < 10 s |
 | Airgap | A dedicated upstream container for external upstream flows |
@@ -84,7 +84,8 @@ Kept as they are, already fully open source: PostgreSQL, APISIX (ASF), the
 
 ## The ports convention
 
-The platform keeps **out of `8000-8999`**: that range belongs to the apps. Each
+The application range is **8000–8999, excluding 8200–8209** because OpenBao
+already exposes 8200. Each
 app takes **one block of 10 contiguous ports** (`8000-8009`, `8010-8019`, …) and
 places its services at **canonical offsets**, so that anyone can guess where an
 app's API answers without reading its compose:
@@ -96,7 +97,7 @@ app's API answers without reading its compose:
 | +8 | the worker's `/health` + `/ready` | `WORKER_HEALTH_PORT` |
 
 The other offsets are free for the app's own needs. The block is set **once**, in
-the `variables:` of the app's `.gitlab-ci.yml` (`templates/gitlab-ci.yml`); the
+the app's `app.env` (`templates/app.env.example`); the
 app's `podman-compose.yml` reads it through `${…}`. Two apps on the same
 workstation = two different blocks.
 
@@ -122,7 +123,7 @@ See [`requirements.md`](./requirements.md) — the essentials:
 
 - **Podman** ≥ 4 (Windows through WSL2 **or** native Linux, as you prefer)
 - `podman compose` (a docker-compose v3 compatible extension)
-- **`gitlab-ci-local`** to run the pipeline in serverless mode (Node ≥ 20)
+- **`flock`** (util-linux) to serialize local and GitHub lifecycle operations
 - `python3` (the LLM gateway's seeding) and `openssl`
 
 **No secrets / S3 / Temporal CLI is required on the host.** Every platform
@@ -147,46 +148,32 @@ exits with an error if an item is missing. The installation doc:
 
 ## The lifecycle
 
-The GitLab CI pipeline ([`.gitlab-ci.yml`](./.gitlab-ci.yml)) covers the
-platform's **3 lifecycle actions** through an `ACTION` variable
-(the default: `start`):
+[`lifecycle.sh`](./lifecycle.sh) is the common entry point for local execution
+and the manual [GitHub workflow](../../.github/workflows/core-platform.yml).
+It preserves the former GitLab pipeline's actions on the same rootless host.
 
-| Action | Command | Effect |
+| Action | Local command | Effect |
 |---|---|---|
-| **start** (the default) | `gitlab-ci-local --force-shell-executor` | Configures the host, creates the network, removes the legacy containers, starts the containers, seeds S3/Temporal/IdP/LLM gateway/analytics, checks the health |
-| **stop** | `gitlab-ci-local --force-shell-executor --variable ACTION=stop` | Stops the containers, **keeps the volumes and the network** (a hot restart is possible) |
-| **purge** | `gitlab-ci-local --force-shell-executor --variable ACTION=purge` | Destroys everything: the containers + the volumes + the network (a fresh state) |
+| start | `./lifecycle.sh start` | Checks prerequisites, prepares the host/network, removes named legacy containers, starts the core, seeds and verifies services |
+| stop | `./lifecycle.sh stop` | Prepares the host and stops core containers; retains volumes and network |
+| purge | `CONFIRM_PURGE=core ./lifecycle.sh purge` | Removes core containers, shared volumes, named legacy resources and the core network |
+| check | `./lifecycle.sh check` | Checks shell syntax without accessing the platform |
 
-The pipeline is run **with no GitLab Runner and no GitLab server** thanks to
-`gitlab-ci-local`. The `--force-shell-executor` flag runs the jobs in the host's
-shell (and not in job containers) so that they have access to the user's
-rootless Podman.
+Start runs the existing helpers in dependency order: objectstore → Temporal →
+identity provider → LLM gateway → analytics → readiness. Identity and analytics
+initialization never run concurrently. The gateway's unauthenticated request
+must return 401; otherwise verification fails. Each HTTP check has a timeout.
+The API-provider configuration and seeding behavior remain in the existing helpers.
 
-### The pipeline's structure
+A shared host lock serializes core and app mutations, even across repositories.
+A failed operation reports failure and preserves the state for investigation;
+it does not claim an automatic rollback. Core purge is destructive for all apps.
 
-| Stage | Job | When | Role |
-|---|---|---|---|
-| `prepare` | `prepare-host` | **always** (no `rules:`) | The user's Podman socket + the `insecure = true` exception for HTTP registries |
-| `core-platform-start` | `prepare-network` | `ACTION=start` | Creates the `core-network` network |
-| `core-platform-start` | `migrate-legacy-services` | `ACTION=start` | Removes the pre-swap `redis.internal` / `vault.internal` / `minio` containers |
-| `core-platform-start` | `compose-up` | `ACTION=start` | `podman compose -p core up -d` |
-| `core-platform-start` | `seed-object-store` | `ACTION=start` (needs `compose-up`) | Creates the `platform-admin` S3 identity — **a security step**: SeaweedFS serves everything anonymously until the first identity exists |
-| `core-platform-start` | `seed-temporal` | `ACTION=start` (needs `compose-up`) | Waits for the cluster, guarantees the `default` namespace |
-| `core-platform-start` | `seed-idp` | `ACTION=start` (needs `compose-up`) | Rotates the seed admin, mints the bootstrap client, publishes the secrets, recreates the IdP container |
-| `core-platform-start` | `seed-llm-gateway` | `ACTION=start` (needs `compose-up`) | Generates `apisix.yaml` from the store (the consumers + the per-app budgets) — tolerates an empty store (0 consumers, the apps publish their vkey self-service) |
-| `core-platform-start` | `seed-analytics` | `ACTION=start` (needs `compose-up` + `seed-idp` — both restart Postgres under podman-compose 1.0.x) | Creates the Umami DB, publishes `secret/core/analytics`, rotates the shipped `admin/umami` password, caches an API token — until it runs, port 9400 is an open admin |
-| `core-platform-start` | `verify` | `ACTION=start` (needs the 5 seeds) | Polls the healthchecks + prints the endpoints |
-| `core-platform-stop` | `stop` | `ACTION=stop` | `podman compose -p core down` (keeps the volumes/network) |
-| `core-platform-purge` | `purge` | `ACTION=purge` | `podman compose down --volumes` + the legacy leftovers + removing the network |
-
-`prepare-host` is deliberately without `rules:` and therefore runs
-systematically — it guarantees the host is in the right state whatever the
-action requested. The other jobs are **strict** on the value of `ACTION`; they
-only fire for their own mode.
-
-That pattern (an action variable + strict `rules`) is exactly the one the
-business apps take up in their own `.gitlab-ci.yml` (a template ready to copy
-in `templates/gitlab-ci.yml`).
+GitHub push/PR [checks](../../.github/workflows/checks.yml) use isolated hosted
+runners and do not start this platform. Runtime operations are manual, restricted
+to the default branch, and require a trusted Linux runner and the `sdi-workshop`
+environment. Their configuration must be verified outside Git; see the
+[migration guide](../../docs/github-migration.md).
 
 ## The files in this folder
 
@@ -197,7 +184,7 @@ in `templates/gitlab-ci.yml`).
 | [`preflight.sh`](./preflight.sh) | A read-only check of the prerequisites |
 | [`onboard-app.sh`](./onboard-app.sh) | **Generic** app onboarding: `./onboard-app.sh <app>` — the vkey, the budget, the LLM config, the Temporal namespace, a gateway re-seed. Idempotent, names no app |
 | [`audit-trail.sh`](./audit-trail.sh) | Reports on the audit device and reads the trail (one readable line per access; `--raw` for the JSONL) |
-| [`.gitlab-ci.yml`](./.gitlab-ci.yml) | Pipeline start / stop / purge |
+| [`lifecycle.sh`](./lifecycle.sh) | Local/GitHub start, stop, confirmed purge and syntax checks |
 | [`podman-compose.yml`](./podman-compose.yml) | The definition of the 11 services |
 | [`lib/`](./lib/) | The host-independent access layers: `secrets.sh` (bao), `objectstore.sh` (S3), `temporal.sh` (the `temporal` CLI, `tctl` wrapper). Sourced by every script here; the apps' `bootstrap.sh` copies the `secrets.sh` resolver verbatim and re-implements the S3/Temporal helpers |
 | [`apisix/`](./apisix/) | The `llm.internal` LLM gateway: `config.yaml` (standalone), `routes.openai.yaml` + `routes.anthropic.yaml` (the per-provider routes/aliases — committed), `seed-and-deploy.sh` (picks the variant according to `LLM_PROVIDER`, generates the consumers from the store → the runtime `apisix.yaml`, gitignored) |
@@ -246,7 +233,7 @@ CCoE rules to decide:
 | `biome.json` | Biome lint + format (a single config, zero debate) |
 | `README.app.md` | A canonical app README skeleton — the 14 sections |
 | `p99.ts` | A p99 latency measurement helper, app-side |
-| `bootstrap.sh` · `gitlab-ci.yml` · `podman-compose.yml` · `gitignore` | The app lifecycle scaffolds: provisioning, pipeline, compose, exclusions |
+| `bootstrap.sh` · `github-actions.yml` · `app-lifecycle.sh` · `app.env.example` · `podman-compose.yml` · `gitignore` | The app lifecycle scaffolds: provisioning, pipeline, compose, exclusions |
 
 ## The object store
 
@@ -490,4 +477,4 @@ store is not an audit log.
 - APISIX is **standalone single-node**, with a token budget per sliding window
   (no persistent cumulative quota) — a workshop, not production
 - No internal TLS between the services (a workshop, not production)
-- No `gitlab-ci-local` pipeline cache between runs
+- No cross-run dependency cache is configured by default
