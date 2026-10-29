@@ -16,7 +16,7 @@ Tous les skills sont regroupés dans [`Skills/`](Skills/). Chaque skill garde so
 
 ## Autres ressources
 
-- [`Elyes/`](Elyes/) : règles locales CCOE et matrice d'audit.
+- [Règles CCOE](Skills/CCOE-RULES.md) et [matrice d'audit](Skills/audit-matrix.yml).
 - [`td/core-platform/`](td/core-platform/) : scripts et contrats de la plateforme.
 - [`docs/`](docs/) : documentation d'architecture.
 - [`presentations/`](presentations/) : supports de présentation.

@@ -17,3 +17,5 @@ Les deux derniers étaient dans le dossier commun `skills/`, sans attribution no
 Pour le catalogue principal et les autres ressources, voir le [README du dépôt](../README.md).
 
 Le [guide des contributions de Mathis](README-Mathis.md) conserve les instructions, le contexte et les précautions du README d’origine.
+
+Les [règles CCOE](CCOE-RULES.md), la [matrice d’audit](audit-matrix.yml) et le [guide des contributions d’Elyes](README-Elyes.md) sont également regroupés ici.
