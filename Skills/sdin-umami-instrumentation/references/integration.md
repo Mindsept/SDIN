@@ -17,8 +17,10 @@ dans `secret/<app>/analytics`.
 | `upstream` | `http://analytics.internal:3000` côté serveur |
 
 Le [bootstrap de l'app](../../../td/core-platform/templates/bootstrap.sh) appelle
-ce provisionnement lorsque `ANALYTICS_SITE=1`. Réutiliser cette voie dans une
-intégration autorisée ; ne pas créer de nouveau site à chaque démarrage.
+ce provisionnement lorsque `ANALYTICS_SITE=1`, mais son chemin normal crée aussi
+DB/S3. Pour ajouter seulement l'analytics à une app existante, préférer le helper
+de site ciblé dans le provisioning autorisé ; ne pas créer des ressources inutiles
+ni un nouveau site à chaque démarrage. Vérifier les arguments du helper local.
 
 ## Proxy et tracker
 

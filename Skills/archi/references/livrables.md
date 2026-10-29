@@ -5,15 +5,15 @@
 | Request | Deliverable |
 |---|---|
 | "Django or FastAPI for this need?" | Short applied comparison: conditions that favor the selected option, why the alternative loses, relevant SLO consequence, evidence needed, and what would reverse the choice; no repository generation |
-| Complete new architecture | Markdown decision document + JSON contract + proposed directory tree + validation plan + any waivers |
+| Complete new architecture | Decision in existing app docs, concrete boundaries and validation plan; JSON only if requested, required or consumed by tooling; waiver only for a real deviation |
 | Application review | Findings sourced by file/line, severity and impact, declared versus actual deviations, priority fixes; no automatic rewrite |
 | Migration | Migration ADR, compatible steps, evidence/baseline, rollback, and condition for removing the old path |
 
-For a complete new design, use the application's established architecture directory. Otherwise use `docs/architecture/decision.md`, `docs/architecture/architecture.json`, and `docs/adr/` for decisions that warrant a history. Do not overwrite an existing document or move documentation without a need. The diagrams already present in this repository are not an architecture decision document for a future application.
+Use the app's existing documentation. A small app may keep its decision in the README; use `docs/architecture/decision.md` or `docs/adr/` only when detail/history warrants it. Create `architecture.json` only for an actual requested or automated consumer. Do not duplicate a decision across documents or create empty artifacts for coverage. Repository diagrams do not describe a future app by themselves.
 
 ## 2. Minimum document contents
 
-Use [the decision template](../assets/decision-architecture.md), then remove irrelevant sections **with a justified N/A entry in the matrix**, without inventing features to fill an outline.
+For a substantial design, adapt [the decision template](../assets/decision-architecture.md). The following topics are a checklist, not twelve mandatory sections for every app. Omit irrelevant sections, group unused services in the concise use table, and never invent features to fill an outline. A narrow choice does not need this document.
 
 1. Product, users, user flows, and exclusions.
 2. Provenance: brief, code, platform files, and technical documentation; policy profile and context.
@@ -45,7 +45,7 @@ Do not confuse "not tested" with "compliant." Documentary validation, a simulate
 
 ## 4. JSON contract and commands
 
-Read [the machine-readable contract](contrat-machine.md) and adapt [the example](../assets/architecture.example.json). The schema rejects unknown fields: keep details outside the schema in the human-readable document. Record SLO requirements in `requirements.constraints`, provisional targets in `assumptions`, unresolved questions in `unknowns`, and their consequences in architecture/component rationales. Do not add an unsupported `slo` key or misuse `framework`, `platform_services`, or `waivers` to hide an unmodeled extension.
+When a JSON deliverable is actually needed, read [the machine-readable contract](contrat-machine.md) and adapt [the example](../assets/architecture.example.json). The schema rejects unknown fields: keep details outside the schema in the human-readable document. Record SLO requirements in `requirements.constraints`, provisional targets in `assumptions`, unresolved questions in `unknowns`, and their consequences in architecture/component rationales. Do not add an unsupported `slo` key or misuse `framework`, `platform_services`, or `waivers` to hide an unmodeled extension.
 
 ```bash
 # From this repository's root; replace the date with the review date.

@@ -1,5 +1,16 @@
 # Validation Umami
 
+Pour l'adaptateur fourni, exécuter depuis la racine du dépôt :
+
+```sh
+node --test Skills/sdin-umami-instrumentation/assets/track-event.test.mjs
+```
+
+Ces tests vérifient normalisation, allowlists et échec non bloquant avec un double.
+Ils ne prouvent ni la collecte réseau, ni le site destinataire, ni le consentement
+ou la configuration du tracker réel. Un ajout d'événement ne nécessite pas de
+copier tout le funnel d'exemple dans l'app.
+
 Exécuter sur un site de test identifié et avec des données fictives. Si le socle
 est arrêté ou l'app absente, livrer le protocole avec statut « non exécuté ».
 

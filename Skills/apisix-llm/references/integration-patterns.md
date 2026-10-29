@@ -16,7 +16,8 @@ Temporal. La disponibilité d'un service ne justifie pas son usage.
 
 ## Client serveur et secret au démarrage
 
-Copier et adapter les assets dans `api/src/infrastructure/` ou dans le worker.
+Réutiliser l'adaptateur/loader adéquat de l'app ; sinon copier les seuls assets
+nécessaires dans son module d'intégration (API ou worker existant).
 Ils utilisent `fetch`, sans SDK fournisseur ni dépendance npm supplémentaire.
 Le loader cible le KV v2 `secret` de la plateforme ; si le mount change, adapter
 l'accès à partir de son contrat. En dev, ce mount KV v2 est activé par défaut ;

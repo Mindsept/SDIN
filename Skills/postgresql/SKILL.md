@@ -9,6 +9,10 @@ description: Decide whether an SDIN application needs PostgreSQL and implement i
 
 Identify the actual user journey, durability, concurrency, relationships and data volume. Compare no database, existing app persistence and PostgreSQL. Select the lightest option that preserves required durability and access guarantees. Browser or process memory is appropriate only when its lifetime and loss behavior meet the requirement. `PostgreSQL: not used` is a valid decision; document the reason, simpler alternative and revisit trigger in the app README's Structuring decisions section.
 
+Reuse a justified selection; a column/query change does not reopen the whole architecture. For a small app, start with its existing database, one pool per process, ordinary tables and the indexes needed by actual queries. Do not add replicas, partitioning, a repository framework, cache or pgvector for ordinary CRUD.
+
+Size the pool across **all** API/Worker replicas: the sum of their maxima must fit the allocated database connection budget, leaving capacity for migrations and shared services. Use measured query latency, lock waits and data growth to revisit it; more connections can worsen contention. Set a finite acquisition/query timeout and bounded result size. A basic migration needs a rollback/recovery decision, not automatically an online migration framework.
+
 ## Platform contract
 
 - Read `td/core-platform/README.md`, `podman-compose.yml`, `templates/bootstrap.sh` and the target app. This repo provides a platform, not an implemented business application.
@@ -21,10 +25,10 @@ Identify the actual user journey, durability, concurrency, relationships and dat
 1. Complete the decision gate; identify data ownership, relational constraints, retention, deletion and recovery. Add migrations with explicit deploy compatibility and a reviewed recovery plan; never run DDL in ordinary requests.
 2. Use bound query parameters. Dynamic identifiers/order clauses need a server-owned allowlist. Bound pagination, query duration and connection-pool size; select needed columns and justify indexes with actual access paths.
 3. Enforce owner/tenant conditions on reads, writes and deletes, and database constraints for critical invariants. Use conditional updates/transactions to protect concurrent operations. Keep responses and logs free of credentials and unnecessary personal data.
-4. Use SQL transactions for database changes. For reliable delivery to S3/Valkey, persist operation state or an outbox, give side effects durable idempotency keys and reconcile partial failure.
+4. Use SQL transactions for database changes. For external writes, make operation state and reconciliation explicit. Add an outbox only when a committed DB change must reliably trigger a message/effect; a single-database operation does not need one. Give repeatable side effects stable idempotency keys at their destination.
 5. For an explicitly requested RAG feature, first store original documents in private S3. Enable pgvector in the app's existing DB only then; persist source/version metadata, chunks and embeddings generated via `task:embed`. Check model dimensions/version and rebuild deliberately on changes. Apply document/tenant ACL and active-version filters in retrieval before any chunk enters a prompt.
 
-Read [integration patterns](references/integration-patterns.md) for data placement, access and deletion guidance. Load the S3 and Valkey skills only when those dependencies are selected.
+Read [integration patterns](references/integration-patterns.md) for data placement, access and deletion guidance. Read its RAG guidance only for a retrieval requirement; lexical search or a normal CRUD feature does not imply embeddings. Load the S3 and Valkey skills only when those dependencies are selected.
 
 ## Acceptance evidence
 

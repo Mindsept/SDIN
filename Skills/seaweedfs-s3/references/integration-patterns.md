@@ -34,6 +34,25 @@ If S3 is not needed, do not provision a bucket/key, add an S3 SDK or create
 upload endpoints. Record `S3: not used` in the app README, the simpler approach,
 and a concrete revisit trigger. Non-use is a valid outcome.
 
+## Direct transfer is conditional, not a default SDK recipe
+
+For small infrequent uploads, a bounded streaming API path may be sufficient.
+For direct browser transfers, sign the browser-reachable endpoint; do not rewrite
+the signed host/path afterward. Container endpoints are not automatically usable
+by a browser on another machine. Verify the deployed S3 compatibility and CORS.
+
+A signed PUT does not inherit the API's body limit and is not inherently single-use.
+Use verified storage-side limits where available; otherwise use the bounded API
+path when a hard pre-upload bound is required. Keep direct uploads private/pending,
+verify size and actual content before publication, and clean rejected objects.
+Prevent reuse of a still-valid upload URL from replacing an already validated
+object: use a protected final key/version or another verified immutability control.
+Do not assume a HEAD request validates the actual file content.
+
+The AWS [presigned URL contract](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html)
+describes reusable bearer URLs and overwrite semantics; verify the actual SeaweedFS
+version's support instead of assuming every AWS policy feature exists there.
+
 ## Agent workflow
 
 1. Complete Gate 0 and record the service decision before implementation.
