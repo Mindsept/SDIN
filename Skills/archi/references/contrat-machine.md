@@ -7,9 +7,9 @@ This contract describes a decision and the resources it plans to consume. The va
 From the root of the repository containing the skill:
 
 ```sh
-python3 -B skills/archi/scripts/validate_architecture.py architecture.json --as-of 2026-10-14
-python3 -B skills/archi/scripts/validate_architecture.py architecture.json --as-of 2026-10-14 --repo .
-python3 -B skills/archi/scripts/test_validate_architecture.py
+python3 -B Skills/archi/scripts/validate_architecture.py architecture.json --as-of 2026-10-14
+python3 -B Skills/archi/scripts/validate_architecture.py architecture.json --as-of 2026-10-14 --repo .
+python3 -B Skills/archi/scripts/test_validate_architecture.py
 ```
 
 Adjust the paths if the skill was installed elsewhere. Explicitly provide `--as-of YYYY-MM-DD` with the relevant review date: this makes waiver checks reproducible, regardless of the machine's time zone or clock. If the option is absent, the script announces that it is using the local system date. An explicitly supplied historical date validates a historical state, not whether the waivers are valid today.

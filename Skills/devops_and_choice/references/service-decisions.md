@@ -50,7 +50,7 @@ How to integrate:
 5. Coordinate rotations with the target service and connection pools. Restoring an older KV value does not restore a PostgreSQL password or revoke an issued S3 credential. Dynamic leases exist only when their secret engine/authentication configuration actually issues them.
 6. Treat the current OpenBao container as **dev, in-memory secret storage**. Its audit volume does not preserve secrets across restart. Record reseeding and credential recovery for the workshop; durable storage, TLS, scoped authentication and a tested recovery design are requirements for a production topology, not properties proven by this compose.
 
-Reconsider the integration if the app ceases to need server credentials; remove obsolete credentials after consumers have migrated. Alternative enterprise secret managers require an explicit platform contract change, not parallel secret copies. Evidence: required read succeeds, unrelated app/core paths fail, no frontend/image/log exposure, startup and rotation/outage cases behave as designed. Handoff: [OpenBao integration skill](../../../leandro/openbao-secrets/SKILL.md). Vendor details: [KV v2](https://openbao.org/docs/secrets/kv/kv-v2/) and [dev server](https://openbao.org/docs/concepts/dev-server/).
+Reconsider the integration if the app ceases to need server credentials; remove obsolete credentials after consumers have migrated. Alternative enterprise secret managers require an explicit platform contract change, not parallel secret copies. Evidence: required read succeeds, unrelated app/core paths fail, no frontend/image/log exposure, startup and rotation/outage cases behave as designed. Handoff: [OpenBao integration skill](../../../Skills/openbao-secrets/SKILL.md). Vendor details: [KV v2](https://openbao.org/docs/secrets/kv/kv-v2/) and [dev server](https://openbao.org/docs/concepts/dev-server/).
 
 ## 4. Casdoor versus local authentication or anonymous use
 
@@ -74,7 +74,7 @@ How to integrate:
 5. Map the authenticated subject to business permissions on the server. Check object/tenant access on reads, writes, uploads, jobs and workflow signals. OIDC identity, app session, API access token and APISIX virtual key serve different purposes.
 6. Define provider-outage behavior: new login can fail while already valid sessions may remain usable under the documented policy. Never bypass authorization or create an emergency anonymous admin path.
 
-Evidence: allowed user succeeds; another user/tenant, expired token, wrong issuer/audience and tampered callback fail; logout works according to the declared session policy. Reconsider only when client type, identity federation or deployment constraints change; a different identity provider requires a documented platform exception and account migration plan. Handoff: [Casdoor integration](../../../leandro/casdoor-oidc/SKILL.md). Prefer the [OAuth security BCP](https://www.rfc-editor.org/rfc/rfc9700.html) over choosing a legacy grant merely because [Casdoor lists it](https://casdoor.ai/docs/how-to-connect/oauth/).
+Evidence: allowed user succeeds; another user/tenant, expired token, wrong issuer/audience and tampered callback fail; logout works according to the declared session policy. Reconsider only when client type, identity federation or deployment constraints change; a different identity provider requires a documented platform exception and account migration plan. Handoff: [Casdoor integration](../../../Skills/casdoor-oidc/SKILL.md). Prefer the [OAuth security BCP](https://www.rfc-editor.org/rfc/rfc9700.html) over choosing a legacy grant merely because [Casdoor lists it](https://casdoor.ai/docs/how-to-connect/oauth/).
 
 ## 5. APISIX versus direct AI calls or no AI
 
@@ -91,7 +91,7 @@ How to integrate:
 7. Use the SLO to choose synchronous streaming versus durable asynchronous work. Measure first-byte/first-token, total completion, failure rate and cancellation separately. Streaming is not a guarantee of final-response latency.
 8. Treat documents, prompts, model output and tool arguments as untrusted input. Authorize tools independently, validate structured output and protect data boundaries. Log identifiers, timing, usage and error class without secret keys or sensitive full prompts.
 
-Evidence: the intended task alias works through APISIX; unauthorized calls and cross-tenant input fail; provider/quota failure is bounded; quality/cost/latency match the chosen route. If deterministic behavior becomes sufficient, remove the AI call and associated key. A locally hosted model is a new capacity/platform proposal, not an automatic bypass. Handoff: [APISIX integration](../../../leandro/apisix-llm/SKILL.md). [APISIX key-auth](https://apisix.apache.org/docs/apisix/plugins/key-auth/) explains gateway credentials; local route templates determine actual enabled behavior.
+Evidence: the intended task alias works through APISIX; unauthorized calls and cross-tenant input fail; provider/quota failure is bounded; quality/cost/latency match the chosen route. If deterministic behavior becomes sufficient, remove the AI call and associated key. A locally hosted model is a new capacity/platform proposal, not an automatic bypass. Handoff: [APISIX integration](../../../Skills/apisix-llm/SKILL.md). [APISIX key-auth](https://apisix.apache.org/docs/apisix/plugins/key-auth/) explains gateway credentials; local route templates determine actual enabled behavior.
 
 ## 6. Temporal versus a worker queue, cron or synchronous work
 
@@ -114,7 +114,7 @@ How to integrate:
 6. Set business deadlines, queue-age/completion targets, cancellation semantics and operator procedures. Namespace retention controls how long **closed workflow history** is kept; it is not the maximum running-workflow duration and need not be copied from that duration.
 7. The local server uses an auto-setup image and shared PostgreSQL. The compose does not configure authentication/mTLS or production HA. Namespace separation does not prove access isolation, disaster recovery or production availability.
 
-Evidence: worker restart resumes the intended process; duplicate starts/signals and repeated activities do not duplicate business effects; unauthorized actors cannot signal another user's process; migration/replay and recovery procedures are demonstrated. If the process collapses to one independent job, reassess the orchestration cost. Handoff: [workflow skill](../../../hugo/temporal-workflows/SKILL.md) and [operations skill](../../../hugo/temporal-operations/SKILL.md). Vendor references: [workflow execution](https://docs.temporal.io/workflow-execution) and [namespace retention/security](https://docs.temporal.io/self-hosted-guide/namespaces).
+Evidence: worker restart resumes the intended process; duplicate starts/signals and repeated activities do not duplicate business effects; unauthorized actors cannot signal another user's process; migration/replay and recovery procedures are demonstrated. If the process collapses to one independent job, reassess the orchestration cost. Handoff: [workflow skill](../../../Skills/temporal-workflows/SKILL.md) and [operations skill](../../../Skills/temporal-operations/SKILL.md). Vendor references: [workflow execution](https://docs.temporal.io/workflow-execution) and [namespace retention/security](https://docs.temporal.io/self-hosted-guide/namespaces).
 
 ## 7. Temporal UI: operator interface, not application state
 
@@ -134,7 +134,7 @@ How to integrate:
 4. Exclude secrets, personal content, sensitive URL/query/referrer data and unbounded labels. Handle applicable user choice requirements in the actual product context. Trust forwarded network headers only from the known proxy chain.
 5. Let tracking failure drop/skip collection with bounded effort; it must not fail checkout or navigation. Do not add a durable tracking queue or Valkey merely because analytics exists. This platform does not configure Umami's Valkey dependency.
 
-Evidence: one known user journey produces the intended limited event set; blocked/unavailable analytics does not break it; unexpected payload data is absent. Retire events/site access when the product question or app ends. Handoff: [Umami instrumentation](../../../mathis/sdin-umami-instrumentation/SKILL.md).
+Evidence: one known user journey produces the intended limited event set; blocked/unavailable analytics does not break it; unexpected payload data is absent. Retire events/site access when the product question or app ends. Handoff: [Umami instrumentation](../../../Skills/sdin-umami-instrumentation/SKILL.md).
 
 ## 9. Registry versus a runtime service or external registry
 
@@ -148,7 +148,7 @@ How to integrate:
 4. Treat the current HTTP local registry as a development arrangement. TLS, authorization, backups, scanning policy and retention must be configured before asserting production controls.
 5. Retain deployed and rollback digests plus their required schema/workflow compatibility. Plan deletion and garbage collection separately; use the appropriate registry procedure and protect concurrent writes. [Distribution garbage collection](https://distribution.github.io/distribution/about/garbage-collection/)
 
-Evidence: published digest equals deployed artifact, restart succeeds, retained rollback is usable with current data. Registry downtime can block deployment/new image pulls while already running apps continue; do not add it to API readiness. Handoff: [Registry delivery](../../../mathis/sdin-registry-delivery/SKILL.md).
+Evidence: published digest equals deployed artifact, restart succeeds, retained rollback is usable with current data. Registry downtime can block deployment/new image pulls while already running apps continue; do not add it to API readiness. Handoff: [Registry delivery](../../../Skills/sdin-registry-delivery/SKILL.md).
 
 ## 10. Dozzle versus observability backends or no extra collector
 
@@ -158,7 +158,7 @@ Evidence: published digest equals deployed artifact, restart succeeds, retained 
 
 How to integrate: produce redacted structured output; configure runtime rotation/retention; correlate a bounded scenario; limit operator access; time-box diagnostic verbosity. The compose mounts a rootless Podman socket with a read-only filesystem mount; that mount does **not** prove the socket API has read-only authority. Verify configured Dozzle capabilities and socket exposure. Its current image tag is `latest`, so do not assume reproducible feature/security behavior without recording the resolved version/digest.
 
-Evidence: trace an API request through its actual worker where present; confirm secrets/private payloads are absent; verify retention/rotation and log-volume limits. Dozzle failure must not break app readiness. Do not sample only slow requests and then claim the resulting percentile represents all requests. Handoff: [Dozzle diagnosis](../../../mathis/sdin-dozzle-diagnostic/SKILL.md).
+Evidence: trace an API request through its actual worker where present; confirm secrets/private payloads are absent; verify retention/rotation and log-volume limits. Dozzle failure must not break app readiness. Do not sample only slow requests and then claim the resulting percentile represents all requests. Handoff: [Dozzle diagnosis](../../../Skills/sdin-dozzle-diagnostic/SKILL.md).
 
 ## 11. Provisioning is a separate decision from feature selection
 

@@ -13,7 +13,7 @@ This is an upstream decision skill and an operating guide. It does not make ever
 
 - Locate the actual repository and inspect `td/core-platform/`; never assume the current directory. This skill's repository root is `../..`. When copied elsewhere, locate that root and distinguish the recorded contract from a live deployment.
 - Distinguish **observed repository configuration**, **local team rules**, **this skill's proposed policy**, **user choices**, and **measured results**. Do not attribute an invented approval to the instructor.
-- Apply the relevant rules from [Elyes/CCOE-RULES.md](../../Elyes/CCOE-RULES.md) when that policy governs the project. Record which rules apply. Service-specific rules are N/A when the service is not selected; explain why. Resolve a real conflict explicitly instead of silently changing a MUST into a preference.
+- Apply the relevant rules from [Skills/CCOE-RULES.md](../CCOE-RULES.md) when that policy governs the project. Record which rules apply. Service-specific rules are N/A when the service is not selected; explain why. Resolve a real conflict explicitly instead of silently changing a MUST into a preference.
 - Preserve viable existing decisions and explicit authorizations. Do not ask again for a supplied answer. A proposal to consume a service does not authorize changing a shared platform.
 - For language, framework, internal code organization, and full architecture design, use [the architecture skill](../archi/SKILL.md) when available. Its response-time SLO contract remains applicable. This skill adds service and delivery choices, not a second competing stack policy.
 

@@ -120,7 +120,7 @@ et révoquer selon le plan d'incident plutôt qu'attendre une rotation ordinaire
 
 ```bash
 # Depuis la racine du dépôt, Node avec support TypeScript natif.
-node --test leandro/openbao-secrets/assets/secret-reader.test.ts
+node --test Skills/openbao-secrets/assets/secret-reader.test.ts
 ```
 
 Les tests locaux couvrent le lecteur, sans serveur et sans secrets réels.

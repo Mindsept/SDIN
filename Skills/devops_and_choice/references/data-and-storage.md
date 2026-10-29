@@ -2,7 +2,7 @@
 
 Read this reference when choosing persistence, cache, object storage, search, or job state. Apply [scoping](scoping.md) first and record every selected and rejected option in the [service plan](../assets/service-plan.md). `psql` is a PostgreSQL command-line client; PostgreSQL is the database being selected.
 
-Repository baseline: [CCOE-RULES](../../../Elyes/CCOE-RULES.md), especially R-0-01, R-1-01–09, R-2-01–09, R-3-01–09 and R-4-01–04. Those are local rules. The decisions below explain how to apply them; they are not claims that every mechanism is already provisioned. Technical sources and version caveats are in [service-sources](service-sources.md).
+Repository baseline: [CCOE-RULES](../../CCOE-RULES.md), especially R-0-01, R-1-01–09, R-2-01–09, R-3-01–09 and R-4-01–04. Those are local rules. The decisions below explain how to apply them; they are not claims that every mechanism is already provisioned. Technical sources and version caveats are in [service-sources](service-sources.md).
 
 ## 1. Decide by the meaning of the data
 

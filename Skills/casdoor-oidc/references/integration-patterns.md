@@ -161,7 +161,7 @@ seulement si le produit l'exige et prévoir rotation/revocation et réauthentifi
 
 ```bash
 # Depuis la racine du dépôt ; tests de guards, sans IdP ni credentials réels.
-node --test leandro/casdoor-oidc/assets/auth-policy.test.ts
+node --test Skills/casdoor-oidc/assets/auth-policy.test.ts
 ```
 
 En intégration, tester le vrai flux avec les personas : verifier PKCE erroné,

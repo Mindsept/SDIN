@@ -27,7 +27,7 @@ de l'app ; ils ne constituent pas des KPI imposés pour choisir une architecture
 
 Les dossiers sont versionnés dans le TD ; ils ne sont pas installés dans le profil
 global de l'agent. Pour les utiliser depuis ce dépôt, demander par exemple :
-« Applique le skill `mathis/sdin-umami-instrumentation/SKILL.md` à mon app. »
+« Applique le skill `Skills/sdin-umami-instrumentation/SKILL.md` à mon app. »
 Une fois installé dans un emplacement reconnu par l'agent, son nom `$sdin-umami-instrumentation`
 permet également de l'invoquer.
 

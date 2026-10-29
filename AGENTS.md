@@ -12,21 +12,21 @@ d'architecture, ne remplace aucun skill et n'installe rien dans le profil de l'a
 - Pour un fait de plateforme, consulter les fichiers réels sous
   [td/core-platform](td/core-platform/README.md), notamment le Compose, les
   scripts et templates pertinents. Distinguer configuration déclarée et état réel.
-- Consulter les [règles CCoE](Elyes/CCOE-RULES.md) et leur
-  [matrice d'audit](Elyes/audit-matrix.yml) selon leur périmètre ; ne pas étendre
+- Consulter les [règles CCoE](Skills/CCOE-RULES.md) et leur
+  [matrice d'audit](Skills/audit-matrix.yml) selon leur périmètre ; ne pas étendre
   leurs exigences à un service non retenu ou à une autorité qu'elles ne revendiquent pas.
 
 ## Choisir le point d'entrée
 
 | Tâche | Route |
 |---|---|
-| Nouvelle application, refonte, choix de stack ou organisation du code | [archi](skills/archi/SKILL.md) ; suivre sa table de routage, puis devops-and-choice pour les choix de services utiles |
-| Comparaison de services, combinaisons, CI/CD ou exploitation | [devops-and-choice](skills/devops_and_choice/SKILL.md) ; suivre ses références et relais spécialisés |
-| Intégration PostgreSQL, S3 ou Valkey déjà retenue | [PostgreSQL](Elyes/postgresql/SKILL.md), [SeaweedFS/S3](Elyes/seaweedfs-s3/SKILL.md) ou [Valkey](Elyes/valkey/SKILL.md), selon le changement |
-| Intégration d'identité, de secrets ou d'appels IA | [Casdoor](leandro/casdoor-oidc/SKILL.md), [OpenBao](leandro/openbao-secrets/SKILL.md) ou [APISIX](leandro/apisix-llm/SKILL.md) |
-| Concevoir ou modifier un processus durable | [Temporal workflows](hugo/temporal-workflows/SKILL.md) |
-| Examiner une exécution Temporal existante | [Temporal operations](hugo/temporal-operations/SKILL.md) |
-| Instrumenter les usages, structurer/diagnostiquer les logs ou livrer des images | [Umami](mathis/sdin-umami-instrumentation/SKILL.md), [Dozzle](mathis/sdin-dozzle-diagnostic/SKILL.md) ou [Registry](mathis/sdin-registry-delivery/SKILL.md) |
+| Nouvelle application, refonte, choix de stack ou organisation du code | [archi](Skills/archi/SKILL.md) ; suivre sa table de routage, puis devops-and-choice pour les choix de services utiles |
+| Comparaison de services, combinaisons, CI/CD ou exploitation | [devops-and-choice](Skills/devops_and_choice/SKILL.md) ; suivre ses références et relais spécialisés |
+| Intégration PostgreSQL, S3 ou Valkey déjà retenue | [PostgreSQL](Skills/postgresql/SKILL.md), [SeaweedFS/S3](Skills/seaweedfs-s3/SKILL.md) ou [Valkey](Skills/valkey/SKILL.md), selon le changement |
+| Intégration d'identité, de secrets ou d'appels IA | [Casdoor](Skills/casdoor-oidc/SKILL.md), [OpenBao](Skills/openbao-secrets/SKILL.md) ou [APISIX](Skills/apisix-llm/SKILL.md) |
+| Concevoir ou modifier un processus durable | [Temporal workflows](Skills/temporal-workflows/SKILL.md) |
+| Examiner une exécution Temporal existante | [Temporal operations](Skills/temporal-operations/SKILL.md) |
+| Instrumenter les usages, structurer/diagnostiquer les logs ou livrer des images | [Umami](Skills/sdin-umami-instrumentation/SKILL.md), [Dozzle](Skills/sdin-dozzle-diagnostic/SKILL.md) ou [Registry](Skills/sdin-registry-delivery/SKILL.md) |
 | Petite correction dans une application existante | Lire les fichiers concernés et le skill utile ; ne pas reprendre un cadrage complet sans changement qui le justifie |
 
 ## Suivre la route choisie
@@ -37,7 +37,7 @@ Transmettre les faits connus et la question restante lors d'un relais entre
 skills ; ne pas recommencer les questionnaires ni boucler entre points d'entrée.
 
 Pour un livrable, utiliser les modèles indiqués par le skill. Pour un JSON
-d'architecture, suivre le [contrat et ses limites](skills/archi/references/contrat-machine.md).
+d'architecture, suivre le [contrat et ses limites](Skills/archi/references/contrat-machine.md).
 La [cartographie](docs/architecture/index.html) et la
 [présentation](presentations/sdi-2026.src.html) apportent le contexte.
 

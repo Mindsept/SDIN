@@ -8,7 +8,7 @@ Foundation documentation revision: **October 14, 2026**; GitHub lifecycle refere
 |---|---|
 | Services, images, ports, networking, and dependencies | [td/core-platform/podman-compose.yml](../../../td/core-platform/podman-compose.yml) |
 | App contracts, technology neutrality, onboarding, and workshop limits | [Platform README](../../../td/core-platform/README.md) |
-| Local contributor policy for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; not a complete instructor-approved language policy | [Elyes/CCOE-RULES.md](../../../Elyes/CCOE-RULES.md) |
+| Local contributor policy for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; not a complete instructor-approved language policy | [Skills/CCOE-RULES.md](../../CCOE-RULES.md) |
 | Three proposed components and backend variables | [App compose](../../../td/core-platform/templates/podman-compose.yml) |
 | DB/S3 bootstrap and LLM/Temporal/analytics options | [App bootstrap](../../../td/core-platform/templates/bootstrap.sh) |
 | Isolated checks, trusted manual runtime actions, and canonical TS/Bun build | [GitHub app workflow](../../../td/core-platform/templates/github-actions.yml), [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh), [non-secret settings](../../../td/core-platform/templates/app.env.example) |
@@ -20,7 +20,7 @@ Foundation documentation revision: **October 14, 2026**; GitHub lifecycle refere
 | LLM routes, budgets, and noted limits | [OpenAI routes](../../../td/core-platform/apisix/routes.openai.yaml), [Anthropic routes](../../../td/core-platform/apisix/routes.anthropic.yaml), [seed](../../../td/core-platform/apisix/seed-and-deploy.sh) |
 | Resource efficiency, static before runtime, KISS, TS/Bun by default, targeted Rust, p99 | [Source presentation](../../../presentations/sdi-2026.src.html), especially slides 27–33 and 38–40 |
 
-The README declares the 8000–8999 range free for apps, but compose exposes OpenBao on 8200: the effective contract takes precedence to avoid a collision. The base platform README assigns CCoE rule authoring to the application teams. `Elyes/CCOE-RULES.md` now provides a local contributor policy with explicit data/service requirements and applicability conditions. Cite and apply those rules within their scope; do not describe them as absent. The repository does not by itself confirm that this file is the complete instructor-approved CCoE policy or that the instructor has approved broader language choices. Keep that distinction explicit when selecting a profile or recording a waiver.
+The README declares the 8000–8999 range free for apps, but compose exposes OpenBao on 8200: the effective contract takes precedence to avoid a collision. The base platform README assigns CCoE rule authoring to the application teams. `Skills/CCOE-RULES.md` now provides a local contributor policy with explicit data/service requirements and applicability conditions. Cite and apply those rules within their scope; do not describe them as absent. The repository does not by itself confirm that this file is the complete instructor-approved CCoE policy or that the instructor has approved broader language choices. Keep that distinction explicit when selecting a profile or recording a waiver.
 
 ## Primary technical sources consulted
 

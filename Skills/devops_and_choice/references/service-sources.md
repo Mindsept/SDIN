@@ -24,7 +24,7 @@ Last source review: **2026-10-21**. This reference supports [data-and-storage](d
 | [APISIX OpenAI routes](../../../td/core-platform/apisix/routes.openai.yaml), [Anthropic routes](../../../td/core-platform/apisix/routes.anthropic.yaml), [seed](../../../td/core-platform/apisix/seed-and-deploy.sh) | Task aliases, routing, credentials and configured quota scopes | Do not generalize text-route limits to embeddings/images or monetary budgets |
 | [OIDC onboarding](../../../td/core-platform/idp/onboard-oidc.sh), [test users](../../../td/core-platform/idp/seed-test-users.sh) | Client versus persona provisioning | No claim that every latest grant or client type is already enabled |
 | [Analytics site helper](../../../td/core-platform/analytics/site-create.sh), [app nginx template](../../../td/core-platform/templates/nginx.conf) | App analytics integration and proxy route contract | Does not establish a tracking purpose, permission, privacy outcome or SLO |
-| [CCOE rules](../../../Elyes/CCOE-RULES.md) | Local explicit used/not-used decisions; PostgreSQL durability, S3 bytes, recoverable Valkey state, ownership, retention, queue scope, consistency | Its [audit matrix](../../../Elyes/audit-matrix.yml) is a review plan, not an executable proof |
+| [CCOE rules](../../CCOE-RULES.md) | Local explicit used/not-used decisions; PostgreSQL durability, S3 bytes, recoverable Valkey state, ownership, retention, queue scope, consistency | Its [audit matrix](../../audit-matrix.yml) is a review plan, not an executable proof |
 | [Architecture skill](../../archi/SKILL.md), [ORM rules](../../archi/references/donnees-orm.md), [SLO strategy](../../archi/references/slo-strategy.md) | Language/framework, architecture and ORM decisions; latency-driven design | Do not duplicate or weaken its architectural decision record in this service skill |
 
 ## Contributor handoff sources
@@ -33,16 +33,16 @@ These skills supply integration detail after the service-selection decision. Rea
 
 | Service | Contributor source | Relevant boundary |
 | --- | --- | --- |
-| PostgreSQL | [Elyes PostgreSQL](../../../Elyes/postgresql/SKILL.md) | Ownership, durable records, migrations, parameterized access |
-| Valkey | [Elyes Valkey](../../../Elyes/valkey/SKILL.md) | Prefixes, TTL, recoverable jobs, bounded resource use |
-| S3 | [Elyes SeaweedFS](../../../Elyes/seaweedfs-s3/SKILL.md) | Private buckets, scoped identities, object authorization and lifecycle |
-| OpenBao | [Leandro secrets](../../../leandro/openbao-secrets/SKILL.md) | Provisioning/runtime separation, KV v2, startup and rotation |
-| Casdoor | [Leandro OIDC](../../../leandro/casdoor-oidc/SKILL.md) | Client flows, sessions and server-side business authorization |
-| APISIX | [Leandro LLM](../../../leandro/apisix-llm/SKILL.md) | Server-only virtual key, task aliases, bounds and failure handling |
-| Temporal | [Hugo workflows](../../../hugo/temporal-workflows/SKILL.md), [operations](../../../hugo/temporal-operations/SKILL.md) | Durable process, activity idempotency, authorized signals and diagnosis |
-| Umami | [Mathis instrumentation](../../../mathis/sdin-umami-instrumentation/SKILL.md) | Product question, limited events, proxy integration and non-blocking collection |
-| Registry | [Mathis delivery](../../../mathis/sdin-registry-delivery/SKILL.md) | Artifact digest, build reuse, retention and rollback |
-| Dozzle | [Mathis diagnosis](../../../mathis/sdin-dozzle-diagnostic/SKILL.md) | Structured/redacted logs, bounded diagnosis, real evidence |
+| PostgreSQL | [Elyes PostgreSQL](../../../Skills/postgresql/SKILL.md) | Ownership, durable records, migrations, parameterized access |
+| Valkey | [Elyes Valkey](../../../Skills/valkey/SKILL.md) | Prefixes, TTL, recoverable jobs, bounded resource use |
+| S3 | [Elyes SeaweedFS](../../../Skills/seaweedfs-s3/SKILL.md) | Private buckets, scoped identities, object authorization and lifecycle |
+| OpenBao | [Leandro secrets](../../../Skills/openbao-secrets/SKILL.md) | Provisioning/runtime separation, KV v2, startup and rotation |
+| Casdoor | [Leandro OIDC](../../../Skills/casdoor-oidc/SKILL.md) | Client flows, sessions and server-side business authorization |
+| APISIX | [Leandro LLM](../../../Skills/apisix-llm/SKILL.md) | Server-only virtual key, task aliases, bounds and failure handling |
+| Temporal | [Hugo workflows](../../../Skills/temporal-workflows/SKILL.md), [operations](../../../Skills/temporal-operations/SKILL.md) | Durable process, activity idempotency, authorized signals and diagnosis |
+| Umami | [Mathis instrumentation](../../../Skills/sdin-umami-instrumentation/SKILL.md) | Product question, limited events, proxy integration and non-blocking collection |
+| Registry | [Mathis delivery](../../../Skills/sdin-registry-delivery/SKILL.md) | Artifact digest, build reuse, retention and rollback |
+| Dozzle | [Mathis diagnosis](../../../Skills/sdin-dozzle-diagnostic/SKILL.md) | Structured/redacted logs, bounded diagnosis, real evidence |
 
 ## Official technical documentation checked
 
