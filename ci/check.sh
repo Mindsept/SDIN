@@ -2,6 +2,7 @@
 # Read-only/offline repository checks: no Podman or external provider required.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+python3 -B ci/check_ai_docs.py
 python3 -B - <<'PY'
 from pathlib import Path
 import subprocess

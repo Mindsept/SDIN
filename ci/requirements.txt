@@ -1,0 +1,4 @@
+# Parsers used by check_ai_docs.py; mdurl is markdown-it-py's dependency.
+markdown-it-py==4.0.0
+mdurl==0.1.2
+PyYAML==6.0.3

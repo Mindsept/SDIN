@@ -43,9 +43,30 @@ requires adapting its gates and build exactly as the architecture skill explains
 [checks.yml](../.github/workflows/checks.yml) runs on pushes and pull requests
 on an isolated Ubuntu runner with a read-only repository token. It checks shell
 syntax, existing architecture/TypeScript tests, lifecycle behavior with doubles,
-and GitHub workflow syntax (including the consuming-app template).
+GitHub workflow syntax (including the consuming-app template), and documentation
+navigation through [check_ai_docs.py](../ci/check_ai_docs.py).
 
-To run its offline checks locally, use `bash ci/check.sh` with Python 3.12 and
+The documentation check follows local Markdown links, images and HTML `a`/`img`
+references, checks skill YAML `name`/`description` and unique names, and ensures
+every skill is reachable through documentation links from root `AGENTS.md`.
+Links to directories follow their README when present. Optional `agents/openai.yaml`
+files are checked when supplied; they are not required for every skill, and a
+skill name need not match its folder name. A `$skill-name` in an optional default
+prompt must identify its own skill (and only known skills).
+
+The scope is the Git file inventory (including nonignored new files locally,
+excluding generated/ignored trees). Local targets must match its exact case.
+Markdown heading anchors and explicit HTML IDs in Markdown are checked; fragments
+on non-Markdown targets are reported as unverified. Diagnostics identify the source
+file and the start line of the containing Markdown block. External URLs, undefined
+Markdown reference syntax and bare paths in prose or code examples are outside
+scope. No content is executed or fetched, and document reachability does not prove
+that an AI selected or applied the right instructions. These checks neither
+certify platform integration nor replace the later scenario tests.
+
+Install the pinned parsers once with
+`python3 -m pip install -r ci/requirements.txt` (prefer a local virtual environment).
+Then run the offline checks with `bash ci/check.sh`, Python 3.12 and
 Node 24.10.0 (or the supported native TypeScript equivalent). Workflow linting
 uses actionlint v1.7.7. These tests do not start Podman, contact a provider, prove
 real ACLs, or establish that a workload passes its SLO.
