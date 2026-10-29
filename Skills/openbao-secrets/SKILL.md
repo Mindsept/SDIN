@@ -10,6 +10,24 @@ imposer un document pour stocker la demande. Identifier les secrets de chaque
 processus, leur propriétaire, leur source, leur mode de chargement et leur cycle
 de vie avant d'ajouter une intégration.
 
+## Minimum utile
+
+Une app statique sans secret serveur n'ajoute ni lecteur OpenBao ni backend pour
+en avoir un. Réutiliser les secrets et le loader des seuls services retenus :
+un client chargé au démarrage est le point de départ, pas un sidecar ou une lecture
+par requête. Réduire la policy d'exemple aux chemins réellement consommés.
+
+Partir des credentials KV statiques déjà provisionnés. Ajouter secrets dynamiques,
+renouvellement automatique ou agent dédié seulement quand la rotation/lease ou le
+mode de déploiement l'exige et que le mécanisme est réellement configuré. Ces ajouts
+ne remplacent jamais une identité runtime à droits limités hors de l'exception de dev.
+
+Dimensionner délai et nombre d'essais de chargement selon le budget de démarrage ;
+choisir un refresh seulement si la rotation l'exige, avec concurrence bornée et
+sans boucle rapide en cas de panne. Après le démarrage, distinguer store indisponible
+et credentials déjà chargés encore valides : ne pas arrêter tous les parcours si
+leurs clients fonctionnent. Aucune prolongation implicite d'une lease expirée.
+
 ## Références à consulter selon le travail
 
 - Toute intégration : [contrat local et limites](references/platform-contract.md).

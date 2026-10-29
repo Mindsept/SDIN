@@ -1,26 +1,33 @@
 ---
 name: temporal-operations
-description: Supervise and diagnose existing SDIN Temporal workflow runs through Temporal UI, event history, and correlated Worker logs. Use for operator investigations, not for implementing new Workflow code.
+description: Inspect and diagnose an SDIN Temporal execution using Temporal UI, history and existing Worker logs. Use for a concrete run or a minimal operator handoff; a healthy human wait is not automatically an incident.
 ---
 
-# Temporal operations in SDIN
+# Temporal operations sized to the question
 
-Temporal UI is an operator surface, not the end-user approval interface or the business database. Diagnose from an execution's recorded events before interpreting logs or changing state.
+Use the shared Temporal UI when the app has Temporal executions to inspect. A single-run investigation normally needs the UI and existing logs. Do not create an app dependency on the UI, an SDK for it, or a new monitoring stack to answer that question.
 
-## SDIN entry points
+Reuse known application decisions. If Temporal is not selected, mark this operator integration N/A; another app may still use the shared UI. For a product-facing status page, use the authenticated app API and its chosen state source, not UI scraping.
 
-- Local dev UI: `http://localhost:9233` (container `temporal-ui.internal:8080`). Temporal gRPC is `temporal.internal:7233` for app containers and `localhost:7233` for the host. Check `td/core-platform/README.md` for the current stack before assuming these addresses.
-- Select the **app namespace** and capture `workflowId` plus `runId`. One namespace per app is the platform contract. If a run is absent, verify namespace, ID, start acknowledgment, and retention/visibility before saying it never existed.
-- This repository's UI and Temporal service are dev-only and lack production auth/mTLS. Do not expose port 9233 or 7233 publicly. In a real deployment, use a secured access path and least-privilege operator roles.
+## Context and entry points
 
-## Investigation
+Locate the app and the SDIN repository from their actual paths. In this repository, the Git root is `../..` from this skill. Inspect `td/core-platform/README.md`, the actual Compose configuration and app docs. Treat templates and stored examples as configuration evidence, not proof of deployed containers or completed CI runs.
 
-1. Open the run and record status, start/close times, workflow type, task queue, Worker/build version if shown, and the last successful and first anomalous event. Inspect the event's failure, retry, timer, or Signal details; do not infer a root cause from `Running` alone.
-2. Follow [references/diagnostic-matrix.md](references/diagnostic-matrix.md) to distinguish a normal human wait, a pending Worker task, Activity retry, Workflow Task/replay failure, and a terminal failure. Correlate with structured API/Worker logs using namespace, workflow ID, and run ID. Avoid copying secret-bearing payloads into reports or tickets.
-3. Write a concise incident note: exact execution identity, event IDs/timestamps, observed state, relevant worker/queue, evidence, likely cause versus alternatives, and the safest next check. If visibility has aged out, say what evidence is missing.
+Local defaults are UI `http://localhost:9233` (`temporal-ui.internal:8080` inside the container network), gRPC `temporal.internal:7233` for app containers and `localhost:7233` on the host. Confirm the environment before using them. The supplied dev service lacks production authentication/mTLS; use the deployment's authorized operator access.
 
-Investigation is read-only by default. UI actions such as Signal, Update, cancel, terminate, reset, or retry can change or duplicate business effects. Do not perform them during a diagnosis request. For an explicitly requested intervention, first identify the exact run, expected downstream effect, Activity idempotency, approval/authorization path, and rollback plan; obtain any needed authority before acting. Human approvals should go through the app's authenticated API, not an ad hoc UI Signal.
+## Follow the narrowest investigation
 
-For a new application, publish this runbook's execution identifiers and task-queue/worker mapping in its README. Use a controlled dev scenario (one waiting run and one failing Activity) to verify that the UI, event history, and Dozzle/Worker logs tell a consistent story; do not claim that test passed if the stack was not started.
+1. Capture environment, namespace, workflow ID and run ID. A closed run, retry or Continue-As-New may lead to another run with the same workflow ID. If absent, check start acknowledgment, filters, visibility delay and closed-history retention.
+2. Read the status, pending work and relevant event history. Compare elapsed time to the actual deadline or expected completion, including intentional human waits. A `Running` status alone is not evidence of failure.
+3. Use [diagnostic-matrix.md](references/diagnostic-matrix.md) for the observed symptom. Inspect the relevant Worker queue/build and bounded logs only as needed. Pending Activity details may expose retry attempts that are not individually present in history.
+4. Stop once the question is answered by evidence: expected wait, identified cause, or a specific missing observation. Report the execution identity, decisive event/pending state, conclusion and next action. Reserve a full incident report for a real incident.
 
-Authoritative references: [Event history](https://docs.temporal.io/encyclopedia/event-history), [Visibility](https://docs.temporal.io/visibility), [Worker deployment](https://docs.temporal.io/best-practices/worker), [UI configuration](https://docs.temporal.io/references/web-ui-environment-variables).
+UI downtime does not by itself mean Temporal or the app is unavailable; do not add it to business readiness checks. Workflow history and existing logs suffice for an occasional diagnosis. If recurring operational objectives require queue-age/completion alerts or retained metrics, first reuse existing instrumentation; add only the missing measurement, retention and alert. Dozzle is an optional existing log viewer, not a prerequisite.
+
+## Interventions and handoff
+
+A diagnosis request is read-only. For an authorized Signal, cancellation, reset, termination or retry, identify the exact run and business effect, check idempotency and use the app's normal approval/audit path. Reuse authorization already given; do not create an extra approval round for routine authorized work. A reset/new execution can repeat effects; termination does not run Workflow cleanup. SDK replay testing is different from restarting/resetting a live run.
+
+Keep payloads and credentials out of reports. For app onboarding, record only the UI location, namespace/queue, how to find a run, and the expected waits/failures. Validate this with one controlled scenario when the environment is available; no live environment means an unexecuted runbook, not a successful test.
+
+Sources: [Event history](https://docs.temporal.io/encyclopedia/event-history), [Activity failures](https://docs.temporal.io/encyclopedia/detecting-activity-failures), [Visibility](https://docs.temporal.io/visibility).

@@ -1,6 +1,6 @@
 # Policy sources and maintenance
 
-Foundation documentation revision: **October 14, 2026**; GitHub lifecycle references updated **October 21, 2026**. The selection rules are a proposed synthesis for this project; sources establish capabilities, constraints, and points requiring attention, not the professor's approval.
+Foundation documentation revision: **October 14, 2026**; pipeline references reconciled with this checkout on **October 29, 2026**. Selection rules remain proposed project policy, not the professor's approval. The merged GitHub lifecycle is now present; runtime configuration still needs separate evidence.
 
 ## Priority local sources
 
@@ -11,8 +11,8 @@ Foundation documentation revision: **October 14, 2026**; GitHub lifecycle refere
 | Local contributor policy for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; not a complete instructor-approved language policy | [Skills/CCOE-RULES.md](../../CCOE-RULES.md) |
 | Three proposed components and backend variables | [App compose](../../../td/core-platform/templates/podman-compose.yml) |
 | DB/S3 bootstrap and LLM/Temporal/analytics options | [App bootstrap](../../../td/core-platform/templates/bootstrap.sh) |
-| Isolated checks, trusted manual runtime actions, and canonical TS/Bun build | [GitHub app workflow](../../../td/core-platform/templates/github-actions.yml), [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh), [non-secret settings](../../../td/core-platform/templates/app.env.example) |
-| Platform start/stop/purge and runner boundaries | [Core workflow](../../../.github/workflows/core-platform.yml), [core lifecycle](../../../td/core-platform/lifecycle.sh), [hosted repository checks](../../../.github/workflows/checks.yml) |
+| Hosted checks and app build/provision/deploy example; actual runner isolation and artifacts need verification | [App workflow](../../../td/core-platform/templates/github-actions.yml), [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh) |
+| Platform start/stop/purge, including destructive shared operations | [Core workflow](../../../.github/workflows/core-platform.yml), [core lifecycle](../../../td/core-platform/lifecycle.sh), [prerequisites](../../../td/core-platform/requirements.md) |
 | p99 target, calculation, and absence of an automatic SLO gate | [p99.ts](../../../td/core-platform/templates/p99.ts) |
 | Expected app README sections, personas, and data register | [README.app.md](../../../td/core-platform/templates/README.app.md) |
 | OIDC and public/internal addresses | [onboard-oidc.sh](../../../td/core-platform/idp/onboard-oidc.sh) |
@@ -39,7 +39,7 @@ The README declares the 8000–8999 range free for apps, but compose exposes Ope
 
 Detailed framework recommendations have their own [source register](sources-stacks.md). The [code structure](structures-code.md), [data and ORM](donnees-orm.md), and [SLO strategy](slo-strategy.md) references cite their own official sources. Selection matrices are engineering synthesis, not vendor rankings or measured performance guarantees.
 
-GitHub-specific sources checked on **October 21, 2026**: [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) for triggers, permissions, environments, and job conditions; [self-hosted runners](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners) for operator-managed runtime environments. Manual default-branch delivery and separation from untrusted pull requests are the repository's chosen controls, not automatic properties of every GitHub workflow.
+For GitHub delivery, consult [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) and [self-hosted runners](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners). The workflows now implement separate hosted/manual paths; runner registration and administrative protections are not established by source files.
 
 ## Updates
 

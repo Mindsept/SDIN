@@ -1,6 +1,6 @@
 ---
 name: sdin-umami-instrumentation
-description: "Configurer et vérifier une instrumentation Umami légère pour une webapp SDIN dont le service analytics est déjà retenu : navigation, événements, funnels et segmentation adaptée au besoin."
+description: "Relier une question produit SDIN à une instrumentation Umami minimale : navigation, événements ou funnel. Réutiliser un choix analytics existant, ou conclure à l'absence de collecte si elle ne sert aucune décision."
 ---
 
 # Umami : une collecte proportionnée au parcours
@@ -8,8 +8,10 @@ description: "Configurer et vérifier une instrumentation Umami légère pour un
 ## Résultat attendu
 
 Répondre aux questions produit avec les événements utiles, des données limitées
-et une collecte qui ne bloque pas le parcours métier. Le choix d'utiliser Umami
-est une entrée du skill ; ne pas ajouter de phase d'arbitrage entre services.
+et une collecte qui ne bloque pas le parcours métier. Réutiliser un choix Umami
+déjà justifié sans relancer un comparatif. S'il manque, demander quelle décision
+produit sera prise à partir de la mesure ; sans question exploitable, ne pas ajouter
+de tracker. Une question de latence ou d'incident relève des logs/métriques, pas d'Umami.
 
 User story : « En tant que responsable produit, je veux comprendre à quelle
 étape du panier à la commande les utilisateurs abandonnent, avec un suivi
@@ -27,8 +29,9 @@ informations dans le brief et l'intégration existante avant de demander un comp
 1. Lire [patterns.md](references/patterns.md) pour choisir les modes d'utilisation
    utiles à la question : navigation, événement de valeur, funnel, segmentation.
    Ne pas appliquer les quatre modes systématiquement.
-2. Copier [plan-tracking.yml](assets/plan-tracking.yml) dans l'app et l'adapter.
-   Définir le nom, le déclencheur, l'émetteur unique et les propriétés de chaque événement.
+2. Compléter le plan existant avec nom, déclencheur, émetteur et propriétés utiles.
+   Utiliser [plan-tracking.yml](assets/plan-tracking.yml) si un plan manque ; pour
+   un seul événement, une entrée dans la documentation existante suffit.
 3. Pour l'intégration, lire [integration.md](references/integration.md). Réutiliser
    le site et la configuration du socle ; ajouter uniquement l'instrumentation nécessaire.
    L'[adaptateur illustratif](assets/track-event.mjs) convient au funnel donné,
@@ -53,6 +56,10 @@ informations dans le brief et l'intégration existante avant de demander un comp
   explicite et cohérente du funnel.
 - Définir conservation et fréquence des analyses selon la question et le volume.
   Ne pas annoncer un gain énergétique à partir du seul nombre d'événements.
+- Commencer par le minimum permettant la décision : un événement pour une adoption,
+  quelques étapes pour un funnel. Ni propriétés libres ni segmentation sans question
+  associée. Borner les collectes côté proxy ; ne pas ajouter de file durable pour
+  rendre une télémétrie facultative « exactement une fois ».
 
 ## Livraison
 

@@ -1,6 +1,6 @@
 ---
 name: devops-and-choice
-description: "Choose which SDI platform services an application should consume and define its GitHub Actions delivery and operating rules. Use for explicit PostgreSQL/Valkey/S3/workflow/identity/AI/observability decisions, provisioning plans, CI/CD, recovery, and operational reviews. Separate service selection from language/framework design; do not deploy merely because a plan is requested."
+description: "Choose the smallest sufficient set of SDI services and adapt delivery to the repository's actual CI and artifacts. Use for service decisions, provisioning plans, CI/CD and operating reviews; planning does not authorize deployment or platform changes."
 ---
 
 # SDI service choices and DevOps
@@ -52,7 +52,7 @@ If a new answer changes a constraint (for example, no stale reads, human approva
 
 ### 1. Clarify the facts that change the choice
 
-Read [scoping](references/scoping.md). Inspect the brief and code first, then ask one to three useful questions at a time. Always establish the user-facing outcome, authoritative data and loss tolerance, response-time/completion SLOs, freshness/consistency, trust boundary, workshop/production context, and intended delivery target. Unknown critical facts remain visible; continue independent work.
+Read the relevant [scoping](references/scoping.md) questions. Inspect the brief and code first; reuse known service choices and ask only decision-changing questions. A cache choice needs freshness and workload facts, not automatically a delivery plan. For a full design, cover the user outcome, data/loss tolerance, targets, trust and environment. Keep critical unknowns visible without blocking unrelated work.
 
 Do not ask the user to select a product name before understanding its purpose. In “psql or Valkey?”, distinguish PostgreSQL, the database, from `psql`, its command-line client.
 
@@ -64,7 +64,9 @@ Read [data and storage decisions](references/data-and-storage.md) for PostgreSQL
 
 > Choose X because these project conditions hold. Do not choose Y or add another service because this condition is absent. Configure/integrate X this way. Verify these behaviors. Reconsider when this measurable condition changes.
 
-Record **used / not used / undecided**, the consuming process, data owner, simpler alternative, provisioning, credentials, failure/recovery behavior, SLO effect, cost, evidence, and revisit trigger. `Undecided` is a provisional state, not a satisfied dependency gate. Under the local CCoE rules, put the concise final service-use table in the app README and link any longer decision document. Separate application runtime dependencies from platform-internal dependencies and operator tools. The existence of shared PostgreSQL for Casdoor/Temporal/Umami does not mean the app needs its own database.
+Record **used / not used / undecided**, need, simpler alternative, evidence and revisit trigger in the existing app decision. For selected dependencies, add only relevant consumer, ownership, limits and failure/recovery details. Group unused services; do not write eleven operating runbooks. `Undecided` is provisional. Under local CCoE rules, keep the concise service-use table in the README. Platform-internal dependencies and operator tools are distinct from app runtime dependencies; Casdoor/Temporal/Umami using PostgreSQL does not require an app DB.
+
+Start with one compatible client per process and the smallest useful queue/pool/bucket/site setup. Derive connections, concurrency, bytes, TTL/retention and retry budgets from the accepted workload and shared capacity, not a generic “enterprise” configuration. Unknown demand calls for a stated initial envelope and revisit measurement, not guessed replicas or a new cluster.
 
 The essential branches are:
 
@@ -89,9 +91,9 @@ Use the architecture skill's [SLO strategy](../archi/references/slo-strategy.md)
 
 A cache changes freshness and adds a miss path. A queue adds waiting and requires a separate completion objective. Streaming changes first-output timing, not full completion. A provider call already longer than the full-result deadline cannot be repaired by renaming a service or returning `202` without an accepted product change. Account for resource limits and the shared platform before adding concurrency.
 
-### 4. Define GitHub Actions and local delivery together
+### 4. Use the actual CI and build artifacts
 
-Read [GitHub delivery](references/delivery-github.md). Use the repository's actual lifecycle scripts and workflow templates as the implementation source. Keep local lifecycle execution available; GitHub Actions orchestrates the same commands.
+When delivery is in scope, read [delivery guidance](references/delivery-github.md). Detect the actual pipeline and scripts first. This checkout now supplies GitHub Actions calling local lifecycle scripts; a consuming app may still have a different pipeline. Trace build commands → generated files → job artifact transfer when needed → image COPY → runtime entrypoint. A template is not evidence that an app's artifacts were produced or passed between jobs. Do not replace an adequate existing app CI just because the platform has migrated.
 
 Separate hosted pull-request checks from trusted platform-connected operations. A GitHub-hosted runner's `localhost` is not the developer's registry, PostgreSQL, or Podman network. Do not attach an untrusted PR to a privileged self-hosted runner. Document runner access controls and environment setup; do not claim they exist just because YAML names them.
 

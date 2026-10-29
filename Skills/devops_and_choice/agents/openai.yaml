@@ -1,6 +1,6 @@
 interface:
   display_name: "SDI Service Choices and DevOps"
-  short_description: "Choose SDI services and define GitHub delivery and operations"
-  default_prompt: "Use $devops-and-choice to clarify my needs and SLOs, explicitly choose or reject each relevant SDI service, and define GitHub Actions delivery and operating rules."
+  short_description: "Choose minimal SDI services and verify actual delivery"
+  default_prompt: "Use $devops-and-choice to choose only the SDI services my app needs and adapt delivery to its actual CI, artifacts and operating constraints."
 policy:
   allow_implicit_invocation: true

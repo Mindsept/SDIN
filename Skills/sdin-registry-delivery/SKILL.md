@@ -1,6 +1,6 @@
 ---
 name: sdin-registry-delivery
-description: "Préparer et vérifier la livraison d'images dans le Registry SDIN déjà retenu : build explicite, artefacts identifiés par empreinte, réutilisation selon les entrées, rétention et rollback compatibles."
+description: "Préparer ou vérifier la livraison des images réellement nécessaires dans le Registry SDIN : artefacts de build, digests, réutilisation et rollback. Une inspection n'autorise ni push ni déploiement ; un livrable sans conteneur n'impose pas de registre."
 ---
 
 # Registry : des artefacts traçables et réutilisables
@@ -8,8 +8,17 @@ description: "Préparer et vérifier la livraison d'images dans le Registry SDIN
 ## Résultat attendu
 
 Construire les composants nécessaires, publier des artefacts traçables et déployer
-les mêmes images, avec une rétention qui préserve les versions utiles. Le registre
-est déjà retenu ; ne pas ajouter une phase de sélection ou d'arbitrage entre services.
+les mêmes images, avec une rétention qui préserve les versions utiles. Réutiliser
+le registre sélectionné et vérifier que la cible consomme des images. Un site statique
+livré comme fichiers ne nécessite pas de registre, sauf contrat de déploiement imposant
+un conteneur. Aucun SDK registry dans le code métier.
+
+Identifier d'abord l'action autorisée : inspection, build local, publication ou
+déploiement. Ne pas passer automatiquement de l'une à la suivante. Commencer par
+une image des composants présents et un enregistrement de release ; cache distant,
+réutilisation sélective sophistiquée, signatures ou GC automatisée demandent un
+besoin de distribution, de fréquence ou une politique applicable. Les digests et
+l'absence de secrets restent requis même pour une livraison occasionnelle.
 
 User story : « En tant que développeur, je veux livrer un frontend modifié en
 réutilisant l'image API encore valide, puis pouvoir revenir à une version protégée
@@ -28,9 +37,9 @@ et traitements en cours, versions de rollback et périmètre de publication auto
 2. Pour construire, publier ou vérifier les images, lire
    [integration.md](references/integration.md). Réutiliser le pipeline explicite
    et les images single-stage du TD ; ne pas modifier le socle partagé.
-3. Adapter [livraison.json](assets/livraison.json) : provenance, références,
-   empreintes de manifests et justification des builds ou réutilisations.
-4. Définir les références protégées dans [retention.yml](assets/retention.yml).
+3. Enregistrer provenance, références et digests dans le mécanisme de release existant ;
+   utiliser [livraison.json](assets/livraison.json) s'il en manque un.
+4. Définir les références protégées dans la politique existante ou [retention.yml](assets/retention.yml).
    Préparer un inventaire de nettoyage ; ne pas déduire une autorisation de
    suppression ou de garbage collection d'une demande de publication.
 5. Appliquer [validation.md](references/validation.md) pour identité de l'artefact,
@@ -58,6 +67,8 @@ et traitements en cours, versions de rollback et périmètre de publication auto
 
 ## Livraison
 
-Fournir inventaire des entrées, références et digests observés, décisions de
-réutilisation, politique de rétention et preuves de déploiement/rollback. Laisser
-les digests inconnus non renseignés ; ne pas inventer une image publiée ou un test réussi.
+Pour une inspection, répondre avec les entrées, références et preuves disponibles.
+Pour une livraison autorisée, compléter identité publiée/déployée, réutilisation et
+récupération dans le document existant. Créer une politique détaillée de rétention
+seulement si elle est en scope. Laisser les digests inconnus non renseignés ; ne pas
+inventer une publication ou un rollback réussi.
