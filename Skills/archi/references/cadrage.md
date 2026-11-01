@@ -26,7 +26,7 @@ The skill must **discuss the need before settling on a solution** when requireme
 
 Example of a useful opening message: "I understand this is a portal for submitting and viewing case files. Three points change the architecture: the course's strict profile or a free choice of compatible stack; whether human approval is required; and document access rights." Then ask the questions. Do not ask "Python or Java?" of a user who has not provided any use case.
 
-The SLO topic is **always covered**, not reserved for a claim of high load. Obtain it from an explicit brief or ask in the first relevant rounds while keeping the one-to-three-question limit. Do not require the user to know SRE terminology: "When the user clicks Search, how long can they wait for usable results?" is a valid opening.
+For a new execution strategy, check existing response/completion requirements even at low load. Ask only when the missing answer can change the choice; a local fix or existing justified design does not restart this questionnaire. In a full design, record the absence of a product target while preserving applicable workshop targets. Use ordinary language: "How long can they wait for usable results?"
 
 ## Response-time clarification branch
 

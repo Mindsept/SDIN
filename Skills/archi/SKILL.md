@@ -7,6 +7,13 @@ description: "Define and decide the architecture of an application consuming the
 
 Produce a reasoned, actionable, and verifiable decision for **the consuming application**. This skill standardizes choices and their evidence; it does not configure the agent's global behavior, change the requested product, or authorize any deployment.
 
+Start at the smallest scope: reuse a suitable existing architecture, keep a simple
+product in one deployable application, and add a service only for an identified
+capability or measured constraint. A short decision in the existing README is
+enough for a small app. Do not require a JSON contract, ADR series, empty layers,
+full catalog comparison or new SLO campaign solely to make that decision.
+Correctness and security requirements still apply to the selected components.
+
 ## Sources of authority
 
 1. Respect the user's needs, explicit choices, and existing authorizations. Do not ask again for a choice already provided.
@@ -58,7 +65,7 @@ Recommendations are proposed project rules, dated and subject to revision; sourc
 
 Read [the adaptive questionnaire](references/cadrage.md). First extract answers from the repository and brief. Ask **one to three questions at a time**, only those that could change the decision. Explain each question's impact, offer an understandable answer option, and accept "I don't know."
 
-At a minimum, check the business flow, data and its sensitivity, existing system and team, workshop or production context, imposed constraints, and **whether a response-time SLO or maximum acceptable request duration exists**. Ask this even for a small application, unless the brief already answers it. Clarify whether the deadline concerns the complete result, acknowledgment, or first streamed output; never silently substitute one for another. Detailed load, AI, real-time, offline, workflow, ORM, and availability questions depend on the answer. A noncritical unknown can become an explicit assumption; an unknown that changes the trust boundary, latency feasibility, or course requirements keeps the affected decision in draft. Continue independent work while awaiting answers.
+Check the relevant business flow, data sensitivity, existing implementation, context and imposed constraints. Reuse known response/completion targets; ask about a missing target only when it can change the requested decision. Preserve applicable workshop targets without forcing a full SLO questionnaire for an isolated change. Clarify full result versus acknowledgment/first output when relevant; never silently substitute one for another. A noncritical unknown can become an explicit assumption; an unknown that changes the trust boundary, latency feasibility or course requirements keeps that decision provisional. Continue independent work while awaiting answers.
 
 ### 2. Establish the technology selection policy
 
@@ -69,7 +76,7 @@ Name one of two profiles in the document:
 | `strict-typescript` | Follow the course's TS/Bun default and Vite frontend. Another language in a frontend, API, or worker requires an approved waiver. The presentation mentions Rust for a measured hot spot. Other cases must still be submitted to the course authority, without inventing its approval. |
 | `platform-compatible` | The broader policy proposed here: choose a language justified by the need and team, while preserving SDI contracts. Python, Java, and Go are not exceptions by nature. Adapting builds, tests, images, and SDKs is mandatory. |
 
-The repository specifies TS/Bun by default. [Skills/CCOE-RULES.md](../CCOE-RULES.md) supplies local contributor rules for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; apply them within their stated scope. Their presence does not establish a complete instructor-approved language policy or permission to use the broader profile. **Do not infer the instructor's approval of that profile from either skill or contributor policy alone.** If the policy has not been specified, ask; provisionally analyze under the strict profile and present alternatives. An explicit answer or instruction already given is sufficient: do not add a second permission round.
+The repository specifies TS/Bun by default. [Skills/CCOE-RULES.md](../CCOE-RULES.md) supplies local contributor rules for service selection, PostgreSQL, S3, Valkey, and cross-service consistency; apply them within their stated scope. Their presence does not establish an instructor-approved broader language policy. Preserve the applicable profile; if none is specified, use the strict profile provisionally and ask only when an alternative language changes the decision. Do not infer approval from a skill or request it again when already supplied.
 
 ### 3. Turn response-time requirements into a strategy
 
@@ -97,7 +104,7 @@ Consult official documentation for support, versions, SDKs, or capabilities that
 
 Read [code structures](references/structures-code.md). Separate the responsibilities that exist: transport/controllers, application services, business rules, and persistence/integration adapters. Controllers contain neither SQL queries nor business orchestration. The detailed rules allow idiomatic Django, Rails, Go, or Nest mappings; they do not require classes, interfaces, and empty directories everywhere.
 
-Provide a concrete directory tree suited to the chosen framework, the direction of dependencies, and an example request path. Specify where DTOs, validation, authorization, transactions, errors, migrations, and tests belong. Frontends and workers have their own responsibilities, without mechanically copying an HTTP architecture.
+For a new implementation or requested structure, show the directories that will contain real code, dependency direction and one request path. Reuse the existing layout for a narrow change. Locate validation, authorization, transactions, errors and tests where needed; do not generate every possible layer or interface. Frontends and workers have their own responsibilities.
 
 ### 7. Connect only the services that are useful
 
@@ -107,13 +114,13 @@ Plan provisioning without executing it merely because of this analysis. The supp
 
 ### 8. Check quality attributes and deviations
 
-Read [quality and operations](references/qualite-exploitation.md), apply the [DevOps skill](../devops_and_choice/SKILL.md) for GitHub Actions, delivery, and runtime controls, then read [waivers](references/derogations.md) if a deviation exists. Distinguish isolated pull-request checks from explicitly triggered operations on the trusted workshop runner; an architecture review does not trigger either deployment or purge. Keep the review proportional to actual risks: business authorization, data, API contracts, asynchronous processing, capacity, performance, tests, and operations. Copying the workshop Compose setup does not make an application production-ready.
+Read the relevant [quality and operations](references/qualite-exploitation.md) sections; use [DevOps](../devops_and_choice/SKILL.md) when delivery/runtime is in scope, then [waivers](references/derogations.md) for a real deviation. Inspect the current CI rather than assuming a GitHub migration or artifacts exist. Separate isolated checks from authorized shared-host operations. An architecture review triggers neither deployment nor purge; copying workshop Compose does not make an app production-ready.
 
 For a waiver, specify the rule, scope, evidence, alternatives, owner, actual approval, expiry, and exit plan. Do not self-approve or accept an expired waiver. Do not block an alternative allowed by the chosen profile merely because it differs from the template.
 
 ### 9. Deliver and validate
 
-Follow [the deliverables guide](references/livrables.md). For a complete design, provide an architecture decision with applied language/framework/pattern comparisons, a per-operation SLO contract and its strategy, JSON contract, directory tree, validation scenarios, and any waivers. For a focused choice, limit the result to that choice and the requirements that can change it. State separately whether a design is justified and whether its SLO has actually been measured; `ready` is not a performance result.
+Follow [the deliverables guide](references/livrables.md). For a complete design, document choices, applicable constraints, real code boundaries and meaningful validation. Use a JSON contract only when requested, already consumed by tooling or required by the project; a new small app does not automatically need dual Markdown/JSON maintenance. For a focused choice, answer only that choice and what could change it. A justified design is not a measured SLO; `ready` is not a performance result.
 
 The [machine-readable contract](references/contrat-machine.md) specifies fields, limitations, and exit codes. **Fictional** example to adapt: [architecture.example.json](assets/architecture.example.json).
 

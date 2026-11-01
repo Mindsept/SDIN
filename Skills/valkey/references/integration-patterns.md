@@ -34,6 +34,24 @@ path is sufficient, and evidence or a trigger that would justify revisiting
 (for example, measured p99 or load exceeding the documented budget). Non-use is
 a valid outcome; an unused cache adds invalidation work and failure modes.
 
+## Cache-only integration
+
+Read/authorize through the existing app boundary; try the scoped cache, then the
+authoritative read on miss, and refill with an explicit TTL. Write through the
+authoritative store first, then invalidate/update the relevant cache. Decide how
+to tolerate or prevent stale repopulation racing with a concurrent write.
+
+Set value and expiry in one command, for example the Redis-protocol shape
+`SET <app>:<scope>:<resource>:<version> <serialized-value> EX <ttl-seconds>`.
+The angle-bracket fields are inputs, not a command to execute. A separate SET then
+EXPIRE can leave an immortal entry after a crash; SET without expiry also removes
+an existing TTL. Use the client/version's supported options, not copied API syntax.
+[Valkey SET](https://valkey.io/commands/set/).
+
+Keep fallback and concurrent fills bounded. A small optional cache does not need
+a distributed lock, Stream or job database. Re-authorize private cached results;
+a TTL never guarantees timely permission revocation.
+
 ## RAG corpus ingestion: Valkey's narrow role
 
 For a RAG corpus, Valkey is not the corpus store and is not the vector store.

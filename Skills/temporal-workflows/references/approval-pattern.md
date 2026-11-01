@@ -1,104 +1,101 @@
-# Human approval: a small, replay-safe TypeScript pattern
+# One approval, one side effect
 
-Use this only when the application really has a long-running approval. The business database remains the source of truth for the request and the approver's audit record. Choose names and retention for the actual app; these are not platform-wide constants.
+Use after choosing Temporal for a durable human wait. This example needs one Workflow, one Activity and one Worker queue. It does not require an application database, outbox, cache, child workflow or compensation. Reuse those components only when the actual business requirements call for them.
 
-`workflows.ts` (the Workflow bundle must not import database or HTTP clients):
+The Workflow owns the orchestration decision. The first valid decision processed while waiting wins; duplicates and later decisions do not change it. The timeout starts when the Workflow reaches the wait, not when the HTTP request is received. For a deadline anchored to submission, pass the persisted absolute cutoff and use the SDK's replay-safe clock; define boundary races with the application's authority.
+
+## Workflow module: workflows.ts
 
 ```ts
-import { condition, defineSignal, proxyActivities, setHandler } from '@temporalio/workflow';
+import {
+  ApplicationFailure, condition, defineSignal, proxyActivities, setHandler,
+} from '@temporalio/workflow';
 
-export type Outcome = 'approved' | 'rejected' | 'expired';
-export type Decision = { approved: boolean; decisionId: string };
+export type Decision = 'approved' | 'rejected';
+export type Outcome = 'completed' | 'rejected' | 'expired';
+export type ApprovalInput = { requestId: string; approvalWaitMs: number };
+export interface ApprovalActivities {
+  executeApprovedRequest(requestId: string, operationKey: string): Promise<void>;
+}
 export const decide = defineSignal<[Decision]>('decide');
 
-interface ApprovalActivities {
-  finalizeOutcomeOnce(input: {
-    requestId: string;
-    outcome: Outcome;
-    decisionId?: string;
-  }): Promise<Outcome>;
-}
-
-const { finalizeOutcomeOnce } = proxyActivities<ApprovalActivities>({
+// Illustrative budget for a short external operation; tune to the dependency.
+const { executeApprovedRequest } = proxyActivities<ApprovalActivities>({
   startToCloseTimeout: '30 seconds',
-  retry: {
-    initialInterval: '1 second',
-    maximumInterval: '1 minute',
-    backoffCoefficient: 2,
-    maximumAttempts: 5,
-  },
+  scheduleToCloseTimeout: '2 minutes',
+  retry: { initialInterval: '1 second', maximumInterval: '10 seconds', maximumAttempts: 3 },
 });
 
-export async function approvalWorkflow(
-  requestId: string,
-  approvalWaitMs: number,
-): Promise<Outcome> {
+export async function approvalWorkflow(input: ApprovalInput): Promise<Outcome> {
+  if (
+    !input || typeof input.requestId !== 'string' || input.requestId.length === 0 ||
+    !Number.isSafeInteger(input.approvalWaitMs) || input.approvalWaitMs <= 0
+  ) {
+    throw ApplicationFailure.nonRetryable('Invalid approval input', 'InvalidInput');
+  }
   let decision: Decision | undefined;
+  let waiting = true;
   setHandler(decide, (incoming) => {
-    // Duplicate decisions do not overwrite the first accepted decision.
-    if (decision === undefined) decision = incoming;
+    if (waiting && decision === undefined &&
+        (incoming === 'approved' || incoming === 'rejected')) {
+      decision = incoming;
+    }
   });
+  const received = await condition(() => decision !== undefined, input.approvalWaitMs);
+  waiting = false;
+  if (!received) return 'expired';
+  if (decision === 'rejected') return 'rejected';
 
-  const received = await condition(() => decision !== undefined, approvalWaitMs);
-  const outcome: Outcome = !received
-    ? 'expired'
-    : decision!.approved
-      ? 'approved'
-      : 'rejected';
-
-  return await finalizeOutcomeOnce(
-    received
-      ? { requestId, outcome, decisionId: decision!.decisionId }
-      : { requestId, outcome },
-  );
+  await executeApprovedRequest(input.requestId, `approval:${input.requestId}:execute`);
+  return 'completed';
 }
 ```
 
-The app's Worker must register an Activity named `finalizeOutcomeOnce` on the **same task queue**. For a Node ESM build that emits `worker.js` and `workflows.js` side by side, the wiring is:
+Register `executeApprovedRequest` in the Worker. Its implementation must deduplicate at the side-effect destination using `operationKey`: a provider idempotency key, or an atomic database transition when the effect itself is in that database. A local DB flag cannot make an external HTTP call atomic. An in-memory “already done” set is only a test double. On ambiguous responses, retry/reconcile using the same key. Exhausted retries fail the Workflow; approval alone does not mean the action completed.
+
+## Client adapter: client.ts
+
+These functions assume that the HTTP/application boundary has already validated input and authorized the actor for this request. The caller supplies a reusable configured Client and the app's queue.
 
 ```ts
-import { fileURLToPath } from 'node:url';
-import { NativeConnection, Worker } from '@temporalio/worker';
-import { finalizeOutcomeOnce } from './activities.js';
+import type { Client } from '@temporalio/client';
+import type { ApprovalInput, Decision, approvalWorkflow } from './workflows';
 
-const connection = await NativeConnection.connect({ address });
-const worker = await Worker.create({
-  connection,
-  namespace,
-  taskQueue: 'approvals',
-  workflowsPath: fileURLToPath(new URL('./workflows.js', import.meta.url)),
-  activities: { finalizeOutcomeOnce },
-});
-await worker.run();
+export function startApproval(client: Client, taskQueue: string, input: ApprovalInput) {
+  return client.workflow.start<typeof approvalWorkflow>('approvalWorkflow', {
+    workflowId: `approval:${input.requestId}`,
+    workflowIdReusePolicy: 'REJECT_DUPLICATE',
+    workflowIdConflictPolicy: 'FAIL',
+    taskQueue,
+    args: [input],
+  });
+}
+
+export async function sendDecision(
+  client: Client, requestId: string, runId: string, decision: Decision,
+): Promise<void> {
+  await client.workflow.getHandle(`approval:${requestId}`, runId)
+    .signal<[Decision]>('decide', decision);
+}
 ```
 
-Here `address` and `namespace` are loaded at boot from `secret/<app>/temporal`; adapt the emitted workflow path to the app's build. Implement the Activity as a conditional transaction in the app database: use a unique `requestId`/`decisionId` constraint, decide whether a timely recorded decision or expiry wins, persist exactly one terminal outcome, and return that *authoritative* outcome on repeats. The API must reject a decision after the persisted cutoff. If approval triggers an external call, write an outbox item in that transaction and give the downstream consumer its own idempotency key. Do not rely on Workflow replay to make an external side effect exactly once.
+Return acceptance after Temporal acknowledges start/signal; do not hold HTTP open until human approval. A Signal acknowledgment does not confirm that its decision won. Handle duplicate-start, closed-run and ambiguous transport results explicitly; return an existing handle only after checking request identity/ownership. The API derives the target run from trusted app context; it must not trust an arbitrary user-supplied workflow/run ID.
 
-API-side intent (after authentication, authorization, validation, and persistence of the request/decision):
+Create the Client with `Connection.connect({ address })` and `new Client({ connection, namespace })` from the app's runtime configuration. Close the shared connection on application shutdown.
 
-```ts
-import { Client, Connection } from '@temporalio/client';
+## Worker and build integration
 
-const connection = await Connection.connect({ address }); // from secret/<app>/temporal
-const client = new Client({ connection, namespace });      // from the same secret
+Register `approvalWorkflow` and `executeApprovedRequest` on the same task queue and namespace as the Client. An existing compatible Worker can host them.
 
-// Dispatch from the outbox if DB-to-Temporal delivery must be guaranteed.
-const workflowId = `approval:${requestId}`;
-const approvalWaitMs = Math.max(1, deadlineEpochMs - Date.now());
-const handle = await client.workflow.start('approvalWorkflow', {
-  workflowId,
-  taskQueue: 'approvals',
-  args: [requestId, approvalWaitMs],
-});
-// Persist/return handle.firstExecutionRunId where useful; do not block HTTP for approval.
+Use `NativeConnection` and `Worker.create` with the actual Activity implementation and either a `workflowsPath` that exists in the runtime image or a supported prebuilt `workflowBundle`. Determine that path from the app's build command and artifact contents, not this reference. The Workflow import of Activity types must not pull a database/HTTP client into its sandbox. Verify native SDK dependencies for the target OS/architecture and the Worker runtime with the pinned release.
 
-// In a separate authorized decision handler, after committing the audit record:
-await client.workflow.getHandle(workflowId).signal('decide', {
-  approved,
-  decisionId,
-});
-```
+A source-level type check does not prove that the image contains the bundle or can poll the queue.
 
-Here `address`, `namespace`, `requestId`, `deadlineEpochMs`, `approved`, and `decisionId` come from app configuration or a persisted request. Compute the wait from that persisted cutoff at dispatch time; the Activity's database transaction remains authoritative for a deadline race. This is a pattern, not a standalone file. A production adapter should reuse and close its connection on shutdown, reconcile ambiguous start/signal responses via workflow ID and outbox state, and handle closed runs explicitly. Only the API should grant decision authority: Temporal UI or direct gRPC access must not bypass the business authorization path.
+## When the example needs more
 
-Verification: replay must not repeat the Activity's database/external work; Activity retries may call the adapter again, so the conditional transaction and downstream idempotency are essential. Test a Worker restart while waiting, a signal arriving before the Workflow reaches `condition`, duplicate signals, expiry, and a simulated failure after the database commit.
+- If an existing business DB must atomically record a request/decision and guarantee delivery to Temporal, add a transactional outbox. Make the DB's decision/deadline authoritative and reconcile with the Workflow; this example's “first processed Signal wins” policy then needs adaptation.
+- If approval requires durable actor audit or business listing beyond closed-history retention, use the application's existing durable records. History alone is not an unlimited business database.
+- If an external action requires undo after a later failure, define that compensation. Rejection and expiry here occur before the side effect.
+- Cancellation during an external call does not roll it back automatically. Specify cancellation and reconciliation according to the actual effect.
+
+Use [validation.md](validation.md) to exercise the example. Timeouts and retry counts above are demonstration values, not platform targets.

@@ -1,6 +1,6 @@
 ---
 name: sdin-dozzle-diagnostic
-description: "Structurer les logs d'une application SDIN et diagnostiquer un incident avec Dozzle déjà retenu : corrélation des requêtes et travaux, consultation ciblée, debug temporaire et maîtrise du volume."
+description: "Diagnostiquer une exécution SDIN avec Dozzle et les logs existants, ou améliorer leur émission quand nécessaire. Consultation bornée et en lecture seule ; pas de nouvelle stack de logs pour une question ponctuelle."
 ---
 
 # Dozzle : des logs utiles, un volume maîtrisé
@@ -8,8 +8,10 @@ description: "Structurer les logs d'une application SDIN et diagnostiquer un inc
 ## Résultat attendu
 
 Émettre des traces utiles et retrouver un incident avec un parcours corrélé,
-sans imposer un volume de logs disproportionné. Le service est déjà retenu ;
-ne pas ajouter de sélection ou d'arbitrage entre services.
+sans imposer un volume de logs disproportionné. Réutiliser Dozzle s'il est disponible ;
+sinon les logs bornés du runtime peuvent suffire. Aucun SDK, conteneur Dozzle par app
+ou dépendance de readiness n'est nécessaire. Une panne de l'interface ne prouve pas
+une panne métier.
 
 User story : « En tant que développeur, je veux retrouver pourquoi un export
 a échoué, avec le même identifiant du début à la fin, sans lire toutes les traces
@@ -23,14 +25,21 @@ et de mesure. Vérifier version Dozzle et mécanisme de logs du runtime.
 
 ## Démarche
 
+Choisir le mode demandé. **Diagnostic** : commencer à l'étape 3, ne modifier ni
+logger ni configuration et ne générer une politique complète pour un incident.
+**Instrumentation** : étapes 1–2 puis validations utiles ; adapter les champs au
+parcours existant, sans créer de worker uniquement pour suivre le modèle.
+
 1. Pour cadrer l'émission, lire [patterns.md](references/patterns.md) et
    [integration.md](references/integration.md). Réutiliser le logger de l'app ;
    ne pas créer une seconde chaîne de logs pour Dozzle.
-2. Adapter [politique-logs.yml](assets/politique-logs.yml) et les
-   [exemples JSONL](assets/logs-exemple.jsonl) aux composants présents.
+2. Compléter la politique existante ; utiliser [politique-logs.yml](assets/politique-logs.yml)
+   et les [exemples JSONL](assets/logs-exemple.jsonl) seulement pour les éléments manquants.
 3. Pour un incident, borner app, composant, période et identifiant ; consulter
    les traces puis élargir selon les faits. Consigner observations et hypothèses
-   dans le [modèle de diagnostic](assets/rapport-diagnostic.md).
+   dans une réponse courte ; réserver le [modèle de diagnostic](assets/rapport-diagnostic.md)
+   à un incident nécessitant une transmission. S'arrêter dès que la question est
+   résolue ou qu'une observation manquante précise est identifiée.
 4. Si nécessaire et autorisé, activer un debug ciblé, limité dans le temps,
    avec retour explicite au niveau normal. Un diagnostic ne donne pas à lui
    seul l'autorisation de redémarrer ou purger un composant.
@@ -57,6 +66,7 @@ et de mesure. Vérifier version Dozzle et mécanisme de logs du runtime.
 
 ## Livraison
 
-Fournir politique de logs, schéma adapté, scénario de corrélation, diagnostic
-borné et mesures avec leurs limites. Décrire le statut des scénarios ; ne pas
-transformer une hypothèse en cause établie ou un protocole en test exécuté.
+Pour un diagnostic, fournir identité/période, faits, conclusion et prochaine
+observation utile. Pour une instrumentation, ajouter uniquement les changements
+de schéma/politique et leur validation. Ne pas transformer une hypothèse en cause
+établie ou un protocole en test exécuté ; aucun dossier complet pour une question ponctuelle.

@@ -1,0 +1,22 @@
+{
+  "name": "sdin-temporal-guide-checks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated verification of the documented Temporal approval example",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "node --test --test-concurrency=1 --test-force-exit --test-timeout=120000 approval.test.mjs"
+  },
+  "devDependencies": {
+    "@temporalio/client": "1.25.0",
+    "@temporalio/testing": "1.25.0",
+    "@temporalio/worker": "1.25.0",
+    "@temporalio/workflow": "1.25.0",
+    "@types/node": "24.10.0",
+    "typescript": "5.9.3"
+  }
+}

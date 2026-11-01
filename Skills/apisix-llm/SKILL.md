@@ -20,6 +20,22 @@ Déterminer si le besoin exige un LLM : tri, filtres, calculs, recherche exacte 
 contenu statique peuvent souvent répondre au besoin sans génération.
 Ne pas ajouter un worker, du RAG ou Temporal simplement parce qu'ils existent.
 
+## Point de départ et dimensionnement
+
+Réutiliser un choix IA déjà justifié ; sinon comparer d'abord une règle, une recherche
+ou un calcul déterministe. Sans besoin de modèle, ne créer ni vkey ni client APISIX.
+Pour une génération simple : un endpoint métier, un adaptateur existant et un appel
+borné suffisent. Ne pas copier les assets s'ils doublonnent un client déjà adapté.
+
+Choisir alias et budget sur quelques exemples métier représentatifs : qualité minimale,
+taille d'entrée/sortie, latence tolérée et volume/concurrence attendus. Les limites de
+l'exemple sont des valeurs de test, pas des objectifs de production. Un modèle plus
+cher, du retrieval, du streaming ou plusieurs agents exigent chacun un gain utile
+et vérifié. Le quota gateway ne remplace pas la limite par utilisateur/opération.
+Une IA facultative en panne ne doit pas rendre indisponibles les parcours sans IA.
+
+## Références ciblées
+
 Pour toute intégration, lire [le contrat et ses limites](references/platform-contract.md),
 puis vérifier les sources locales indiquées : elles prévalent sur les copies et
 sur la documentation d'une autre version d'APISIX.

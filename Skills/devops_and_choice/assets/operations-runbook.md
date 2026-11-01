@@ -12,19 +12,19 @@ Do not execute a placeholder. Replace each command with the actual reviewed appl
 2. Verify the operation is authorized within its exact scope and that shared consumers are accounted for.
 3. Acquire the selected deployment/host lock; state how ownership and stale-lock recovery are verified.
 4. Inspect current health, migrations and recent failures. Check capacity and required backup/recovery point for a data-changing operation.
-5. Identify whether execution is local or via the trusted GitHub workflow. Record the reviewed ref and actual runner access restrictions; labels and environment names alone are insufficient.
+5. Identify the actual local executor or CI job. Record its reviewed ref and runner restrictions; labels and environment names alone are insufficient. Do not assume a GitHub lifecycle has been installed.
 
 ## 2. Commands and checkpoints
 
 | Operation | Actual command/workflow, working directory and required nonsecret inputs | Side effects / preserved state | Success check | Failure and recovery checkpoint |
 |---|---|---|---|---|
-| Isolated checks | <app-lifecycle.sh check or adapted equivalent> | <no shared provisioning> | <gates and artifacts> | <failure blocks which step> |
+| Isolated checks | <actual manifest-backed check commands> | <no shared provisioning> | <gates and artifacts> | <failure blocks which step> |
 | Provision selected resources | <reviewed bootstrap/seed subset> | <specific DB/bucket/client/secret resources> | <access test per resource> | <partial provisioning reconciliation> |
 | Migrate | <exact migration command> | <schema/data changes; locks> | <migration version and invariants> | <forward repair/restore> |
-| Deploy/start app | <app-lifecycle.sh start or selected adapter> | <build/bootstrap/start effects> | <readiness + representative smoke> | <partial state and safe next command> |
-| Stop app | <app-lifecycle.sh stop> | <containers stopped; data retained> | <state verification> | <restart path> |
-| Purge app runtime, only if requested | <app-lifecycle.sh purge with exact app confirmation> | <inspect script; shared resources retained> | <runtime removed; retained inventory> | <reprovision/redeploy> |
-| Core platform lifecycle, if within role | <td/core-platform/lifecycle.sh operation> | <shared platform impact; core purge deletes volumes> | <platform + consumers verification> | <operator recovery procedure> |
+| Deploy/start app | <reviewed job/command and target> | <build/bootstrap/start effects> | <readiness + representative smoke> | <partial state and safe next command> |
+| Stop app | <actual stop job/command> | <containers stopped; data retained> | <state verification> | <restart path> |
+| Purge app runtime, only if requested | <actual scoped purge; do not assume a confirmation flag exists> | <inspect script; shared resources retained> | <runtime removed; retained inventory> | <reprovision/redeploy> |
+| Core platform lifecycle, if within role | <actual pipeline/job and exact operation> | <shared platform impact; core purge deletes volumes> | <platform + consumers verification> | <operator recovery procedure> |
 | Delete app business data, only if requested | <separate scoped deprovision procedure> | <exact records/objects/identities and retention> | <cross-store deletion verification> | <interrupted deletion reconciliation> |
 
 Environment-specific credentials: <secret names and delivery mechanism, no values>. Required tools/versions: <actual versions>. Runtime configuration location/mounts: <paths and owner>. Clean-up exclusions: <mounted/generated state that must not be deleted by checkout or general cleanup>.

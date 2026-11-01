@@ -2,6 +2,13 @@
 
 Les 13 skills du dépôt sont regroupés dans ce dossier. Chaque sous-dossier conserve son `SKILL.md` et ses propres ressources (`references/`, `assets/`, `agents/`, `scripts/`). Les liens entre skills utilisent désormais leur emplacement sous `Skills/`.
 
+Partir du besoin et réutiliser les décisions existantes. Un service disponible n'est
+pas obligatoire ; les exemples et modèles ne sont à copier que s'ils comblent un
+besoin réel. Dimensionner limites, concurrence et rétention avant d'ajouter des
+composants, sans retirer les garanties de sécurité et de cohérence.
+
+Pour les itérations : [scénarios de revue et vérifications locales](validation.md).
+
 ## Contributions regroupées
 
 | Contribution d'origine | Skills |

@@ -2,7 +2,7 @@
 
 ## Charger seulement les dépendances nécessaires
 
-Copier/adopter `assets/secret-reader.ts` dans le backend. Il lit les chemins KV
+Réutiliser le loader adapté de l'app ; sinon adopter `assets/secret-reader.ts` dans le backend. Il lit les chemins KV
 v2 explicitement autorisés pour une app, borne sa réponse et refuse redirections
 et destinations non approuvées. C'est une protection du client, pas une ACL.
 
@@ -13,7 +13,7 @@ const secrets = createSecretReader({
   app: "mon-app",
   address: process.env.VAULT_ADDR ?? "http://openbao.internal:8200",
   token: process.env.VAULT_TOKEN ?? "", // livré au serveur ; aucun fallback root
-  allowedSecrets: ["postgres", "llm"],
+  allowedSecrets: ["postgres"], // cet exemple ne consomme que PostgreSQL
   allowLocalHttp: process.env.APP_ENV === "development",
 });
 

@@ -28,6 +28,16 @@ Adapter la CI et les références de l'app lorsque demandé : version de build u
 enregistrement du digest et déploiement cohérent. Ne pas affirmer qu'il suffit de
 copier les templates pour obtenir la preuve « publié = déployé ».
 
+Tracer les vrais artefacts avant l'image : commande productrice, chemin de sortie,
+transfert entre jobs, `COPY` et entrypoint. Dans le template, le frontend a un
+build Vite ; API/worker utilisent Bun sur les sources TS, sans émission JS établie.
+Le job runtime appelle `app-lifecycle.sh` : build, image et publication s'exécutent
+sur le même hôte, avec enregistrement des digests. Il ne récupère pas automatiquement
+le build du job hosted. Inspecter les artefacts de la bonne exécution sans déduire
+leur contenu du modèle. Si l'app sépare producteur et consommateur en plusieurs jobs,
+vérifier l'upload/download effectif ; un cache de dépendances n'en est pas la preuve.
+Conserver les dépendances natives adaptées à l'OS/architecture de l'image cible.
+
 ## Séquence de livraison
 
 1. Relever la provenance, y compris les modifications non commitées. Un commit

@@ -1,9 +1,12 @@
 # Skills d'utilisation des services SDIN
 
-Ces trois skills traduisent les usages des services en instructions utilisables
-par un agent. La présentation d'origine, `sdin-skills-services.html`, n'est pas
-incluse dans ce dépôt. Le service est déjà retenu : ces dossiers
-cadrent son utilisation, sans intégrer l'arbitrage entre services.
+Ces trois skills cadrent l'analytics, les logs et la livraison d'images pour un
+agent. Le support historique `presentations/sdin-skills-services.html` mentionné
+à leur création est absent de cette branche : utiliser les contrats locaux et
+sources techniques vérifiables des références. Réutiliser le service déjà retenu ; en
+l'absence de choix, vérifier brièvement le besoin avant d'ajouter une intégration.
+Un diagnostic ponctuel, un événement analytics ou une inspection d'image ne demande
+pas le même livrable qu'une instrumentation complète ou une publication.
 
 | Skill | Point d'entrée | Livrables principaux |
 |---|---|---|
@@ -21,8 +24,8 @@ cadrent son utilisation, sans intégrer l'arbitrage entre services.
 - `assets/` : modèles ou exemples à copier et adapter dans l'application.
 
 Lire le point d'entrée, puis uniquement les références nécessaires à la tâche.
-Les assets sont des exemples : les copier dans l'app avant adaptation, sans y
-inscrire de secrets. Les seuils et durées laissés à définir viennent du besoin
+Les assets sont des exemples : compléter d'abord l'existant et ne copier que les
+éléments utiles, sans secrets. Les seuils et durées laissés à définir viennent du besoin
 de l'app ; ils ne constituent pas des KPI imposés pour choisir une architecture.
 
 Les dossiers sont versionnés dans le TD ; ils ne sont pas installés dans le profil

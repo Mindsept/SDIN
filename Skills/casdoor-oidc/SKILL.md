@@ -10,6 +10,26 @@ Partir du prompt utilisateur : qui utilise l'app, quelles ressources doivent
 un document pour stocker le prompt ni ajouter des comptes à un produit qui n'en
 a pas besoin. Définir d'abord les besoins d'identité et d'autorisation.
 
+## Intégration minimale et ajouts conditionnels
+
+Une page publique sans données privées n'a pas besoin de login. Si l'identité est
+déjà intégrée correctement, conserver le client et le flux : ajouter un contrôle
+d'accès ne demande pas une refonte OIDC. Pour une webapp avec backend, commencer
+par un client Casdoor, la bibliothèque OIDC et le mécanisme de session existant.
+
+Le partage des sessions dépend des instances et de la tolérance à une reconnexion :
+un store mémoire borné peut convenir à une démo mono-processus si sa perte est
+acceptée ; sinon réutiliser le store approprié déjà sélectionné. Ne pas ajouter
+Valkey, refresh tokens, multi-tenant, rôles complexes ou moteur de policy par défaut.
+Définir les seuls rôles utiles ; les rôles reader/editor des assets sont un exemple,
+pas les droits réels du produit. PKCE, validation des tokens, CSRF et autorisation
+objet restent nécessaires au flux retenu, quelle que soit la taille de l'app.
+
+Borner durée et nombre de transactions de login, durée des sessions et appels IdP.
+Ajouter révocation partagée/refresh seulement si le délai de révocation, la durée
+de session ou le fonctionnement multi-instance l'exige. Tester les personas dans
+un environnement isolé ; leur création sur l'IdP partagé reste un provisioning autorisé.
+
 ## Lectures ciblées
 
 - Toute intégration : [contrat de la plateforme et limites](references/platform-contract.md).

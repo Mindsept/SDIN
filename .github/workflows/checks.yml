@@ -25,7 +25,9 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check -r ci/requirements.txt
       - name: Syntax and isolated behavior checks
         run: bash ci/check.sh
+      - name: Type-check and exercise the Temporal approval guide
+        run: bash ci/check-temporal.sh
       - name: Lint the migrated lifecycle scripts
-        run: shellcheck -S warning ci/check.sh ci/install-gitleaks.sh td/core-platform/lifecycle.sh td/core-platform/templates/app-lifecycle.sh
+        run: shellcheck -S warning ci/check.sh ci/check-temporal.sh ci/install-gitleaks.sh td/core-platform/lifecycle.sh td/core-platform/templates/app-lifecycle.sh
       - name: Validate GitHub workflows and the app template
         run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7 -config-file .github/actionlint.yaml -shellcheck='' .github/workflows/*.yml td/core-platform/templates/github-actions.yml

@@ -1,6 +1,6 @@
 # Contracts with the SDI platform
 
-Platform snapshot analyzed on 2026-10-14; GitHub lifecycle references updated on 2026-10-21. Local sources to reread before generating an application: [compose](../../../td/core-platform/podman-compose.yml), [README](../../../td/core-platform/README.md), [app template](../../../td/core-platform/templates/podman-compose.yml), [bootstrap](../../../td/core-platform/templates/bootstrap.sh), [app workflow](../../../td/core-platform/templates/github-actions.yml), [app lifecycle](../../../td/core-platform/templates/app-lifecycle.sh), [app settings](../../../td/core-platform/templates/app.env.example). Relative links assume this skill is in the repository's `Skills/archi` directory; if copied elsewhere, locate the equivalents in the target platform.
+Reread the current branch's [compose](../../../td/core-platform/podman-compose.yml), [README](../../../td/core-platform/README.md), [app template](../../../td/core-platform/templates/podman-compose.yml), [bootstrap](../../../td/core-platform/templates/bootstrap.sh), [core lifecycle](../../../td/core-platform/lifecycle.sh) and [app workflow](../../../td/core-platform/templates/github-actions.yml). The merged GitHub workflows call local lifecycle scripts. A template describes source intent, not completed artifacts or a configured runner. If copied elsewhere, locate the actual platform root.
 
 ## 1. The 11 services and their consumers
 
@@ -48,7 +48,7 @@ Liveness must not fail because an unavailable external provider would cause a re
 
 | Operation | Script / responsibility | Points to watch |
 |---|---|---|
-| Start the platform | `td/core-platform/lifecycle.sh start` or the manual [GitHub workflow](../../../.github/workflows/core-platform.yml) | Prepares the network, starts containers and seeds; requires an authorized runtime operation, never an analysis alone |
+| Start the platform | [Core lifecycle](../../../td/core-platform/lifecycle.sh) `start`, also invoked by the [manual workflow](../../../.github/workflows/core-platform.yml) | Host preparation, containers and seeding are mutations; never execute for an analysis or skill validation alone |
 | DB + user, bucket + key, app secrets | `templates/bootstrap.sh` copied/adapted by the app | The template creates them **by default**. Remove unnecessary steps for frontend-only apps or apps without files |
 | LLM + Temporal | `onboard-app.sh <app>` | Creates both and regenerates the gateway; not automatically enabled for every app |
 | Optional bootstrap LLM | `LLM_VKEY=1` | Publishes key/config; check whether the gateway needs reseeding after creation, do not assume the runtime consumer is already active |
@@ -60,7 +60,7 @@ Liveness must not fail because an unavailable external provider would cause a re
 
 **PLAT-003 — MUST (human review):** adapt provisioning to declared needs and keep it idempotent. Why: avoid unused resources and ensure reproducibility after state loss. Compute: no unnecessary DB/bucket/namespace or keys. Do not modify the platform to hard-code an app's name into it.
 
-Copy `templates/github-actions.yml` to `.github/workflows/app.yml`, `templates/app-lifecycle.sh` to the application root, and `templates/app.env.example` to `app.env`; adapt components, ports, provisioning, and the copied `ci/install-gitleaks.sh` and pinned Bun toolchain before use. Commit only reviewed non-secret settings. The app script exposes `check|start|stop|purge`. Pull-request checks run on an isolated GitHub-hosted runner and cannot reach the workshop through its `localhost` or `.internal` addresses. Runtime workflows are manually dispatched from the default branch on `[self-hosted, linux, sdi-workshop]` with environment `sdi-workshop`. Register the runner and configure environment protections before claiming this delivery path works. Never run untrusted pull-request code on that host. A purge requires `CONFIRM_PURGE=core` for the platform or the exact `APP` name for an app; this guard does not itself authorize deletion.
+For requested app delivery, inspect the real pipeline and [app workflow](../../../td/core-platform/templates/github-actions.yml); adapt only selected components. Read [delivery guidance](../../devops_and_choice/references/delivery-github.md) for the scripts, artifact path and runner trust. Shared locks and exact `CONFIRM_PURGE` guards now exist in the lifecycle scripts; verify their use and host configuration, not merely their declarations. Never execute untrusted code on a platform-connected host.
 
 Real secrets must not be written into the JSON contract, ADRs or examples. Development credentials and tokens published by the repository are not a model for production.
 
@@ -72,7 +72,7 @@ For Python/Java/Go/.NET/etc.:
 
 1. Check clients for Postgres, S3-compatible endpoint/path style, Valkey/Streams, OIDC, OpenBao and the OpenAI-compatible API according to the services used.
 2. Check the Temporal SDK, its version and its target runtime **if Temporal is selected**. Do not assume the TypeScript SDK supports Bun because the API app does. Use an officially supported runtime and document the departure from the strict profile if necessary. For an unsupported language, design a compatible worker or choose another solution with justification.
-3. Adapt the GitHub workflow toolchain setup and `app-lifecycle.sh` gates/build functions with appropriate, pinned commands in place of `bun install`, `tsc`, `test:unit`, `test:integration`, and `bun audit`; retain the quality guarantees and separation of isolated checks from live integrations, not the command names.
+3. Adapt the actual pipeline's toolchain, tests, build outputs and artifact transfer to the chosen stack. Preserve quality checks and separation from shared-host operations, not Bun command names or hypothetical lifecycle scripts.
 4. Adapt images, non-privileged user, signals, build assets, health checks, native dependencies and CPU architecture. An Alpine/musl image is not compatible with every Python wheel, native extension or SDK; document Debian/glibc or multistage builds if necessary.
 5. Keep shared API/event schemas and contract tests; sharing TS types between frontend/backend is no longer available by default.
 
