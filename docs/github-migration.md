@@ -75,7 +75,8 @@ The common offline check also runs the six Umami adapter tests. A separate
 mandatory workflow step, `bash ci/check-temporal.sh`, extracts the actual
 [approval example](../Skills/temporal-workflows/references/approval-pattern.md),
 type-checks it and runs nine tests with the real Temporal SDK and a disposable
-loopback test server. It uses a pinned npm lockfile and server version, requires
+full server, plus a two-day timer test on Linux x64 in a separate time-skipping
+environment. Both bind locally. It uses a pinned npm lockfile and server version, requires
 network access for installation, and removes its temporary workspace on exit.
 It neither starts Podman nor connects to workshop services. Activity effects
 are doubles; [the results](../Skills/validation-results.md) state the limits.

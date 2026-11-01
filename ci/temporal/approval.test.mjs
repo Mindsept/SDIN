@@ -13,21 +13,16 @@ let workflowBundle;
 const calls = new Map();
 const effects = new Set();
 let approvedHistory;
-// The Java time-skipping server has no macOS ARM64 binary. Exercise the same
-// code there with the CLI dev server and a shorter test input, never shared SDIN.
-const localServer = process.platform === 'darwin' && process.arch === 'arm64';
-const waitMs = localServer ? 500 : 2 * 24 * 60 * 60 * 1000;
+// Use the full CLI dev server for SDK behavior, including Worker replacement.
+// The Java time-skipping server is limited to the long-timer case below.
+const waitMs = 500;
 
 before(async () => {
   Runtime.install({ logger: new DefaultLogger('ERROR') });
-  environment = localServer
-    ? await TestWorkflowEnvironment.createLocal({ server: {
-      ip: '127.0.0.1', ui: false, executable: { type: 'cached-download', version: 'v1.9.1' },
-    } })
-    : await TestWorkflowEnvironment.createTimeSkipping({ server: {
-      executable: { type: 'cached-download', version: 'v1.40.0' },
-    } });
-  console.log(`Temporal SDK 1.25.0; ${localServer ? 'CLI 1.9.1, bounded real time' : 'test server 1.40.0, time skipping'}`);
+  environment = await TestWorkflowEnvironment.createLocal({ server: {
+    ip: '127.0.0.1', ui: false, executable: { type: 'cached-download', version: 'v1.9.1' },
+  } });
+  console.log('Temporal SDK 1.25.0; CLI 1.9.1, bounded real-time cases');
   workflowBundle = await bundleWorkflowCode({ workflowsPath: require.resolve('./lib/workflows.js') });
 }, { timeout: 120_000 });
 
@@ -157,3 +152,28 @@ test('captured history replays without executing another Activity', { timeout: 2
   await Worker.runReplayHistory({ workflowBundle }, approvedHistory);
   assert.equal(JSON.stringify([...calls]), beforeReplay);
 });
+
+// Time skipping is global: use its own environment and no parallel tests.
+// No ARM64 macOS binary exists; the nine full-server cases above still run there.
+if (process.platform === 'linux' && process.arch === 'x64') {
+  test('two-day approval deadline expires on an isolated time-skipping server', { timeout: 30_000 }, async () => {
+    const timers = await TestWorkflowEnvironment.createTimeSkipping({ server: {
+      executable: { type: 'cached-download', version: 'v1.40.0' },
+    } });
+    try {
+      let activityCalls = 0;
+      const taskQueue = `approval-timer-${randomUUID()}`;
+      const worker = await Worker.create({
+        connection: timers.nativeConnection, taskQueue, workflowBundle,
+        activities: { executeApprovedRequest: async () => { activityCalls++; } },
+      });
+      const handle = await startApproval(timers.client, taskQueue, {
+        requestId: 'two-day-timeout', approvalWaitMs: 2 * 24 * 60 * 60 * 1000,
+      });
+      assert.equal(await worker.runUntil(() => handle.result()), 'expired');
+      assert.equal(activityCalls, 0);
+    } finally {
+      await timers.teardown();
+    }
+  });
+}

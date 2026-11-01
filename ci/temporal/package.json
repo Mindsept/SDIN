@@ -9,7 +9,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsc",
-    "test": "node --test --test-concurrency=1 approval.test.mjs"
+    "test": "node --test --test-concurrency=1 --test-force-exit --test-timeout=120000 approval.test.mjs"
   },
   "devDependencies": {
     "@temporalio/client": "1.25.0",

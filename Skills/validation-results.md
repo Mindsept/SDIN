@@ -50,16 +50,27 @@ restent expressément à vérifier.
 - Exemple Temporal : extraction **sans modification** des deux blocs TypeScript
   du guide, compilation stricte contre les packages Temporal `1.25.0`, puis
   [9 tests](../ci/temporal/approval.test.mjs) avec un vrai Worker/Client et des
-  Activities doublées sur un serveur jetable. Commande :
+  Activities doublées sur un serveur complet jetable, plus un dixième test de
+  longue attente sur Linux x64 dans un environnement séparé à saut temporel. Commande :
   `bash ci/check-temporal.sh` ; installation déterministe via le lock npm.
 - Résultat local macOS ARM64 / Node `24.21.0` : 9/9 Temporal réussis, sans exclusion,
-  avec CLI `1.9.1` et délais d'entrée courts. La CI Linux utilise le serveur de
-  test `1.40.0` avec saut temporel pour exercer l'attente de deux jours.
+  avec CLI `1.9.1` et délais d'entrée courts. Les mêmes neuf cas utilisent ce
+  serveur sur Linux ; le dixième utilise le serveur de test `1.40.0` avec saut
+  temporel pour exercer l'attente de deux jours.
 
 Les neuf cas couvrent premier Signal valide/conflits précoces, rejet, expiration,
 double démarrage actif/clos, entrée invalide, reprise après effet avec même clé,
 trois tentatives épuisées, remplacement du Worker pendant l'attente et replay
 d'un historique capturé sans exécuter l'Activity.
+La première exécution Linux a révélé que le remplacement du Worker ne se
+terminait pas dans le délai sur le serveur Java à saut temporel, puis le nettoyage
+laissait des pollers actifs. [Journaux de cette exécution annulée](https://github.com/Mindsept/SDIN/actions/runs/41360961492).
+Le même scénario reste obligatoire, exécuté sur le serveur complet ; seul le test
+du timer utilise le serveur Java séparément. Ce choix suit les
+[limites du serveur de test indiquées par le SDK](https://github.com/temporalio/sdk-typescript/blob/v1.25.0/packages/testing/src/testing-workflow-environment.ts).
+Les délais de test sont bornés et le processus de test doit sortir même après un
+échec ; aucun résultat d'assertion n'est ignoré.
+
 Les résultats GitHub et leurs journaux sont accessibles depuis la PR ; un succès
 local ne remplace pas leur statut obligatoire avant fusion.
 
