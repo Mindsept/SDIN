@@ -13,5 +13,6 @@ PY
 python3 -B Skills/archi/scripts/test_validate_architecture.py
 node --test Skills/apisix-llm/assets/llm-client.test.ts \
   Skills/casdoor-oidc/assets/auth-policy.test.ts \
-  Skills/openbao-secrets/assets/secret-reader.test.ts
+  Skills/openbao-secrets/assets/secret-reader.test.ts \
+  Skills/sdin-umami-instrumentation/assets/track-event.test.mjs
 python3 -B -m unittest discover -s ci/tests -p 'test_*.py' -v

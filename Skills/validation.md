@@ -34,6 +34,11 @@ décisives, service/runtime minimum, paramètres issus du besoin, sécurité con
 critère de réévaluation et périmètre d'action respecté. Corriger une contradiction
 dans la référence ou l'asset concerné, pas seulement dans le SKILL.md.
 
+## Résultats consignés
+
+Voir la [revue datée et ses limites](validation-results.md). Elle distingue
+les déclarations historiques, la revue documentaire et les tests exécutables.
+
 ## Vérifications locales réutilisables
 
 Les tests d'assets n'appellent pas les services du socle. Avec un Node supportant

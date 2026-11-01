@@ -15,7 +15,9 @@ A response fails the simplicity check if it provisions S3/Valkey/LLM via a broad
 
 ## Check the approval code when it changes
 
-Extract the TypeScript examples into an isolated test project (or adapt them in the consuming app). Pin one version for all Temporal packages and a supported runtime. Type-check the Workflow and Client against the real SDK. Use `@temporalio/testing` with a disposable server and Activity doubles for:
+The repository now automates extraction of both unchanged TypeScript blocks, strict type checking and nine Worker/Client tests. Run `bash ci/check-temporal.sh` from the repository root; [the test suite](../../../ci/temporal/approval.test.mjs) and its lockfile are CI-only dependencies, not application runtime dependencies. It downloads pinned packages and a disposable server, cleans its temporary workspace, and never connects to the shared platform. Linux exercises two-day waits with the time-skipping test server; macOS ARM64 uses the CLI dev server with short test inputs because the Java test server has no native ARM64 binary there. Setup failures fail the check; no silent test skips. See the [dated results and limits](../../validation-results.md).
+
+To adapt or extend this verification in the consuming app, extract the TypeScript examples into an isolated test project. Pin one version for all Temporal packages and a supported runtime. Type-check the Workflow and Client against the real SDK. Use `@temporalio/testing` with a disposable server and Activity doubles for:
 
 - approval → one logical effect → `completed`;
 - rejection or timeout → no Activity call;
