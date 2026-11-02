@@ -49,7 +49,7 @@ Liveness must not fail because an unavailable external provider would cause a re
 | Operation | Script / responsibility | Points to watch |
 |---|---|---|
 | Start the platform | [Core lifecycle](../../../td/core-platform/lifecycle.sh) `start`, also invoked by the [manual workflow](../../../.github/workflows/core-platform.yml) | Host preparation, containers and seeding are mutations; never execute for an analysis or skill validation alone |
-| DB + user, bucket + key, app secrets | `templates/bootstrap.sh` copied/adapted by the app | The template creates them **by default**. Remove unnecessary steps for frontend-only apps or apps without files |
+| DB + user, bucket + key, app secrets | `templates/bootstrap.sh` copied/adapted by the app | The TD creates both **by default**. For a new app, use the [selective copy](../../devops_and_choice/references/app-bootstrap.md); leave the TD unchanged |
 | LLM + Temporal | `onboard-app.sh <app>` | Creates both and regenerates the gateway; not automatically enabled for every app |
 | Optional bootstrap LLM | `LLM_VKEY=1` | Publishes key/config; check whether the gateway needs reseeding after creation, do not assume the runtime consumer is already active |
 | Temporal namespace | `temporal/ns-create.sh <app>` or bootstrap option | `ns-create.sh` alone does not write connection details to OpenBao; bootstrap/onboard do |
