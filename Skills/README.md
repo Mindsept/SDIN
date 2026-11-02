@@ -1,6 +1,6 @@
 # Skills SDIN
 
-Les 13 skills du dépôt sont regroupés dans ce dossier. Chaque sous-dossier conserve son `SKILL.md` et ses propres ressources (`references/`, `assets/`, `agents/`, `scripts/`). Les liens entre skills utilisent désormais leur emplacement sous `Skills/`.
+Les 14 skills du dépôt sont regroupés dans ce dossier. Chaque sous-dossier conserve son `SKILL.md` et ses propres ressources (`references/`, `assets/`, `agents/`, `scripts/`). Les liens entre skills utilisent désormais leur emplacement sous `Skills/`.
 
 Partir du besoin et réutiliser les décisions existantes. Un service disponible n'est
 pas obligatoire ; les exemples et modèles ne sont à copier que s'ils comblent un
@@ -8,6 +8,10 @@ besoin réel. Dimensionner limites, concurrence et rétention avant d'ajouter de
 composants, sans retirer les garanties de sécurité et de cohérence.
 
 Pour les itérations : [scénarios de revue et vérifications locales](validation.md).
+
+Le [lanceur sdin-app](sdin-app/SKILL.md) permet de fournir un brief seul après
+activation. Il utilise les 13 skills existants et leur routage, avec le contexte
+d’environnement et la création du dépôt GitHub applicatif.
 
 ## Contributions regroupées
 

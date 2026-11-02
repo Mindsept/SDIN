@@ -16,6 +16,10 @@ d'architecture, ne remplace aucun skill et n'installe rien dans le profil de l'a
   [matrice d'audit](Skills/audit-matrix.yml) selon leur périmètre ; ne pas étendre
   leurs exigences à un service non retenu ou à une autorité qu'elles ne revendiquent pas.
 
+Pour réaliser une application à partir d’un brief, le lanceur
+[sdin-app](Skills/sdin-app/SKILL.md) ajoute le contexte de travail et le dépôt
+GitHub applicatif. Les décisions restent guidées par les routes ci-dessous.
+
 ## Choisir le point d'entrée
 
 | Tâche | Route |

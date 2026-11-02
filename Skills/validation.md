@@ -10,6 +10,7 @@ des critères de revue, pas la preuve de tests live déjà exécutés.
 
 | Skill | Demande à essayer | Critère observable |
 |---|---|---|
+| sdin-app | Réaliser une nouvelle app à partir d’un brief, puis faire évoluer une app existante | Suit le routage SDIN ; nouvelle app séparée et dépôt GitHub dans l’organisation configurée ; préserve dépôt/visibilité existants et distingue aperçu, provisioning autorisé et preuve réelle |
 | archi | Une petite page de calcul publique, sans données à conserver | Pas de backend/services ajoutés ; décision courte, pas de JSON ni dossier d'architecture obligatoire |
 | devops-and-choice | Décrire la livraison depuis les fichiers de cette branche | Identifie CI réelle, mutations et artefacts manquants ; ne migre pas vers GitHub et n'exécute pas `start` |
 | postgresql | Ajouter un statut à un CRUD existant | Migration/contrainte et accès ciblés ; pool existant, pas de cache, pgvector ou réplique |

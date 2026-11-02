@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDIN — créer une application"
+  short_description: "Créer une app avec l’assistance et le socle SDIN"
+  default_prompt: "Utilise $sdin-app pour prendre en main SDIN et réaliser l’application décrite dans mon brief."

@@ -13,6 +13,12 @@ ils orientent vers le travail existant sans remplacer ses règles ni ses référ
 2. Lui demander de lire [AGENTS.md](AGENTS.md), puis de suivre la route adaptée.
 3. Utiliser les skills spécialisés uniquement pour les services concernés.
 
+Pour lancer une application à partir d’un brief, utiliser le skill
+[sdin-app](Skills/sdin-app/SKILL.md), puis fournir le brief. Il prend en main
+le dépôt et l’infrastructure, suit l’assistance existante et prépare le dépôt
+GitHub de l’application dans l’organisation configurée. Les autres routes
+restent utilisables directement.
+
 Exemple de demande :
 
 > Lis AGENTS.md à la racine du dépôt SDIN. À partir de mon besoin et de mon
@@ -37,7 +43,7 @@ Tous les skills sont regroupés dans [Skills/](Skills/). Le
 | Processus durables et diagnostic d'exécutions | [Temporal workflows](Skills/temporal-workflows/SKILL.md), [Temporal operations](Skills/temporal-operations/SKILL.md) |
 | Mesure des usages, logs et livraison d'images | [Umami](Skills/sdin-umami-instrumentation/SKILL.md), [Dozzle](Skills/sdin-dozzle-diagnostic/SKILL.md), [Registry](Skills/sdin-registry-delivery/SKILL.md) |
 
-Le catalogue contient 13 skills : 2 transverses et 11 spécialisés.
+Le catalogue contient 14 skills : le lanceur applicatif, 2 transverses et 11 spécialisés.
 Les tables de routage internes d'archi et devops-and-choice précisent les
 références à charger et les relais entre contributions.
 
