@@ -20,6 +20,8 @@ Size the pool across **all** API/Worker replicas: the sum of their maxima must f
 - The repository's current bootstrap provisions PostgreSQL and S3 unconditionally. If a service is not needed, adapt only the consuming app's copied bootstrap and compose/client configuration to skip it. Do not assume USE_POSTGRES or USE_OBJECTSTORE flags exist upstream.
 - App-level database separation does not implement end-user authorization. Resolve identity server-side and constrain every record operation by its owner/tenant policy. Client IDs never grant access. The workshop's root credentials and plain transport are development configuration.
 
+For a new app bootstrap, follow the [selective app-copy guide](../devops_and_choice/references/app-bootstrap.md). Its resource flags apply only to the generated app script; reuse an already adapted app bootstrap when adequate.
+
 ## Design and implementation
 
 1. Complete the decision gate; identify data ownership, relational constraints, retention, deletion and recovery. Add migrations with explicit deploy compatibility and a reviewed recovery plan; never run DDL in ordinary requests.

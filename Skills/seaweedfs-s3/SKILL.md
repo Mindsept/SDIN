@@ -20,6 +20,8 @@ Record maximum bytes/object, expected stored volume, transfer concurrency and re
 - Core seeding creates the first identity; until then the store is open. Do not assume S3 is protected merely because it responds. `PUBLIC_BUCKET=1` enables anonymous read of the app bucket, so use it only for wholly public content. An app with private files must keep its bucket private.
 - The upstream app bootstrap provisions both PostgreSQL and S3 unconditionally; adapt the copied app bootstrap when non-use is chosen. No USE_OBJECTSTORE flag is present upstream. When provisioning SeaweedFS rights, use bare actions with `-buckets=<app>`; avoid the duplicated bucket/prefix trap documented in the platform README.
 
+For a new app bootstrap, follow the [selective app-copy guide](../devops_and_choice/references/app-bootstrap.md). Its resource flags apply only to the generated app script; reuse an already adapted app bootstrap when adequate.
+
 ## Design and implementation
 
 1. Complete the decision gate. Establish owner/tenant, upload formats, maximum size, retention and deletion before exposing upload/download routes. Use durable metadata only when required; reuse the selected persistence layer rather than adding PostgreSQL merely because S3 is used.

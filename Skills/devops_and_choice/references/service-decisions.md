@@ -162,7 +162,7 @@ Evidence: trace an API request through its actual worker where present; confirm 
 
 ## 11. Provisioning is a separate decision from feature selection
 
-Read the actual helpers before executing them. The [bootstrap template](../../../td/core-platform/templates/bootstrap.sh) currently provisions PostgreSQL and S3 in its normal path; it is not a universal minimal bootstrap for every application. Tailor the app bootstrap to its selected services. Do not claim an optional database/bucket flag exists unless it is implemented.
+Read the actual helpers before executing them. The [bootstrap template](../../../td/core-platform/templates/bootstrap.sh) currently provisions PostgreSQL and S3 in its normal path; it is not a universal minimal bootstrap for every application. Tailor the app bootstrap to its selected services. The [selective app-copy guide](app-bootstrap.md) provides a tested preparer without changing the TD. Its USE_POSTGRES/USE_OBJECTSTORE flags belong to the generated app copy; do not claim they exist upstream.
 
 | Desired capability | Existing provisioning mechanism | Boundary to preserve |
 | --- | --- | --- |

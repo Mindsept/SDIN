@@ -127,7 +127,9 @@ platform secrets. The manual runtime job uses the already installed, same Bun
 version on the trusted host and runs everything in one job. It reruns checks
 before provisioning, then migrations/integration checks, build, image push,
 deployment and readiness. `PROVISION=0` is for existing resources, not a flag
-that creates a minimal database-free bootstrap.
+that creates a minimal database-free bootstrap. For a new app needing only selected
+resources, prepare an [app-owned selective bootstrap](../Skills/devops_and_choice/references/app-bootstrap.md);
+the TD and its defaults remain unchanged.
 
 Registry and tag are exported to both publication and Compose. The Git commit
 tag provides traceability, not enforced immutability. The release directory
